@@ -2,7 +2,7 @@
 Title:    Hello World
 Subtitle: The Origin of Me
 Author:   Recursion Ninja
-date:     2021-10-31
+date:     2021-10-24
 ---
 
 These are my tentative first steps from behind the immaculate veil of privacy I have maintained since adolecence into the penumbra of the public light.
