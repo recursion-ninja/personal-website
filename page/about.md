@@ -10,7 +10,7 @@ My primary research interests include compilers, programming language theory, fo
 Some ancillary research interests involve abstract algebra, number theory, cryptography, ethics, and artificial intelligence.
 
 For my next academic endeavor, I intend to explore the interplay between strong type stystems, both linear and dependent, and total functional programming's impact on memory management while pursuing a PhD.
-The combination of these language features allow for compile-time, [automatic memory management under memory](https://doi.org/10.1145/292540.292564) circumstances.
+The combination of these language features allow for compile-time, [automatic memory management](https://doi.org/10.1145/292540.292564)  under certain circumstances.
 Specifically, I am interested in how [quantitative type theory](https://doi.org/10.1145/3209108.3209189) coupled with a [decidable language](https://en.wikipedia.org/wiki/Recursive_language) can lead to novel compile-time memory and execution optimiztions.
 I am seeking out both an **academic advisor** capable of supporting this reaserch, as well as **colleagues** for collaboration.
 If your passions align with mine, please reach out!
