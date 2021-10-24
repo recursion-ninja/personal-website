@@ -1,0 +1,28 @@
+<ul class="download-formats-list">
+   $if(HasASCIIDoc)$
+   <li>
+      <a download href="$BaseRoute$.adoc" title="Electronic Publication">.adoc</a>
+   </li>
+   $endif$
+   $if(HasEPUB)$
+   <li>
+      <a download href="$BaseRoute$.epub" title="Electronic Publication">.epub</a>
+   </li>
+   $endif$
+   $if(HasMarkdown)$
+   <li>
+      <a download href="$BaseRoute$.md"   title="Common Markdown">.md</a>
+   </li>
+   $endif$
+   $if(HasPDF)$
+   <li>
+      <a download href="$BaseRoute$.pdf"  title="Portable Document Format">.pdf</a>
+   </li>
+   $endif$
+   $if(HasTextual)$
+   <li>
+      <a download href="$BaseRoute$.txt"  title="Raw Text">.txt</a>
+   </li>
+   $endif$
+</ul>
+

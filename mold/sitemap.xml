@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">$for(SiteEntries)$
+  <url>
+    <loc>$BaseURL$$url$</loc>
+    <changefreq>weekly</changefreq>
+    $if(LastModified)$<lastmod>$LastModified$</lastmod>$endif$
+  </url>$endfor$
+  <url>
+    <loc>$BaseURL$/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>

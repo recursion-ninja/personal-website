@@ -1,0 +1,9 @@
+<div id="blog-list-title">Chronicle of all my posts:</div>
+<dl  id="blog-list">
+  $for(BlogPostList)$
+    <span>
+    <dt title="$Subtitle$"><a href="$url$">$Title$</a></dt>
+    <dd title="Date of blog post on the Holocene calendar">$Date$</dd>
+    </span>
+  $endfor$
+</dl>

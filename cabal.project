@@ -1,0 +1,12 @@
+allow-newer:
+    bytestring
+
+constraints: pandoc +embed_data_files
+
+package *
+    ghc-options: -fwrite-ide-info -hiedir=.hie
+
+packages: .
+
+with-compiler:
+    ghc-8.10.7

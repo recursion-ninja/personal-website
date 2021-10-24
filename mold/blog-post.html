@@ -1,0 +1,73 @@
+<div id="post-metadata">
+  <div class="hash">
+    <ol title="SHA3 512-bit digest of blog post">
+    $for(HashOctiles)$
+    <li>
+      $for(HexChars)$$body$ $endfor$
+    </li>
+    $endfor$
+  </ol>
+  </div>
+
+  <div class="post-description">
+  <dl>
+    <span>
+      <dt>Title</dt>
+      <dd>
+        $if(Title)$
+          $Title$
+        $endif$
+      </dd>
+    </span>
+    <span>
+      <dt>Subtitle</dt>
+      <dd>
+        $if(Subtitle)$
+          $Subtitle$
+        $endif$
+      </dd>
+    </span>
+    <span>
+      <dt>Author</dt>
+      <dd>
+        $if(Author)$
+          $Author$
+        $endif$
+      </dd>
+    </span>
+    <span title="Date of posting on the Holocene calendar">
+      <dt>Date</dt>
+      <dd>
+        $if(Date)$
+          $Date$
+        $endif$
+      </dd>
+    </span>
+    <span>
+      <dt>Word Count</dt>
+      <dd>
+        <span> $WordCount$ </span>
+        <span title="Estimated reading time"> (ERT $ERT$ min) </span>
+      </dd>
+    </span>
+    <span>
+      <dt>Code Lines</dt>
+      <dd>
+        $LOC$
+      </dd>
+    </span>
+    <span>
+      <dt></dt>
+      <dd></dd>
+    </span>
+    <span>
+      <dt>Formats</dt>
+      <dd style="margin-left: -4px;">
+        $partial("mold/page-format-list.html")$
+      </dd>
+    </span>
+  </dl>
+  </div>
+</div>
+
+$body$

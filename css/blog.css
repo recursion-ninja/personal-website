@@ -1,0 +1,144 @@
+code {
+/*
+  Here we want the margin of a code block to be either:
+    *  0px --> vw >= --page-full-width
+    * -npx --> vw == --page-full-width - n / 2
+    * -xpx --> vw <= --page-full-width - 2 * var(--boarder-breadth)
+  This causes the border of the code block to merge with the border of the page body
+*/
+   --code-snip-sides: clamp( calc( -1 * var(--boarder-breadth) )
+                           , calc( (  var(--view-port-width)
+                                   -  var(--page-full-width)
+                                   - (var(--boarder-breadth) * 2)
+                                   ) / 2
+                                 )
+                           , 0px
+                           );
+
+/*
+  This calculation subtracts the border and padding widths
+  from the viewport width to ensure that the code block
+  never exceeds the width of the viewport.
+
+  This is very important as failing to do so it will cause
+  the page body to exceed the viewport width and break many
+  of the beautiful flex rendering functionalities.
+*/
+/*    --code-snip-width: min( var(--code-snip-ample), var(--code-snip-trunk));*/
+    --code-snip-width: min( var(--code-snip-ample), var(--code-snip-trunk) );
+
+    --code-snip-ample: calc( (  var(--page-full-width)      /* max width of page content */
+                             + (var(--boarder-breadth) * 2) /* boarder around page block */
+                             )
+                           - ( (var(--page-edge-space) * 2) /* padding around code block */
+                             + (var(--boarder-breadth) * 2) /* boarder around code block */
+                             + (var(--boarder-breadth) * 2) /* boarder around page block */
+                             )
+                           );
+
+    --code-snip-trunk: calc(  var(--view-port-width)
+                           - (var(--page-edge-space) * 2) /* padding around code block */
+                           - (var(--boarder-breadth) * 2) /* boarder around code block */
+                           );
+
+    color:        var(--code-text-color);
+    display:      block;
+    background:   var(--code-area-color);
+    border:       var(--boarder-caliber);
+    padding:      var(--page-edge-space);
+    font-family:  monospace;
+    margin-left:  var(--code-snip-sides);
+    margin-right: var(--code-snip-sides);
+    overflow-x:   auto;
+    width:        var(--code-snip-width);
+}
+
+html {
+    overflow-x: hidden;
+}
+
+#post-metadata {
+    display:      flex;
+    flex-wrap:    wrap;
+}
+
+#post-metadata > .hash {
+    display:         flex;
+    flex-grow:       1;
+    justify-content: center;
+    margin-bottom:   var(--page-edge-space);
+    margin-top:      var(--page-edge-space);
+    min-width:       0;
+    padding-left:    var(--page-edge-space);
+    padding-right:   var(--page-edge-space);
+}
+
+#post-metadata > div {
+    flex-grow: 100;
+    min-width:  0;
+}
+
+#post-metadata > div > ol {
+    list-style:    none;
+    margin:         0px;
+    padding:        0px;
+}
+
+#post-metadata > div > ol > li {
+    height:          var(--metadata-height);
+    line-height:     var(--metadata-height);
+    text-align:      left;
+    width:          168px;
+    word-spacing: -8.75px;
+}
+
+#post-metadata > .post-description {
+    margin-bottom: var(--page-edge-space);
+    margin-top:    var(--page-edge-space);
+}
+
+#post-metadata > .post-description > dl {
+    display:        flex;
+    flex-direction: column;
+    margin:         0px;
+    min-width:      0px;
+}
+
+#post-metadata > .post-description > dl > span {
+    display:        flex;
+    flex-direction: row;
+    flex:           1;
+    height:         var(--metadata-height);
+    line-height:    var(--metadata-height);
+    min-width:      0;
+    overflow:       hidden;
+    text-overflow:  ellipsis;
+    white-space:    nowrap;
+}
+
+#post-metadata > .post-description > dl > span > dt {
+    height:        var(--metadata-height);
+    line-height:   var(--metadata-height);
+    padding-left:  var(--page-edge-space);
+    padding-right: calc(var(--page-edge-space) * 2);
+    text-align:    left;
+    width:         var(--metadata-spread);
+}
+
+#post-metadata > .post-description > dl > span > dd {
+    flex-grow:     1;
+    height:        var(--metadata-height);
+    line-height:   var(--metadata-height);
+    margin:        0;
+    max-width:     calc(  var(--view-port-width)
+                       -  var(--metadata-spread)      /* width of the "dt" descriptor    */
+                       - (var(--page-edge-space) * 4) /* padding surrounding "dt" & "dd" */
+                       - (var(--boarder-breadth) * 2) /* width of the colored boarders   */
+                       );
+    min-width:     0;
+    overflow:      hidden;
+    padding-right: var(--page-edge-space);
+    text-align:    left;
+    text-overflow: ellipsis;
+    white-space:   nowrap;
+}

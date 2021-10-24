@@ -1,0 +1,150 @@
+\documentclass[$if(fontsize)$$fontsize$$else$12pt$endif$,letterpaper]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{underscore}
+\usepackage[parfill]{parskip}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{lmodern}
+\usepackage{tabularx}
+\usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+\usepackage[utf8]{inputenc}
+$if(graphics)$
+\usepackage{graphicx}
+\setkeys{Gin}{width=10px}
+
+\let\latexincludegraphics\includegraphics
+
+% pass the image to \shadowbox
+\renewcommand{\includegraphics}[2][]{%
+  \raisebox{-.25\height}{\latexincludegraphics[#1]{#2}}}
+$endif$
+
+\def\name{$Author$}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor=$if(urlcolor)$$urlcolor$$else$black$endif$,
+  linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,
+  pdfauthor = {\name},
+  pdftitle = {\name: $Title$},
+  pdfsubject = {$Subtitle$},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 9.0in},
+  left=0.5in,
+  right=0.5in,
+  top=0.5in,
+  bottom=0.5in
+}
+
+\renewcommand{\texttt}{\hfill\normalsize\normalfont}
+\renewcommand{\section}[1]{\Huge \bf \MakeUppercase}
+
+% Fix  for "! Undefined control sequence. <recently read> \tightlist",
+% see: https://github.com/osener/markup.rocks/issues/4
+% I have this issue with Pandoc 1.17.2
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Page number is top right, and it is possible to control the rest of
+% the header.
+%\pagestyle{myheadings}
+%\markright{\name}
+\pagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+%\sectionfont{\rmfamily\bfseries\Large\sectionrule{1px}{0px}{-4px}{1pt}}
+%\sectionfont{\rmfamily\mdseries\Large}
+%\subsectionfont{\rmfamily\bfseries\large}
+%\subsubsectionfont{\rmfamily\normalfont\normalsize}
+
+\usepackage{titlesec}
+
+\titleformat{\section}{\rmfamily\bfseries\Large}{}{0em}{}[{\titlerule[0.8pt]}]
+\titleformat{\subsection}{\rmfamily\bfseries\large}{}{10pt}{}
+\titleformat{\subsubsection}{\rmfamily\normalfont\normalsize}{}{10pt}{}
+
+\titlespacing{\section}{0pt}{*3}{*1.5}
+\titlespacing{\subsection}{0pt}{*1.5}{0pt}
+\titlespacing{\subsubsection}{0pt}{1pt}{1pt}
+
+% Clean up longtable rendering
+\setlength\LTleft{1em}
+\setlength\LTright{0pt}
+\renewcommand{\toprule}{\vspace*{-0.7cm}}
+\renewcommand{\bottomrule}{}
+
+% Section numbers or not (default)
+$if(numbersections)$
+%\setcounter{secnumdepth}{5}
+$else$
+%\setcounter{secnumdepth}{0}
+$endif$
+
+\usepackage{enumitem}
+
+% By putting an empty \item[] at the start of the list, the list
+% starts on a new line.
+\setlist[description]{leftmargin=0em, style=sameline}
+\setlist[itemize]{leftmargin=1em,label={},before=\item[]}
+%\setitemize{topsep=1em}
+
+%\renewcommand{\quote}{\list{}{\rightmargin=\leftmargin\topsep=0pt}\item\relax}
+
+% Don't use monospace font for URLs
+\urlstyle{same}
+
+%Use nice sans serif font for document text
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+
+\begin{document}
+
+{\bf
+\begin{minipage}[t]{0.3\textwidth}
+%\vspace*{-2.5cm}
+{\large\ttfamily
+\begin{tabular}{ @{}l @{}l }$for(HashOctiles)$
+$for(HexChars)$$body$$endfor$ & \\$endfor$
+\end{tabular}
+%$for(HashOctiles)$
+%$for(HexChars)$$body$$endfor$
+%$endfor$
+}
+\end{minipage} % Don't use empty lines after \end and the next \begin{minipage}.
+\begin{minipage}[t]{0.7\textwidth}
+\begin{tabular}{ @{}l l }
+$if(Title)$ {\large Title}      & $Title$ \\\\[-0.95em]
+$endif$$if(Subtitle)$ {\large Subtitle}   & $Subtitle$ \\\\[-0.95em]
+$endif$$if(Author)$ {\large Author}     & $Author$ \\\\[-0.95em]
+$endif$$if(Date)$ {\large Date}       & $Date$ \\\\[-0.95em]
+$endif$$if(WordCount)$ {\large Word Count} & $WordCount$ (ERT $ERT$ min) \\\\[-0.95em]
+$endif$$if(LOC)$ {\large Code Lines} & $LOC$ \\\\[-0.95em]
+ & \\\\[-0.95em]
+$endif$$if(LOC)$ {\large Formats} & {\fontdimen2\font=0.6em
+$if(HasASCIIDoc)$\href{$BaseURL$$BaseRoute$.adoc}{.adoc}$endif$
+$if(HasEPUB)$\href{$BaseURL$$BaseRoute$.epub}{.epub}$endif$
+\href{$BaseURL$$BaseRoute$.html}{.html}
+$if(HasMarkdown)$\href{$BaseURL$$BaseRoute$.md}{.markdown}$endif$
+$if(HasTextual)$\href{$BaseURL$$BaseRoute$.txt}{.txt}$endif$
+}
+$endif$
+\end{tabular}
+\hfill
+\end{minipage}
+}
+\vspace*{0.5cm}
+\hrule
+\vspace*{0.5cm}
+
+$body$
+
+\end{document}

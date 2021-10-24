@@ -1,0 +1,206 @@
+#content > h1[id] {
+    border-bottom: var(--boarder-caliber);
+    font-size:     var(--page-font-giant);
+    margin-bottom: var(--page-edge-space);
+    margin-left:   0px;
+    margin-right:  0px;
+    margin-top:    var(--page-edge-space);
+    padding-left:  var(--page-edge-space);
+    padding-right: var(--page-edge-space);
+}
+
+#content h1:first-of-type {
+    margin-top: 0;
+}
+
+#content > h2[id] {
+    display:        flex;
+    font-size:      var(--page-font-large);
+    flex-direction: row;
+    margin-top:     var(--page-list-space);
+    margin-bottom:  var(--page-thin-space);
+}
+
+#content > h3[id] {
+    display:        flex;
+    flex-direction: row;
+    font-size:      var(--page-font-normal);
+    font-weight:    normal;
+    margin-top:     var(--page-thin-space);
+    margin-bottom:  var(--page-thin-space);
+}
+
+#content > h2 > code,
+#content > h3 > code {
+    background: var(--page-area-color);
+    border:     0px;
+    color:      var(--page-text-color);
+    display:    block;
+    flex-grow:  1;
+    margin:     0;
+    overflow:   hidden;
+    padding:    0;
+    padding-left: var(--page-list-space);
+    text-align: right;
+    width:      revert;
+}
+
+#content > h2 > code {
+    font-size:   var(--page-font-normal);
+    font-weight: normal;
+}
+
+#content > h3 > code {
+    font-style:  italic;
+}
+
+ul {
+    list-style:    none;
+    margin-top:    var(--page-thin-space);
+    margin-bottom: var(--page-thin-space);
+    margin-left:   calc(var(--page-edge-space) * 2);
+    margin-right:  var(--page-edge-space);
+    padding-left:  0px;
+    padding-right: 0px;
+}
+
+h1 + ul  {
+    margin-bottom: 0px;
+    margin-left:   var(--page-edge-space);
+    margin-top:    0px;
+}
+
+h2 + h3 , h3 + h3 {
+    margin-top:    0px !important;
+}
+
+h3 + ul {
+    margin-top:    var(--page-list-space);
+}
+
+
+#content > ul > li > p {
+    display: inline-block;
+    margin-top:    var(--page-thin-space);
+    margin-bottom: var(--page-thin-space);
+    padding-left:  0px;
+    padding-right: 0px;
+}
+
+#CV-title-region {
+    display:        flex;
+    flex-direction: row;
+    flex-wrap:      wrap;
+}
+
+#name-region {
+    display:        flex;
+    flex-direction: column;
+    flex-grow:      1;
+    margin-bottom:  var(--page-edge-space);
+    margin-top:     0px;
+    min-width:      270px;
+}
+
+#name-region > span {
+    margin-left:   var(--page-edge-space);
+    margin-right:  var(--page-edge-space);
+    padding-left:  0px;
+    padding-right: 0px;
+}
+
+#author {
+    font-size:   var(--page-font-giant);
+    font-weight: bold;
+}
+
+#job-title {
+    font-size:   var(--page-font-large)
+}
+
+#connections-region {
+    display:          flex;
+    flex-direction: column;
+    margin-bottom:    var(--page-edge-space);
+    margin-top:       0px;
+}
+
+#connections-region > p {
+    display: inline-block;
+    margin-bottom: var(--page-thin-space);
+    margin-left:   var(--page-edge-space);
+    margin-right:  var(--page-edge-space);
+    margin-top:    var(--page-thin-space);
+    padding-left:  0px;
+    padding-right: 0px;
+}
+
+dl#connections-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom:  0px;
+    margin-top:     0px;
+}
+
+dl#connections-list > span {
+    display:        flex;
+    flex-direction: row;
+    margin-bottom:  var(--page-thin-space);
+    margin-left:    var(--page-edge-space);
+    margin-right:   var(--page-edge-space);
+    margin-top:     var(--page-thin-space);
+    padding-left:   0px;
+    padding-right:  0px;
+}
+
+dl#connections-list > span > dt {
+    min-width:     calc(var(--image-logo-size) + 1);
+    padding-right: var(--page-list-space);
+}
+
+dl#connections-list > span > dt > img {
+    display: block;
+}
+
+dl#connections-list > span > dd {
+    align-self: center;
+    flex-grow:     1;
+    margin-left: 0px;
+}
+
+dl#connections-list > span > dd > p {
+    display: inline-block;
+    margin:  0px;
+    padding: 0px;
+}
+
+a > img {
+    margin-bottom: calc(var(--page-thin-space) * -1);
+}
+
+table {
+    margin-left: var(--page-edge-space);
+}
+
+td {
+    margin-bottom:  var(--page-thin-space);
+    margin-left:    0px;
+    margin-right:   0px;
+    margin-top:     var(--page-thin-space);
+    padding-left:   0px;
+    padding-right:  0px;
+    vertical-align: top;
+}
+
+td + td {
+    padding-left: var(--page-edge-space);
+}
+
+tr > td:first-of-type {
+    min-width: 135px;
+}
+
+img {
+    height: var(--image-logo-size);
+    filter: var(--image-transform);
+}

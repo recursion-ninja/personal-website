@@ -1,0 +1,113 @@
+\documentclass[$if(fontsize)$$fontsize$$else$11pt$endif$,letterpaper]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{underscore}
+\usepackage[parfill]{parskip}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{kpfonts}
+%\usepackage{lmodern}
+\usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\setkeys{Gin}{width=10px}
+
+\let\latexincludegraphics\includegraphics
+% pass the image to \shadowbox
+\renewcommand{\includegraphics}[2][]{%
+  \raisebox{-.25\height}{\latexincludegraphics[#1]{#2}}}
+
+\def\name{$Author$}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor=$if(urlcolor)$$urlcolor$$else$black$endif$,
+  linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,
+  pdfauthor = {\name},
+  pdfkeywords = {$KeyWords$},
+  pdftitle = {\name: Curriculum Vitae},
+  pdfsubject = {Curriculum Vitae},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 9.0in},
+  left=0.5in,
+  right=0.5in,
+  top=0.5in,
+  bottom=0.5in
+}
+
+\renewcommand{\texttt}[1]{\hfill\normalsize\normalfont#1\hspace*{-1cm}}
+
+% Fix  for "! Undefined control sequence. <recently read> \tightlist",
+% see: https://github.com/osener/markup.rocks/issues/4
+% I have this issue with Pandoc 1.17.2
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Page number is top right, and it is possible to control the rest of
+% the header.
+\pagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+\usepackage[sc]{titlesec}
+\setcounter{secnumdepth}{0}
+
+\titleformat{\section}{   \LARGE\rmfamily\bfseries\scshape}{}{0em}{}[{\titlerule[0.8pt]}]
+\titleformat{\subsection}{\large\rmfamily\bfseries}{}{10pt}{}
+\titleformat{\subsubsection}{\normalsize\rmfamily\normalfont}{}{10pt}{}
+
+\titlespacing{\section}{0pt}{*3}{*1.5}
+\titlespacing{\subsection}{0pt}{*1.5}{0pt}
+\titlespacing{\subsubsection}{0pt}{1pt}{1pt}
+
+% Clean up longtable rendering
+\setlength\LTleft{1em}
+\setlength\LTright{0pt}
+\renewcommand{\toprule}{\vspace*{-0.7cm}}
+\renewcommand{\bottomrule}{\vspace*{-01.2cm}}
+
+% Redefin lists to work in the CV context
+\usepackage{enumitem}
+% By putting an empty \item[] at the start of the list, the list
+% starts on a new line.
+\setlist[description]{leftmargin=0em, style=sameline}
+\setlist[enumerate]{leftmargin=1em,label={-},before=\item[]}
+\setlist[itemize]{leftmargin=1em,label={},before=\item[]\vspace*{0.1cm}}
+
+%\renewcommand{\quote}{\list{}{\rightmargin=\leftmargin\topsep=0pt}\item\relax}
+
+% Don't use monospace font for URLs
+\urlstyle{same}
+
+\begin{document}
+
+\begin{minipage}[t]{0.645\textwidth}
+% Place name at left
+\vspace*{-1.4cm}
+{\Huge\bfseries\uppercase{ $Author$}}\\\\[-0.5em]
+{\LARGE\textsc{$JobTitle$}}
+
+\end{minipage} % Don't use empty lines after \end and the next \begin{minipage}.
+\begin{minipage}[t]{0.345\textwidth}
+\begin{tabular}{ @{}l l }
+  \includegraphics{        $EmailImg$} & $if(IsCurriculumVitae)$\href{mailto:$Email$}{$Email$}$else$$if(AltEmail)$\href{mailto:$AltEmail$}{$AltEmail$}$else$\href{mailto:$Email$}{$Email$}$endif$$endif$ \\
+  \includegraphics{      $WebsiteImg$} & \href{$BaseURL$}{recursion.ninja} \\
+  \includegraphics{       $GitHubImg$} & \href{https://github.com/$GitHub$}{github.com/$GitHub$} \\
+  \includegraphics{$StackOverflowImg$} & \href{https://stackoverflow.com/users/$StackOverflowID$/$StackOverflowUser$}{stackoverflow.com/$StackOverflowUser$} \\
+  \includegraphics{     $TimeZoneImg$} & \href{https://time.is/compare/now_in_$TimeZoneCity$}{$TimeZoneLabel$} \\
+  \includegraphics{  $LastUpdatedImg$} & Last Updated $LastModified$ \\
+\end{tabular}
+\end{minipage}
+
+\vspace*{-0.75cm}
+
+$body$
+
+\end{document}

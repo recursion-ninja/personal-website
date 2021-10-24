@@ -1,0 +1,30 @@
+----$for(HashOctiles)$
+$for(HexChars)$$body$$endfor$$endfor$
+----
+
+[cols=2*]
+|======
+$if(Title)$| Title
+| $Title$
+
+$endif$$if(Subtitle)$| Subtitle
+| $Subtitle$
+
+$endif$$if(Author)$| Author
+| $Author$
+
+$endif$$if(Date)$| Date
+| $Date$
+
+$endif$$if(WordCount)$| Word Count
+| $WordCount$ (ERT $ERT$ min)
+
+$endif$$if(LOC)$| Code Lines
+| $LOC$
+
+$endif$| Formats
+|$if(HasEPUB)$ $BaseURL$$BaseRoute$.epub[.epub]$endif$ $BaseURL$$BaseRoute$.html[.html]$if(HasMarkdown)$ $BaseURL$$BaseRoute$.md[.markdown]$endif$$if(HasPDF)$ $BaseURL$$BaseRoute$.pdf[.pdf]$endif$$if(HasTextual)$ $BaseURL$$BaseRoute$.txt[.txt]$endif$
+
+|======
+
+$body$
