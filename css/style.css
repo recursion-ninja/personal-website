@@ -17,11 +17,11 @@
     --page-edge-space:    16px;
     --page-list-space: calc(var(--page-edge-space) / 2);
     --page-thin-space: calc(var(--page-edge-space) / 4);
-    --page-font-small:    12px;
+    --page-font-small:    calc((3/4) * var(--page-font-normal));
     --page-font-normal:   16px;
-    --page-font-large:    20px;
-    --page-font-huge:     24px;
-    --page-font-giant:    30px;
+    --page-font-large:    calc(clamp(        var(--page-font-normal), 3.50vw, ( 5/4) * var(--page-font-normal)));
+    --page-font-huge:     calc(clamp((5/4) * var(--page-font-normal), 4.00vw, ( 3/2) * var(--page-font-normal)));
+    --page-font-giant:    calc(clamp((5/4) * var(--page-font-normal), 5.25vw, (15/8) * var(--page-font-normal)));
     --page-full-width:   800px;
     --scrollbar-width:     0px; /* It is hidden */
     --view-port-width: calc(100vw - var(--scrollbar-width));
@@ -96,7 +96,7 @@ div#header-content {
 div#header-content a {
     color:           var(--page-text-color);
     display:         block;
-    font-size:       var(--page-font-large);
+    font-size:       calc((5/4) * var(--page-font-normal));
     font-weight:     bold;
     height:          var(--bookends-height);
     line-height:     var(--bookends-height);

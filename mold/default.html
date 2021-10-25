@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+
         <meta name="author"                content="Alex Washburn">
         <meta name="copyright"             content="The Owner" />
         <meta name="language"              content="EN">
@@ -13,7 +15,7 @@
         <meta name="robots"                content="index, follow">
         <meta name="viewport"              content="width=device-width, initial-scale=1">
 	<meta name="msapplication-config"  content="/fav/browserconfig.xml">
-	<meta name="theme-color"           content="#ffffff">
+	<meta name="theme-color"           content="#282c34">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Recursion Ninja - $Title$</title>
 
@@ -45,6 +47,16 @@
 	$if(IsBlogPost)$
 	<style>
 	  div#header { margin-bottom: var(--page-edge-space); }
+	</style>
+        $endif$
+	$if(IsCurriculumVitae)$
+	<style>
+        @media (max-width:550px) {
+            #content > h2 > code,
+            #content > h3 > code {
+                display: none;
+            }
+        }
 	</style>
         $endif$
     </head>

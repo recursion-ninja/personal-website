@@ -32,17 +32,18 @@
 
 #content > h2 > code,
 #content > h3 > code {
-    background: var(--page-area-color);
-    border:     0px;
-    color:      var(--page-text-color);
-    display:    block;
-    flex-grow:  1;
-    margin:     0;
-    overflow:   hidden;
-    padding:    0;
+    background:   var(--page-area-color);
+    border:       0px;
+    color:        var(--page-text-color);
+    display:      block;
+    flex-grow:    1;
+    flex-shrink:  0;
+    margin:       0;
+    overflow:     hidden;
+    padding:      0;
     padding-left: var(--page-list-space);
-    text-align: right;
-    width:      revert;
+    text-align:   right;
+    width:        revert;
 }
 
 #content > h2 > code {
@@ -52,6 +53,7 @@
 
 #content > h3 > code {
     font-style:  italic;
+    white-space: pre;
 }
 
 ul {
