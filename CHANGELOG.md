@@ -1,6 +1,13 @@
 # Revision history
 
 
+## 2.1.0 -- 12021-10-27
+
+  * Revising and reposting first blog entry
+
+  * Fixed rendering defect in footer on small screens
+
+
 ## 2.0.4 -- 12021-10-26
 
   * Correcting GPA on CV
