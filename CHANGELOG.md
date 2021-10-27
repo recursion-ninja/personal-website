@@ -1,6 +1,15 @@
 # Revision history
 
 
+## 2.1.2 -- 12021-10-27
+
+  * Added `.htaccess` file generation for:
+
+    - Route trimmimg of HTML pages
+
+    - Redirect to enfore SSL
+
+
 ## 2.1.1 -- 12021-10-27
 
   * Fixed rendering defect in footer on small screens

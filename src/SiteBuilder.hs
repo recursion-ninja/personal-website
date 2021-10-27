@@ -8,6 +8,7 @@ import Data.String
 import Hakyll
 import Indexer.Feed
 import Indexer.Page
+import Indexer.RewriteRules
 import Indexer.Robots
 import Indexer.SiteMap
 import PageBuilder.About
@@ -39,6 +40,7 @@ compileAllIndices = sequenceA_
     [ constructIndexPage
     , constructAtomFeed
     , constructRssFeed
+    , constructRewriteRules
     , constructRobotsTXT
     , constructSiteMap
     ]
