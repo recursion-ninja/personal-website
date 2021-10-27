@@ -181,7 +181,6 @@ div.footer-endcap > dl {
     flex-direction: column;
     flex-wrap:        wrap;
     text-align:      right;
-    width:            90px;
 }
 
 div.footer-endcap > dl {
