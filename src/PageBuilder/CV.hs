@@ -10,11 +10,12 @@ import Compiler.PDF
 import Control.Applicative
 import Data.Foldable
 import Data.String            (fromString)
-import Data.Text              (Text, words)
+import Data.Text              (Text, replace, words)
 import Hakyll
 import Prelude                hiding (words)
 import System.FilePath.Posix  ((</>))
-import Text.Pandoc.Definition (Pandoc)
+import Text.Pandoc.Definition (Pandoc, Block(..), Inline(..))
+import Text.Pandoc.Walk
 
 cvPageBuilder :: Rules ()
 cvPageBuilder = do
@@ -35,9 +36,11 @@ cvPageBuilder = do
       resumeRoute
       [ cvPdfTemplate ]
 
-    staticPageBuilder
+    pageBuilderWith
+      transformForHTML
       cvContext
       cvPageInput
+      staticPageRoute
       [ cvPageTemplate
       , defaultTemplate
       ]
@@ -100,3 +103,20 @@ cvConnectionImages = fold
     , constField      "TimeZoneImg" "img/clock.png"
     , constField       "WebsiteImg" "img/website.png"
     ]
+
+
+transformForHTML :: Pandoc -> Pandoc
+transformForHTML = niceDateSeperator
+
+
+-- |
+-- Replaces ASCII dashes with Unicode em dash in all code blocks which occur in
+-- all headers.
+niceDateSeperator :: Pandoc -> Pandoc
+niceDateSeperator = walk f
+  where
+    f (Header n a is) = Header n a $ walk h is
+    f x = x
+    
+    h (Code a txt) = Code a $ replace " - " " — " txt
+    h x = x

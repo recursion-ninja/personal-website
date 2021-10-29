@@ -8,6 +8,19 @@ import Hakyll.Core.Routes
 import Hakyll.Core.Rules
 import Hakyll.Web.Pandoc
 import Hakyll.Web.Template.Context
+import Text.Pandoc.Definition
+
+
+pageBuilderWith
+  :: (Pandoc -> Pandoc)
+  -> Context String
+  -> Pattern
+  -> (String -> Routes)
+  -> [Identifier]
+  -> Rules ()
+pageBuilderWith transform =
+    let compiler = pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions transform
+    in  customCompiler "html" compiler
 
 
 pageBuilder
@@ -16,8 +29,7 @@ pageBuilder
   -> (String -> Routes)
   -> [Identifier]
   -> Rules ()
-pageBuilder =
-    customCompiler "html" pandocCompiler
+pageBuilder = pageBuilderWith id
 
 
 staticPageBuilder

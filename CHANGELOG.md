@@ -5,6 +5,8 @@
 
   * Extended `.htaccess` routing for some custom error pages
 
+  * Added a Pandoc transformation before HTML rendering
+
 
 ## 2.1.2 -- 12021-10-27
 
