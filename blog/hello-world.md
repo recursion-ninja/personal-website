@@ -1,6 +1,6 @@
 ---
 Title:    Hello World
-Subtitle: Ontogenesis of a Personal Portal
+Subtitle: Protogenesis of a Personal Portal
 Author:   Recursion Ninja
 date:     2021-10-24
 ---

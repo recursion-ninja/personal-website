@@ -1,6 +1,11 @@
 # Revision history
 
 
+## 2.1.4 -- 12021-10-29
+
+  * Changed subtitle of a blog post
+
+
 ## 2.1.3 -- 12021-10-28
 
   * Extended `.htaccess` routing for some custom error pages
