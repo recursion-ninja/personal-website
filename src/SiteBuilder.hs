@@ -8,13 +8,13 @@ import Data.String
 import Hakyll
 import Indexer.Feed
 import Indexer.Page
-import Indexer.RewriteRules
+import Indexer.HypertextAccess
 import Indexer.Robots
 import Indexer.SiteMap
 import PageBuilder.About
 import PageBuilder.Blog
 import PageBuilder.CV
-import PageBuilder.NotFound
+import PageBuilder.Errors
 import System.FilePath.Posix ((</>))
 
 
@@ -31,16 +31,18 @@ compileAllSitePages = sequenceA_
     ,     blogListBuilder
     ,     blogPostBuilder
     ,       cvPageBuilder
-    , notFoundPageBuilder
+    , error400PageBuilder
+    , error404PageBuilder
+    , error500PageBuilder
     ]
 
 
 compileAllIndices :: Rules ()
 compileAllIndices = sequenceA_
-    [ constructIndexPage
-    , constructAtomFeed
+    [ constructAtomFeed
+    , constructIndexPage
+    , constructHypertextAccess
     , constructRssFeed
-    , constructRewriteRules
     , constructRobotsTXT
     , constructSiteMap
     ]

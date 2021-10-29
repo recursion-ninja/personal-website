@@ -1,14 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Indexer.RewriteRules
-  ( constructRewriteRules
+module Indexer.HypertextAccess
+  ( constructHypertextAccess
   ) where
 
 import Hakyll
 
 
-constructRewriteRules :: Rules ()
-constructRewriteRules =
+constructHypertextAccess :: Rules ()
+constructHypertextAccess =
     create [".htaccess"] $ do
       route idRoute
       compile $ makeItem rewriteRules
@@ -21,20 +21,21 @@ rewriteRules = unlines
     , ""
     , "<IfModule mod_rewrite.c>"
     , "RewriteEngine On"
+    , ""
     , "# Begin EnforceSSL recursion.ninja"
     , "RewriteCond %{HTTP_HOST} ^(www.)?recursion.ninja$"
     , "RewriteCond %{HTTPS} !=on"
     , "RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L]"
-    , "# End EnforceSSL"
     , ""
     , "# Begin route trimming"
     , "RewriteCond %{THE_REQUEST} /([^.]+)\\.html [NC]"
     , "RewriteRule ^ /%1 [NC,L,R]"
     , "RewriteCond %{REQUEST_FILENAME}.html -f"
     , "RewriteRule ^ %{REQUEST_URI}.html [NC,L]"
---    , "RewriteCond %{REQUEST_FILENAME} !-f"
---    , "RewriteCond %{REQUEST_FILENAME} !-d"
---    , "RewriteRule ^(.*)\\.html$ /$1 [L,R=302]"
-    , "# End route trimming"
+    , ""
+    , "# Begin custom error code pages"
+    , "ErrorDocument 400 /400.html"
+    , "ErrorDocument 404 /404.html"
+    , "ErrorDocument 500 /500.html"
     , "</IfModule>"
     ]

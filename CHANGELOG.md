@@ -1,6 +1,11 @@
 # Revision history
 
 
+## 2.1.3 -- 12021-10-28
+
+  * Extended `.htaccess` routing for some custom error pages
+
+
 ## 2.1.2 -- 12021-10-27
 
   * Added `.htaccess` file generation for:

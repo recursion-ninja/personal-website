@@ -2,7 +2,7 @@ cabal-version: 3.4
 Category:      Web
 build-type:    Simple
 name:          personal-website
-version:       2.1.2
+version:       2.1.3
 
 author:        Alex Washburn <github@recursion.ninja>
 maintainer:    Alex Washburn <github@recursion.ninja>
@@ -118,11 +118,11 @@ executable site
     Compiler.Textual
     Indexer.Feed
     Indexer.Page
-    Indexer.RewriteRules
+    Indexer.HypertextAccess
     Indexer.Robots
     Indexer.SiteMap
     PageBuilder.About
     PageBuilder.Blog
     PageBuilder.CV
-    PageBuilder.NotFound
+    PageBuilder.Errors
     Paths_personal_website
