@@ -21,7 +21,7 @@ import           Text.Pandoc.Writers
 
 
 blogPostPath :: Pattern
-blogPostPath = "blog/*"
+blogPostPath = "blog/*.md"
 
 
 blogPostContext :: Context String

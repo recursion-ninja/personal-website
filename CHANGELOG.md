@@ -5,6 +5,8 @@
 
   * Changed subtitle of a blog post
 
+  * Ensure only `.md` files in `blog` are processed as blog posts
+
 
 ## 2.1.3 -- 12021-10-28
 
