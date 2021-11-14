@@ -158,7 +158,6 @@ div#header-content #title-area {
 }
 
 div#footer {
-    align-items:     baseline;
     border-top:      var(--boarder-caliber);
     display:         flex;
     flex-wrap:       wrap;
@@ -176,16 +175,18 @@ div#footer-fill {
     flex-grow: 1;
 }
 
-div.footer-endcap > dl {
-    display:          flex;
-    flex-direction: column;
-    flex-wrap:        wrap;
-    text-align:      right;
+div#footer-left > dl {
+    float: left;
+}
+
+div#footer-right > dl {
+    float: right;
 }
 
 div.footer-endcap > dl {
     display:          flex;
     flex-direction: column;
+    flex-wrap:        wrap;
     margin:            0px;
     text-align:      right;
 }
