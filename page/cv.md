@@ -61,15 +61,17 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
   - [![DOI][DOI-img]][DOI-1] **Washburn**, A. J and C. McGill. 2019. Phylogenetic Software in Haskell. Compose Conference NYC.
 
-  - [![DOI][DOI-img]][DOI-1] Wheeler, W. C. and A. J. **Washburn**. 2019. FASTC: A file format for multi-character sequence data. Cladistics.
+  - [![DOI][DOI-img]][DOI-0] Wheeler, W. C. and A. J. **Washburn**. 2019. FASTC: A file format for multi-character sequence data. Cladistics.
 
 [DOI-img]: img/doi-logo.png
-[DOI-0]:   https://doi.org/10.1111/cla.12370
-[DOI-1]:   https://www.youtube.com/watch?v=ZaboF2eP_BY
-[DOI-2]:   https://doi.org/10.1186/s12859-020-03595-2
 [DOI-3]:   https://meetings2.informs.org/wordpress/wsc2021/
+[DOI-2]:   https://doi.org/10.1186/s12859-020-03595-2
+[DOI-1]:   https://www.youtube.com/watch?v=ZaboF2eP_BY
+[DOI-0]:   https://doi.org/10.1111/cla.12370
 
 # Manuscripts in Preparation
+
+  - **Washburn**, A. J. and Subash Shankar. 2022. Formal Verification of the TreeKEM Protocol via SPIN.
 
   - Wheeler, W. C. and A. J. **Washburn**. 2022. Algorithmic Description of Phylogenetic Component Graphs.
 
