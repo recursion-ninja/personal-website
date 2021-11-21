@@ -1,5 +1,5 @@
 allow-newer:
-    bytestring
+    bytestring,
 
 constraints: pandoc +embed_data_files
 
@@ -9,4 +9,4 @@ package *
 packages: .
 
 with-compiler:
-    ghc-8.10.7
+    ghc-9.0.1

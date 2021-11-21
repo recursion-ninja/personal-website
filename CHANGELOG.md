@@ -1,6 +1,15 @@
 # Revision history
 
 
+## 2.1.5 -- 12021-11-21
+
+  * Added manuscript to CV
+
+  * Corrected DOI link in CV
+
+  * Updated to GHC-9.0.1
+
+
 ## 2.1.4 -- 12021-10-29
 
   * Changed subtitle of a blog post
