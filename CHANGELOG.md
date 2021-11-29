@@ -1,6 +1,11 @@
 # Revision history
 
 
+## 2.1.6 -- 12021-11-29
+
+  * Updated About page
+
+
 ## 2.1.5 -- 12021-11-21
 
   * Added manuscript to CV
