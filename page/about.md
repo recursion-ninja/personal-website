@@ -7,7 +7,7 @@ My thesis involves applying formal methods to verify a novel secure group messag
 I am also a research associate at the [American Museum of Natural History](https://www.amnh.org/research/computational-sciences).
 
 My primary research interests include compilers, programming language theory, formal methods, and software ergonomics.
-Some ancillary research interests involve abstract algebra, artificial inteligence, number theory, cryptography, and ethics.
+Some ancillary research interests involve abstract algebra, artificial intelligence, number theory, cryptography, and ethics.
 
 For my next academic endeavor, I am interested in researching the interplay between strong type stystems, both linear and dependent, and functional programming's impact on memory management while pursuing a PhD.
 The combination of these language features allow for compile-time, [automatic memory management](https://doi.org/10.1145/292540.292564) under certain circumstances.
