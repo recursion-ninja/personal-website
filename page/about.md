@@ -11,7 +11,7 @@ Some ancillary research interests involve abstract algebra, artificial intellige
 
 For my next academic endeavor, I am interested in researching the interplay between strong type systems, both linear and dependent, and functional programming's impact on memory management while pursuing a PhD.
 The combination of these language features allow for compile-time, [automatic memory management](https://doi.org/10.1145/292540.292564) under certain circumstances.
-Specifically, I am interested in how [quantitative type theory](https://doi.org/10.1145/3209108.3209189) coupled with an extended [abstract machine](https://en.wikipedia.org/wiki/Abstract_machine) can lead to novel compile-time memory and execution optimiztions.
+Specifically, I am interested in how [quantitative type theory](https://doi.org/10.1145/3209108.3209189) coupled with an extended [abstract machine](https://en.wikipedia.org/wiki/Abstract_machine) can lead to novel compile-time memory and execution optimizations.
 Additionally, I would like to explore heuristically detecting [decidable](https://en.wikipedia.org/wiki/Recursive_language) sub-components of a program for additional novel optimizations enabled by [abstract interpretation](https://en.wikipedia.org/wiki/Abstract_interpretation).
 I am seeking out both an **academic advisor** capable of supporting this reaserch, as well as **colleagues** for collaboration.
 If your passions align with mine, please reach out!
