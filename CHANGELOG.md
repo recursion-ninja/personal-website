@@ -1,6 +1,11 @@
 # Revision history
 
 
+## 2.1.7 -- 12021-11-29
+
+  * Updated About page, again
+
+
 ## 2.1.6 -- 12021-11-29
 
   * Updated About page
