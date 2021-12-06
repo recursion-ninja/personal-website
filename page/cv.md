@@ -64,7 +64,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
   - [![DOI][DOI-img]][DOI-0] Wheeler, W. C. and A. J. **Washburn**. 2019. FASTC: A file format for multi-character sequence data. Cladistics.
 
 [DOI-img]: img/doi-logo.png
-[DOI-3]:   https://meetings2.informs.org/wordpress/wsc2021/
+[DOI-3]:   https://ssl.linklings.net/conferences/wsc/wsc2021_program/views/includes/files/con274s3-file1.pdf
 [DOI-2]:   https://doi.org/10.1186/s12859-020-03595-2
 [DOI-1]:   https://www.youtube.com/watch?v=ZaboF2eP_BY
 [DOI-0]:   https://doi.org/10.1111/cla.12370
