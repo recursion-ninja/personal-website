@@ -1,6 +1,11 @@
 # Revision history
 
 
+## 2.1.9 -- Unreleased
+
+  * Minor information updates to CV
+
+
 ## 2.1.8 -- 12021-12-06
 
   * Added direct link to Winter Simulation Confrence 2021 paper

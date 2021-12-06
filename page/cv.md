@@ -21,10 +21,10 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
   - Overall GPA: 4.00
 
 ## University of Wisconsin - Milwaukee `Milwaukee, WI`
-### B.S. Computer Science, Mathematics `Dec 2014`
+### B.S. Computer Science, Mathematics (Double Major) `Dec 2014`
 
   - Overall GPA: 3.44
-  - Full time student while employed full time
+  - Nine semesters: Concurrently full time student & **employed full time**
 
 
 # Distinctions
