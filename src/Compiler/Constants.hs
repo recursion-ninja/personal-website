@@ -1,4 +1,31 @@
-module Compiler.Constants where
+module Compiler.Constants
+    (
+    -- * Paths
+      pagePath
+    , templatePath
+    -- * Routes
+    , staticPageRoute
+    , aliasPageRoute
+    , defaultPageRoute
+    -- * Duplication
+    , duplicateField
+    , duplicateMapField
+    , duplicatedFields
+    -- * Contexts
+    , makeContext
+    , siteContext
+    , routeContext
+    , fileContext
+    -- * Templates
+    , defaultTemplate
+    , makeTemplate
+    -- * Other
+    , baseUrl
+    , pageFinalizer
+    , robustModificationTimeField
+    , siteVersion
+    , siteRepository
+    ) where
 
 import Control.Applicative            (Alternative(empty))
 import Data.Foldable
@@ -107,6 +134,7 @@ routeContext :: Context String
 routeContext =
     field "BaseRoute" $ \i -> do
       let x = itemIdentifier i
+          err :: String
           err = fail $ "No route url found for item " <> show x
           f y = let url  = toUrl y
                     root = toSiteRoot url
@@ -118,6 +146,7 @@ fileContext :: Context String
 fileContext =
     field "BaseFile" $ \i -> do
       let x = itemIdentifier i
+          err :: String
           err = fail $ "No route url found for item " <> show x
       maybe err (takeBaseName . toUrl) <$> getRoute x
 

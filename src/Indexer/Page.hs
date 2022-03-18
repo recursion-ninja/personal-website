@@ -1,6 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Indexer.Page where
+module Indexer.Page
+    ( constructIndexPage
+    ) where
 
 import Compiler.Constants
 import Hakyll

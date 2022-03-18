@@ -1,4 +1,8 @@
-module Compiler.HTML where
+module Compiler.HTML
+    ( pageBuilderWith
+    , pageBuilder
+    , staticPageBuilder
+    ) where
 
 import Compiler.Constants
 import Compiler.Generic

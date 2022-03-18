@@ -1,6 +1,13 @@
 # Revision history
 
 
+## 2.2.1 -- 12021-03-18
+
+  * Refactored code based on new compiler warnings
+
+  * Moved `CHANGELOG`, `LICENSE`, and `README` to new `doc` directory
+
+
 ## 2.2.0 -- 12021-03-17
 
   * Adding PhD admissions announcement

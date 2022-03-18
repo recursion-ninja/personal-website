@@ -1,6 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Main where
+module Main
+    ( main
+    ) where
 
 import Compiler.Constants
 import Data.Foldable

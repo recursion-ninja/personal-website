@@ -1,6 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Indexer.Robots where
+module Indexer.Robots
+    ( constructRobotsTXT
+    ) where
 
 import Hakyll
 

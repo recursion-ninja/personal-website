@@ -1,3 +1,4 @@
+{-# LANGUAGE ImportQualifiedPost #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module Compiler.BlogPostContext
@@ -6,18 +7,18 @@ module Compiler.BlogPostContext
   , blogPostPath
   ) where
 
-import           Compiler.Constants
-import           Crypto.Hash            (Digest, SHA3_512(SHA3_512), hashWith)
-import           Data.ByteString        (ByteString)
-import           Data.Char              (toUpper)
-import           Data.Foldable
-import           Data.Text              (Text)
-import qualified Data.Text              as T
-import qualified Data.Text.Encoding     as T
-import           Hakyll
-import           Text.Pandoc.Class      (runPure)
-import           Text.Pandoc.Definition
-import           Text.Pandoc.Writers
+import Compiler.Constants
+import Crypto.Hash            (Digest, SHA3_512(SHA3_512), hashWith)
+import Data.ByteString        (ByteString)
+import Data.Char              (toUpper)
+import Data.Foldable
+import Data.Text              (Text)
+import Data.Text          qualified as T
+import Data.Text.Encoding qualified as T
+import Hakyll
+import Text.Pandoc.Class      (runPure)
+import Text.Pandoc.Definition
+import Text.Pandoc.Writers
 
 
 blogPostPath :: Pattern
@@ -93,7 +94,7 @@ newtype PanDocAccum = A { unAccum :: (Word, Word, Text, ByteString) }
 
 instance Semigroup PanDocAccum where
 
-    (A (w,x,y,z)) <> (A (a,b,c,d)) = A (w+a,x+b,y<>c,z<>d)
+    (A (w,x,y,z)) <> (A (a,b,c,d)) = A (w + a, x + b, y <> c, z <> d)
 
 
 instance Monoid PanDocAccum where

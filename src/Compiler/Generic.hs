@@ -1,4 +1,9 @@
-module Compiler.Generic where
+{-# Language LambdaCase #-}
+
+module Compiler.Generic
+    ( customCompiler
+    , compilerFromWriter
+    ) where
 
 import Compiler.Constants
 import Data.Foldable
@@ -12,6 +17,7 @@ import Hakyll.Web.Pandoc
 import Hakyll.Web.Template
 import Hakyll.Web.Template.Context
 import Text.Pandoc.Class              (PandocPure, runPure)
+import Text.Pandoc.Error              (PandocError)
 import Text.Pandoc.Definition
 import Text.Pandoc.Options
 
@@ -37,8 +43,11 @@ compilerFromWriter
   :: String
   -> (WriterOptions -> Pandoc -> PandocPure a)
   -> Compiler (Item a)
-compilerFromWriter label writer = getResourceBody >>= readPandoc >>= withItemBody f
-  where
-    f x = case runPure $ writer defaultHakyllWriterOptions x of
+compilerFromWriter label writer = 
+    let applyWriter = runPure . writer defaultHakyllWriterOptions
+        handleError :: Either PandocError a -> Compiler a
+        handleError = \case
             Left  err -> error $ label <> ": " <> show err
-            Right bs  -> pure bs
+            Right val -> pure val
+        makeCompiler = handleError . applyWriter
+    in getResourceBody >>= readPandoc >>= withItemBody makeCompiler

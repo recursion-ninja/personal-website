@@ -2,14 +2,14 @@ cabal-version: 3.6
 Category:      Web
 build-type:    Simple
 name:          personal-website
-version:       2.2.0
+version:       2.2.1
 
 author:        Alex Washburn <github@recursion.ninja>
 maintainer:    Alex Washburn <github@recursion.ninja>
 Homepage:      https://recursion.ninja
 Bug-Reports:   https://github.com/recursion-ninja/personal-website
 license:       BSD-3-Clause
-license-file:  LICENSE
+license-file:  doc/LICENSE
 
 synopsis:      Website for Alex Washburn's recursion.ninja
 description:   The source code for Alex Washburn's web presence site <https://recursion.ninja>.
@@ -17,10 +17,12 @@ description:   The source code for Alex Washburn's web presence site <https://re
                Designed for simple blog post authoring and publishing.
 
 tested-with:
+    GHC == 9.2.2
     GHC == 9.0.2
 
 extra-source-files:
-    README.md
+    doc/CHANGELOG.md
+    doc/README.md
 
 
 executable site

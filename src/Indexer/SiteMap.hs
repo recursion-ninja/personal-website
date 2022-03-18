@@ -1,6 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Indexer.SiteMap where
+module Indexer.SiteMap
+    ( constructSiteMap
+    ) where
 
 import Compiler.Constants
 import Data.String
