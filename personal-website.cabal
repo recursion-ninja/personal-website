@@ -1,8 +1,8 @@
-cabal-version: 3.4
+cabal-version: 3.6
 Category:      Web
 build-type:    Simple
 name:          personal-website
-version:       2.1.9
+version:       2.1.10
 
 author:        Alex Washburn <github@recursion.ninja>
 maintainer:    Alex Washburn <github@recursion.ninja>
@@ -17,70 +17,13 @@ description:   The source code for Alex Washburn's web presence site <https://re
                Designed for simple blog post authoring and publishing.
 
 tested-with:
-    GHC == 9.0.1
+    GHC == 9.0.2
 
 extra-source-files:
     README.md
 
 
--- A litany of GHC warnings designed to alert us during the build of any common
--- pitfalls, future compatibility issues, or coding conventions.
-common ghc-flags
-
-  ghc-options:
-    -- Optimization flags
-    -O2
-    -fexcess-precision
-    -fexpose-all-unfoldings
-    -flate-specialise
-    -foptimal-applicative-do
-    -fspecialize-aggressively
-    -fstatic-argument-transformation
-    -- Usability flags
-    -fdiagnostics-color=always
-    -fhide-source-paths
-    -j
-    -- Sanity check warnings
-    -Wall
-    -Wcompat
-    -Wdodgy-foreign-imports
-    -Wduplicate-exports
-    -Wempty-enumerations
-    -Widentities
-    -Wincomplete-patterns
-    -Wincomplete-record-updates
-    -Wincomplete-uni-patterns
-    -Wmissed-specialisations
-    -Wmissing-deriving-strategies
-    -Wmissing-fields
-    -Wmissing-home-modules
-    -Wmissing-monadfail-instances
-    -Wmissing-signatures
-    -Wnoncanonical-monad-instances
-    -Wnoncanonical-monoid-instances
-    -Woverflowed-literals
-    -Woverlapping-patterns
-    -Wredundant-constraints
-    -Wsemigroup
-    -Wtabs
-    -Wunrecognised-warning-flags
-    -Wunused-binds
-    -Wunused-do-bind
-    -Wunused-foralls
-    -Wunused-imports
-    -Wunused-matches
-    -Wwrong-do-bind
-
-  if impl(ghc >= 8.10)
-    ghc-options:
-      -Wderiving-defaults
-      -Wunused-packages
-
-
 executable site
-
-  import:
-    ghc-flags
 
   main-is:
     SiteBuilder.hs

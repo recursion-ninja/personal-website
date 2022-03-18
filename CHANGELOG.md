@@ -1,7 +1,12 @@
 # Revision history
 
 
-## 2.1.9 -- Unreleased
+## 2.1.10 -- 12021-03-17
+
+  * Updating build parameters
+
+
+## 2.1.9 -- 12021-12-06
 
   * Minor information updates to CV
 
