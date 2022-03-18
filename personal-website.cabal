@@ -2,7 +2,7 @@ cabal-version: 3.6
 Category:      Web
 build-type:    Simple
 name:          personal-website
-version:       2.1.10
+version:       2.2.0
 
 author:        Alex Washburn <github@recursion.ninja>
 maintainer:    Alex Washburn <github@recursion.ninja>

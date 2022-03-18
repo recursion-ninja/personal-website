@@ -1,9 +1,16 @@
 # Revision history
 
 
+## 2.2.0 -- 12021-03-17
+
+  * Adding PhD admissions announcement
+
+
 ## 2.1.10 -- 12021-03-17
 
-  * Updating build parameters
+  * Updating build parameters of `cabal.project`
+
+  * Updating required cabal version of the of `.cabal` file
 
 
 ## 2.1.9 -- 12021-12-06
