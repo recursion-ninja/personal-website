@@ -43,36 +43,36 @@ blogPostBuilder = do
     compileAsciiDocFormat
       blogPostContext
       blogPostPath
-      defaultPageRoute
+      pageRouteDefault
       [ blogAsciiDocTemplate ]
 
     compileEpubFormat
       blogPostContext
       blogPostPath
-      defaultPageRoute
+      pageRouteDefault
 
     compilePdfFormat
       blogPostContext
       blogPostPath
-      defaultPageRoute
+      pageRouteDefault
       [ blogLatexTemplate ]
 
     compileMarkdownFormat
       blogPostContext
       blogPostPath
-      defaultPageRoute
+      pageRouteDefault
       [ blogMarkdownTemplate ]
 
     compileTextualFormat
       blogPostContext
       blogPostPath
-      defaultPageRoute
+      pageRouteDefault
       []
 
     pageBuilder
       blogPostContext
       blogPostPath
-      defaultPageRoute
+      pageRouteDefault
       [ blogPostTemplate
       , defaultTemplate
       ]

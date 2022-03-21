@@ -32,7 +32,7 @@ compileAllSitePages = sequenceA_
     [    aboutPageBuilder
     ,     blogListBuilder
     ,     blogPostBuilder
-    ,       cvPageBuilder
+--    ,       cvPageBuilder
     , error400PageBuilder
     , error404PageBuilder
     , error500PageBuilder
@@ -54,18 +54,18 @@ includeAllResources :: Rules ()
 includeAllResources = do
     match allTemplates $ compile templateBodyCompiler
 
-    match "fav/*" $ do
-      route   idRoute
+    match "data/fav/*" $ do
+      route   pageRouteFromDataDirectory
       compile copyFileCompiler
 
-    match "img/*" $ do
-      route   idRoute
+    match "data/img/*" $ do
+      route   pageRouteFromDataDirectory
       compile copyFileCompiler
 
-    match "css/*" $ do
-      route   idRoute
+    match "data/css/*" $ do
+      route   pageRouteFromDataDirectory
       compile compressCssCompiler
 
 
 allTemplates :: Pattern
-allTemplates = fromString $ templatePath </> "*"
+allTemplates = fromString $ pathToTemplates </> "*"

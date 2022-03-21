@@ -25,4 +25,4 @@ aboutContext = makeContext
 
 
 aboutPageInput :: Pattern
-aboutPageInput = fromString $ pagePath </> "about.md"
+aboutPageInput = fromString $ pathToPages </> "about.md"

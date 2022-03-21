@@ -42,4 +42,4 @@ staticPageBuilder
   -> [Identifier]
   -> Rules ()
 staticPageBuilder inputContext inputPath =
-    pageBuilder inputContext inputPath staticPageRoute
+    pageBuilder inputContext inputPath pageRouteStatic

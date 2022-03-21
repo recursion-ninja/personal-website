@@ -24,7 +24,7 @@ cvPageBuilder = do
     compilePdfFormat
       cvContext
       cvPageInput
-      staticPageRoute
+      pageRouteStatic
       [ cvPdfTemplate ]
 
     -- Concise Résumé PDF
@@ -40,7 +40,7 @@ cvPageBuilder = do
       transformForHTML
       cvContext
       cvPageInput
-      staticPageRoute
+      pageRouteStatic
       [ cvPageTemplate
       , defaultTemplate
       ]
@@ -59,15 +59,15 @@ cvContext = makeContext
 
 
 cvPageInput :: Pattern
-cvPageInput = fromString $ pagePath </> "cv.md"
+cvPageInput = fromString $ pathToPages </> "cv.md"
 
 
 cvPageTemplate :: Identifier
-cvPageTemplate = fromString $ templatePath </> "cv.html"
+cvPageTemplate = fromString $ pathToTemplates </> "cv.html"
 
 
 cvPdfTemplate :: Identifier
-cvPdfTemplate = fromString $ templatePath </> "cv.latex"
+cvPdfTemplate = fromString $ pathToTemplates </> "cv.latex"
 
 
 cv2Resume :: Pandoc -> Pandoc
@@ -90,18 +90,18 @@ resumeContext = makeContext
     ]
 
 resumeRoute :: String -> Routes
-resumeRoute = aliasPageRoute "resume.md"
+resumeRoute = pageRouteAlias "resume.md"
 
 
 cvConnectionImages :: Context String
 cvConnectionImages = fold
-    [ constField         "EmailImg" "img/email.png"
-    , constField        "GitHubImg" "img/github.png"
-    , constField   "LastUpdatedImg" "img/hourglass.png"
-    , constField           "PDFImg" "img/pdf-logo.png"
-    , constField "StackOverflowImg" "img/stackoverflow.png"
-    , constField      "TimeZoneImg" "img/clock.png"
-    , constField       "WebsiteImg" "img/website.png"
+    [ constField         "EmailImg" $ pathToImages </> "email.png"
+    , constField        "GitHubImg" $ pathToImages </> "github.png"
+    , constField   "LastUpdatedImg" $ pathToImages </> "hourglass.png"
+    , constField           "PDFImg" $ pathToImages </> "pdf-logo.png"
+    , constField "StackOverflowImg" $ pathToImages </> "stackoverflow.png"
+    , constField      "TimeZoneImg" $ pathToImages </> "clock.png"
+    , constField       "WebsiteImg" $ pathToImages </> "website.png"
     ]
 
 

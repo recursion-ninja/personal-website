@@ -12,7 +12,7 @@ import System.FilePath.Posix ((</>))
 
 constructSiteMap :: Rules ()
 constructSiteMap =
-    let siteMapTemplate = fromString $ templatePath </> "sitemap.xml"
+    let siteMapTemplate = fromString $ pathToTemplates </> "sitemap.xml"
     in  create ["sitemap.xml"] $ do
           route idRoute
           compile $ do

@@ -24,12 +24,12 @@ error500PageBuilder = mkErrorPage 500
 
 
 haikuTemplate :: Identifier
-haikuTemplate = fromString $ templatePath </> "haiku.html"
+haikuTemplate = fromString $ pathToTemplates </> "haiku.html"
 
 
 mkErrorPage :: Word -> Rules ()
 mkErrorPage n = staticPageBuilder context input templates
   where
-    input     = fromString $ pagePath </> show n <.> "html"
+    input     = fromString $ pathToPages </> show n <.> "html"
     context   = makeContext [ constField "Title" $ show n ]
     templates = [ haikuTemplate, defaultTemplate ]

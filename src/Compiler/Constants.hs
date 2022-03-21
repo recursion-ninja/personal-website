@@ -1,12 +1,16 @@
+{-# LANGUAGE LambdaCase #-}
+
 module Compiler.Constants
     (
     -- * Paths
-      pagePath
-    , templatePath
+      pathToImages
+    , pathToPages
+    , pathToTemplates
     -- * Routes
-    , staticPageRoute
-    , aliasPageRoute
-    , defaultPageRoute
+    , pageRouteAlias
+    , pageRouteDefault
+    , pageRouteFromDataDirectory
+    , pageRouteStatic
     -- * Duplication
     , duplicateField
     , duplicateMapField
@@ -29,6 +33,7 @@ module Compiler.Constants
 
 import Control.Applicative            (Alternative(empty))
 import Data.Foldable
+import Data.List                      (isPrefixOf)
 import Data.String
 import Data.Time.Clock                (getCurrentTime)
 import Data.Time.Format               (defaultTimeLocale, formatTime)
@@ -44,19 +49,23 @@ import Hakyll.Web.Html
 import Hakyll.Web.Html.RelativizeUrls
 import Hakyll.Web.Template.Context
 import Paths_personal_website
-import System.FilePath.Posix
+import System.FilePath.Posix ((</>), dropExtension, joinPath, splitDirectories, takeBaseName)
 
 
 baseUrl :: String
 baseUrl = "https://recursion.ninja"
 
 
-pagePath :: FilePath
-pagePath = "page"
+pathToImages :: FilePath
+pathToImages = "data" </> "img"
 
 
-templatePath :: FilePath
-templatePath = "mold"
+pathToPages :: FilePath
+pathToPages = "data" </> "page"
+
+
+pathToTemplates :: FilePath
+pathToTemplates = "data" </> "mold"
 
 
 siteVersion :: Version
@@ -67,20 +76,33 @@ siteRepository :: String
 siteRepository = "https://github.com/recursion-ninja/personal-website"
 
 
-staticPageRoute :: String -> Routes
-staticPageRoute ex = customRoute (takeBaseName . toFilePath) `composeRoutes` setExtension ex
+pageRouteAlias :: FilePath -> String -> Routes
+pageRouteAlias alias = composeRoutes (constRoute alias) . setExtension
 
 
-aliasPageRoute :: FilePath -> String -> Routes
-aliasPageRoute alias = composeRoutes (constRoute alias) . setExtension
+pageRouteStatic :: String -> Routes
+pageRouteStatic ex = customRoute (takeBaseName . toFilePath) `composeRoutes` setExtension ex
 
 
-defaultPageRoute :: String -> Routes
-defaultPageRoute = setExtension
+pageRouteDefault :: String -> Routes
+pageRouteDefault = setExtension
 
+
+pageRouteFromDataDirectory :: Routes
+pageRouteFromDataDirectory = customRoute (fromDataDirectory . toFilePath)
+
+
+fromDataDirectory :: FilePath -> FilePath
+fromDataDirectory =
+    let dropDataDirectory = \case
+          []  -> []
+          x:xs | "data" `isPrefixOf` x -> xs
+          xs  -> xs
+    in  joinPath . dropDataDirectory . splitDirectories
+    
 
 makeTemplate :: FilePath -> Identifier
-makeTemplate = fromString . (templatePath </>)
+makeTemplate = fromString . (pathToTemplates </>)
 
 
 duplicateField :: String -> String -> Context a
@@ -152,7 +174,7 @@ fileContext =
 
 
 defaultTemplate :: Identifier
-defaultTemplate = fromString $ templatePath </> "default.html"
+defaultTemplate = fromString $ pathToTemplates </> "default.html"
 
 
 pageFinalizer
