@@ -72,13 +72,7 @@
 \titlespacing{\subsection}{0pt}{*1.5}{0pt}
 \titlespacing{\subsubsection}{0pt}{1pt}{1pt}
 
-% Clean up longtable rendering
-\setlength\LTleft{1em}
-\setlength\LTright{0pt}
-\renewcommand{\toprule}{\vspace{-0.7cm}}
-\renewcommand{\bottomrule}{\vspace*{-01.2cm}}
-
-% Redefin lists to work in the CV context
+% Redefine lists to work in the CV context
 % By putting an empty \item[] at the start of the list, the list
 % starts on a new line.
 \setlist[description]{leftmargin=0em, style=sameline}
@@ -86,6 +80,14 @@
 \setlist[itemize]{leftmargin=1em,label={},before=\item[]\vspace*{0.1cm}}
 
 %\renewcommand{\quote}{\list{}{\rightmargin=\leftmargin\topsep=0pt}\item\relax}
+
+% Clean up longtable rendering
+\setlength\LTleft{1em}
+\setlength\LTright{0pt}
+\setlength\LTpre{6pt}
+\setlength\LTpost{0pt}
+\renewcommand{\toprule}{}
+\renewcommand{\bottomrule}{}
 
 % Don't use monospace font for URLs
 \urlstyle{same}

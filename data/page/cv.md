@@ -15,8 +15,13 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
 # Education
 
-## Hunter College `New York, NY`
-### M.A. Computer Science `May 2022`
+## The Graduate Center - CUNY `New York, NY`
+### Ph.D. Computer Science `2027`
+
+  - Doctoral Student
+
+## Hunter College - CUNY `New York, NY`
+### M.A. Computer Science `Aug 2022`
 
   - Overall GPA: 4.00
 
@@ -28,6 +33,9 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
 
 # Distinctions
+
+## Graduate Center Fellowship
+### The Graduate School of the City University of New York `Feb 21, 2022`
 
 ## Support for Undergraduate Research Fellows
 ### University of Wisconsin - Milwaukee `May 21, 2014`
@@ -47,10 +55,9 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
  |  |  |
  |:---------------|:-----------------------------------------------------------------------------|
  | Languages      | C, C++, C#, Dhall, Haskell, Idris, Java, JavaScript, PHP, Python |
- | APIs/Protocols | CSS3, HTML5, REST                             |
- | Frameworks     | jQuery, JUnit, Pandoc, QuickCheck             |
- | Databases      | MySQL, MSSQL, Sybase                          |
- | Tools          | Cabal, Emacs, Git, LaTeX, Spin, Visual Studio |
+ | APIs/Protocols | CSS3, HTML5, REST |
+ | Databases      | MySQL, MSSQL, Sybase |
+ | Tools          | Cabal, Emacs, Git, LaTeX, Pandoc, Spin, VS Code |
 
 
 # Publications & Presentations
@@ -75,8 +82,6 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
   - Wheeler, W. C. and A. J. **Washburn**. 2022. Algorithmic Description of Phylogenetic Component Graphs.
 
-  - **Washburn** et al. 2022. Efficacy Survey of Modern, Structure-Aware Fuzzers
-
 
 # **Work Experience**
 
@@ -92,7 +97,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
   - Define robust data normalization procedures for a disparate inputs
 
 ## Hunter College `New York, NY`
-### *Adjunct Lecturer* `Aug 2021 -  present`
+### *Adjunct Lecturer* `Aug 2021 - Dec 2021`
 ### *Adjunct Lecturer* `Aug 2018 - Jun 2019`
 
   - Present and demonstrate computer science topics to undergraduates in recitation sections

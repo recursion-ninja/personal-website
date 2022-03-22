@@ -1,6 +1,13 @@
 # Revision history
 
 
+## 2.2.3 -- 12021-03-22
+
+  * Updated CV
+
+  * Corrected DOI image and table rendering issues
+
+
 ## 2.2.2 -- 12021-03-22
 
   * Added explicit import lists for `Hakyll` modules
