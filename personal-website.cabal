@@ -1,26 +1,43 @@
-cabal-version: 3.6
-Category:      Web
-build-type:    Simple
-name:          personal-website
-version:       2.2.2
+Cabal-Version: 3.6
+Name:          personal-website
+Version:       2.2.2
+Stability:     Stable
+Build-Type:    Simple
+               
+Author:        Alex Washburn <github@recursion.ninja>
+Copyright:     (c) 2015-2022 Alex Washburn
+License:       BSD-3-Clause
+License-File:  doc/LICENSE
 
-author:        Alex Washburn <github@recursion.ninja>
-maintainer:    Alex Washburn <github@recursion.ninja>
+Maintainer:    Alex Washburn <github@recursion.ninja>
 Homepage:      https://recursion.ninja
 Bug-Reports:   https://github.com/recursion-ninja/personal-website
-license:       BSD-3-Clause
-license-file:  doc/LICENSE
 
-synopsis:      Website for Alex Washburn's recursion.ninja
-description:   The source code for Alex Washburn's web presence site <https://recursion.ninja>.
+Category:      Web
+Synopsis:      Website for Alex Washburn's recursion.ninja domain
+Description:   The source code for Alex Washburn's web presence site <https://recursion.ninja>.
                Static site is constructed using Hakyll <http://jaspervdj.be/hakyll>.
                Designed for simple blog post authoring and publishing.
 
-tested-with:
+Tested-With:
     GHC == 9.2.2
     GHC == 9.0.2
+    GHC == 8.10.7
 
-extra-source-files:
+Data-Files:
+    blog/*.md
+    data/css/*.css
+    data/fav/*
+    data/img/*.png
+    data/img/*.svg
+    data/page/*.html
+    data/template/*.adoc
+    data/template/*.html
+    data/template/*.latex
+    data/template/*.md
+    data/template/*.xml
+
+Extra-Doc-Files:
     doc/CHANGELOG.md
     doc/README.md
 

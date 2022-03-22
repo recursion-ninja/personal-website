@@ -3,9 +3,13 @@
 
 ## 2.2.2 -- 12021-03-22
 
-  * Refactoring exported function names to be more consistent and intuitive
+  * Added explicit import lists for `Hakyll` modules
 
-  * Refactoring codebase layout:
+  * Updated `.cabal` file package description
+
+  * Refactored exported function names to be more consistent and intuitive
+
+  * Refactored codebase layout:
 
     - Created `AssetIncludes` module for copying/compiling "asset" files
 
