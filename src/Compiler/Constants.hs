@@ -22,6 +22,9 @@ module Compiler.Constants
       -- * Templates
     , templateDefault
     , templateUsing
+      -- * Website Metadata
+    , websiteDomain
+    , websiteURL
     ) where
 
 import Control.Applicative (Alternative(empty))
@@ -208,12 +211,16 @@ robustModificationTimeField key fmt = field key $ \i -> do
     pure $ formatTime defaultTimeLocale fmt modTime
 
 
+websiteDomain :: IsString s => s
+websiteDomain = fromString "recursion.ninja"
+
+
 websiteRepository :: String
 websiteRepository = "https://github.com/recursion-ninja/personal-website"
 
 
-websiteURL :: String
-websiteURL = "https://recursion.ninja"
+websiteURL :: (IsString s, Semigroup s) => s
+websiteURL = fromString "https://" <> websiteDomain
 
 
 websiteVersion :: Version

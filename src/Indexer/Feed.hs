@@ -6,6 +6,7 @@ module Indexer.Feed
     ) where
 
 import Compiler.BlogPostContext
+import Compiler.Constants (websiteDomain, websiteURL)
 import Hakyll.Core.Compiler (Compiler, loadAllSnapshots)
 import Hakyll.Core.Identifier (Identifier)
 import Hakyll.Core.Identifier.Pattern (hasVersion, (.&&.))
@@ -22,8 +23,8 @@ myFeedConfiguration = FeedConfiguration
     { feedTitle       = "Excursuses of Recursion Ninja"
     , feedDescription = "Shared Commentary on Selected Computational Topics"
     , feedAuthorName  = "Recursion Ninja"
-    , feedAuthorEmail = "contact@recursion.ninja"
-    , feedRoot        = "https://recursion.ninja"
+    , feedAuthorEmail = "contact@" <> websiteDomain
+    , feedRoot        = websiteURL
     }
 
 

@@ -5,19 +5,21 @@
 
   * Added explicit import lists for `Hakyll` modules
 
-  * Updated `.cabal` file package description
+  * Added dynamic specification of website domain, no longer hardcoded everywhere
 
   * Refactored exported function names to be more consistent and intuitive
 
   * Refactored codebase layout:
 
-    - Created `AssetIncludes` module for copying/compiling "asset" files
+    - Added `AssetIncludes` module for copying/compiling "asset" files
 
-    - Created `config` directory for configurable build tool files
+    - Added `config` directory for configurable build tool files
 
     - Moved `css`, `fav`, `img`, `mold`, and `page` into `data` directory
 
     - Renamed `mold` to `template` directory
+
+  * Updated `.cabal` file package description
 
 
 ## 2.2.1 -- 12021-03-18
@@ -29,14 +31,14 @@
 
 ## 2.2.0 -- 12021-03-17
 
-  * Adding PhD admissions announcement
+  * Addeed PhD admissions announcement blog post
 
 
 ## 2.1.10 -- 12021-03-17
 
-  * Updating build parameters of `cabal.project`
+  * Updated build parameters of `cabal.project`
 
-  * Updating required cabal version of the of `.cabal` file
+  * Updated required cabal version of the of `.cabal` file
 
 
 ## 2.1.9 -- 12021-12-06
@@ -108,14 +110,14 @@
 
 ## 2.0.3 -- 12021-10-25
 
-  * Beautifying font-size on small screens
+  * Beautified font-size on small screens
 
-  * Abbreviating dates and standardizeing their spacing on CV
+  * Abbreviated dates and standardizeing their spacing on CV
 
 
 ## 2.0.1 -- 12021-10-24
 
-  * Correcting a typo on the `About` page
+  * Corrected a typo on the `About` page
 
 
 ## 2.0.0 -- 12021-10-24

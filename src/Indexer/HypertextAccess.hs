@@ -4,6 +4,7 @@ module Indexer.HypertextAccess
     ( constructHypertextAccess
     ) where
 
+import Compiler.Constants (websiteDomain)
 import Hakyll.Core.Compiler (makeItem)
 import Hakyll.Core.Routes (idRoute)
 import Hakyll.Core.Rules (Rules, compile, create, route)
@@ -23,8 +24,8 @@ rewriteRules = unlines
     , "<IfModule mod_rewrite.c>"
     , "RewriteEngine On"
     , ""
-    , "# Begin EnforceSSL recursion.ninja"
-    , "RewriteCond %{HTTP_HOST} ^(www.)?recursion.ninja$"
+    , "# Begin EnforceSSL " <> websiteDomain
+    , "RewriteCond %{HTTP_HOST} ^(www.)?" <> websiteDomain <> "$"
     , "RewriteCond %{HTTPS} !=on"
     , "RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L]"
     , ""
