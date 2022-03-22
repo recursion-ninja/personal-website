@@ -1,9 +1,9 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# Language OverloadedStrings #-}
 
 module Indexer.Feed
-  ( constructAtomFeed
-  , constructRssFeed
-  ) where
+    ( constructAtomFeed
+    , constructRssFeed
+    ) where
 
 import Compiler.BlogPostContext
 import Hakyll
@@ -23,19 +23,18 @@ constructAtomFeed :: Rules ()
 constructAtomFeed = constructFeed renderAtom "atom.xml"
 
 
-constructRssFeed  :: Rules ()
-constructRssFeed  = constructFeed renderRss  "rss.xml"
+constructRssFeed :: Rules ()
+constructRssFeed = constructFeed renderRss "rss.xml"
 
 
 constructFeed
-  :: (FeedConfiguration -> Context String -> [Item String] -> Compiler (Item String))
-  -> Identifier
-  -> Rules ()
+    :: (FeedConfiguration -> Context String -> [Item String] -> Compiler (Item String))
+    -> Identifier
+    -> Rules ()
 constructFeed f s = do
     create [s] $ do
         route idRoute
         compile $ do
             blogPosts <- recentFirst =<< loadAllSnapshots ("blog/*" .&&. hasVersion "html") "content"
             f myFeedConfiguration blogPostContext blogPosts
-
 

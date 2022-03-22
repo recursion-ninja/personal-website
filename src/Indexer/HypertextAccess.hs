@@ -1,8 +1,8 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# Language OverloadedStrings #-}
 
 module Indexer.HypertextAccess
-  ( constructHypertextAccess
-  ) where
+    ( constructHypertextAccess
+    ) where
 
 import Hakyll.Core.Compiler (makeItem)
 import Hakyll.Core.Routes (idRoute)
@@ -10,10 +10,9 @@ import Hakyll.Core.Rules (Rules, compile, create, route)
 
 
 constructHypertextAccess :: Rules ()
-constructHypertextAccess =
-    create [".htaccess"] $ do
-      route idRoute
-      compile $ makeItem rewriteRules
+constructHypertextAccess = create [".htaccess"] $ do
+    route idRoute
+    compile $ makeItem rewriteRules
 
 
 rewriteRules :: String

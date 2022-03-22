@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# Language OverloadedStrings #-}
 
 module Indexer.Robots
     ( constructRobotsTXT
@@ -9,12 +9,8 @@ import Hakyll
 
 constructRobotsTXT :: Rules ()
 constructRobotsTXT =
-    create ["robots.txt"] $ do
-      route idRoute
-      compile $ makeItem textPayload
-  where
-    textPayload :: String
-    textPayload = unlines
-        [ "User-agent: *"
-        , "Disallow:"
-        ]
+    let textPayload = unlines ["User-agent: *", "Disallow:"] :: String
+    in  create ["robots.txt"] $ do
+            route idRoute
+            compile $ makeItem textPayload
+

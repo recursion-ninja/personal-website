@@ -1,14 +1,14 @@
 module AssetIncludes
     ( includeCSS
-    , includeImages
     , includeFavicons
+    , includeImages
     , includeTemplates
     ) where
 
 import Compiler.Constants
 import Data.Binary (Binary)
-import Data.Typeable (Typeable)
 import Data.String (fromString)
+import Data.Typeable (Typeable)
 import Hakyll.Core.Compiler (Compiler)
 import Hakyll.Core.File (copyFileCompiler)
 import Hakyll.Core.Identifier.Pattern (Pattern)
@@ -21,9 +21,9 @@ import System.FilePath.Posix ((</>))
 
 
 includeCSS, includeImages, includeFavicons, includeTemplates :: Rules ()
-includeCSS       = pathToCSS        `assetsIncludedUsing` compressCssCompiler
-includeImages    = pathToImages     `assetsIncludedUsing` copyFileCompiler
-includeFavicons  = pathToFavicons   `assetsIncludedUsing` copyFileCompiler
+includeCSS = pathToCSS `assetsIncludedUsing` compressCssCompiler
+includeImages = pathToImages `assetsIncludedUsing` copyFileCompiler
+includeFavicons = pathToFavicons `assetsIncludedUsing` copyFileCompiler
 includeTemplates = pathToTemplates `designsIncludedUsing` templateBodyCompiler
 
 
@@ -31,18 +31,10 @@ allWithin :: FilePath -> Pattern
 allWithin = fromString . (</> "*")
 
 
-assetsIncludedUsing
-  :: ( Binary a
-     , Typeable a
-     , Writable a
-     )
-  => FilePath
-  -> Compiler (Item a)
-  -> Rules ()
-assetsIncludedUsing pathToResources compiler =
-   match (allWithin pathToResources) $ do
-        route   pageRouteFromDataDirectory
-        compile compiler
+assetsIncludedUsing :: (Binary a, Typeable a, Writable a) => FilePath -> Compiler (Item a) -> Rules ()
+assetsIncludedUsing pathToResources compiler = match (allWithin pathToResources) $ do
+    route pageRouteFromDataDirectory
+    compile compiler
 
 
 designsIncludedUsing :: FilePath -> Compiler (Item Template) -> Rules ()

@@ -18,16 +18,11 @@ compileFormatHTML :: FormatCompiler
 compileFormatHTML = compileFormatTransformedHTML id
 
 
-compileFormatStaticHTML
-  :: Context String
-  -> Pattern
-  -> [Identifier]
-  -> Rules ()
-compileFormatStaticHTML inputContext inputPath =
-    compileFormatHTML inputContext inputPath pageRouteStatic
+compileFormatStaticHTML :: Context String -> Pattern -> [Identifier] -> Rules ()
+compileFormatStaticHTML inputContext inputPath = compileFormatHTML inputContext inputPath pageRouteStatic
 
 
 compileFormatTransformedHTML :: (Pandoc -> Pandoc) -> FormatCompiler
-compileFormatTransformedHTML transform =
-    let compiler = pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions transform
-    in  compilerFromSpecification "html" compiler
+compileFormatTransformedHTML =
+    let compiler = pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions
+    in  compilerFromSpecification "html" . compiler

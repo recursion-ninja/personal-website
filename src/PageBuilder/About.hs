@@ -1,6 +1,6 @@
 module PageBuilder.About
-  ( buildAbout
-  ) where
+    ( buildAbout
+    ) where
 
 import Compiler.Constants
 import Compiler.HTML
@@ -10,18 +10,11 @@ import System.FilePath.Posix ((</>))
 
 
 buildAbout :: Rules ()
-buildAbout =
-    compileFormatStaticHTML
-      aboutContext
-      aboutPageInput
-      [templateDefault]
+buildAbout = compileFormatStaticHTML aboutContext aboutPageInput [templateDefault]
 
 
 aboutContext :: Context String
-aboutContext = contextUsing
-    [ constField "NavRef" "about"
-    , constField "Title"  "About"
-    ]
+aboutContext = contextUsing [constField "NavRef" "about", constField "Title" "About"]
 
 
 aboutPageInput :: Pattern

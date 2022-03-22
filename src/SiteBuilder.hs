@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Main
     ( main
     ) where
@@ -9,8 +7,8 @@ import Data.Foldable
 import Hakyll.Core.Rules (Rules)
 import Hakyll.Main (hakyll)
 import Indexer.Feed
-import Indexer.Page
 import Indexer.HypertextAccess
+import Indexer.Page
 import Indexer.Robots
 import Indexer.SiteMap
 import PageBuilder.About
@@ -30,12 +28,7 @@ main = hakyll $ do
   Include all assets required by website pages.
 -}
 compileAllAssets :: Rules ()
-compileAllAssets = sequenceA_
-    [ includeCSS
-    , includeImages
-    , includeFavicons
-    , includeTemplates
-    ]
+compileAllAssets = sequenceA_ [includeCSS, includeImages, includeFavicons, includeTemplates]
 
 
 {- |
@@ -43,14 +36,7 @@ compileAllAssets = sequenceA_
 --}
 compileAllPages :: Rules ()
 compileAllPages = sequenceA_
-    [ buildAbout
-    , buildBlogList
-    , buildBlogPosts
-    , buildCV
-    , buildError400
-    , buildError404
-    , buildError500
-    ]
+    [buildAbout, buildBlogList, buildBlogPosts, buildCV, buildError400, buildError404, buildError500]
 
 
 {- |

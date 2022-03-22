@@ -1,34 +1,35 @@
-{-# LANGUAGE LambdaCase #-}
+{-# Language LambdaCase #-}
 
 module Compiler.Constants
-    (
-    -- * Compiler
+    ( -- * Compiler
       finalizePage
-    -- * Contexts
+      -- * Contexts
     , contextAliasFieldAs
     , contextUsing
-    -- * Paths
+      -- * Fields
+    , flagField
+      -- * Paths
     , pathToCSS
     , pathToFavicons
     , pathToImages
     , pathToPages
     , pathToTemplates
-    -- * Routes
+      -- * Routes
     , pageRouteAlias
     , pageRouteDefault
     , pageRouteFromDataDirectory
     , pageRouteStatic
-    -- * Templates
+      -- * Templates
     , templateDefault
     , templateUsing
     ) where
 
-import Control.Applicative            (Alternative(empty))
+import Control.Applicative (Alternative(empty))
 import Data.Foldable
-import Data.List                      (isPrefixOf)
+import Data.List (isPrefixOf)
 import Data.String
-import Data.Time.Clock                (getCurrentTime)
-import Data.Time.Format               (defaultTimeLocale, formatTime)
+import Data.Time.Clock (getCurrentTime)
+import Data.Time.Format (defaultTimeLocale, formatTime)
 import Data.Version
 import Hakyll.Core.Compiler
 import Hakyll.Core.Compiler.Internal
@@ -41,12 +42,10 @@ import Hakyll.Web.Html
 import Hakyll.Web.Html.RelativizeUrls
 import Hakyll.Web.Template.Context
 import Paths_personal_website (version)
-import System.FilePath.Posix ((</>), dropExtension, joinPath, splitDirectories, takeBaseName)
+import System.FilePath.Posix (dropExtension, joinPath, splitDirectories, takeBaseName, (</>))
 
 
-finalizePage
-  :: Item String
-  -> Compiler (Item String)
+finalizePage :: Item String -> Compiler (Item String)
 finalizePage x = relativizeUrls x >>= saveSnapshot "content"
 
 
@@ -56,6 +55,10 @@ contextAliasFieldAs original clone = duplicateMapField original clone id
 
 contextUsing :: Foldable f => f (Context String) -> Context String
 contextUsing cs = duplicatedFields <> fold cs <> contextOfWebsite
+
+
+flagField :: String -> Context a
+flagField = flip boolField $ const True
 
 
 pathToCSS :: FilePath
@@ -104,7 +107,9 @@ templateDefault = fromString $ pathToTemplates </> "default.html"
 {- |
   Use the specified template located within 'pathToTemplates'.
 
+
 ==== __Examples__
+
 
 >>> templateUsing "blog-list.html"
 -}
@@ -130,32 +135,29 @@ assetReferenceToImages = "img"
 
 
 contextOfFile :: Context String
-contextOfFile =
-    field "BaseFile" $ \i -> do
-      let x = itemIdentifier i
-          err :: String
-          err = fail $ "No route url found for item " <> show x
-      maybe err (takeBaseName . toUrl) <$> getRoute x
+contextOfFile = field "BaseFile" $ \i ->
+    let x   = itemIdentifier i
+        err = fail $ "No route url found for item " <> show x :: String
+    in  maybe err (takeBaseName . toUrl) <$> getRoute x
 
 
 contextOfRoute :: Context String
-contextOfRoute =
-    field "BaseRoute" $ \i -> do
-      let x = itemIdentifier i
-          err :: String
-          err = fail $ "No route url found for item " <> show x
-          f y = let url  = toUrl y
-                    root = toSiteRoot url
-                in  root </> dropExtension url
-      maybe err f <$> getRoute x
+contextOfRoute = field "BaseRoute" $ \i -> do
+    let x   = itemIdentifier i
+        err = fail $ "No route url found for item " <> show x :: String
+        f y =
+            let url  = toUrl y
+                root = toSiteRoot url
+            in  root </> dropExtension url
+    maybe err f <$> getRoute x
 
 
 contextOfWebsite :: Context String
 contextOfWebsite = fold
-    [ constField "Author" "Alex Washburn"
-    , constField "BaseURL" websiteURL
-    , constField "rights" "Creative Commons Non-Commercial Share Alike 3.0"
-    , constField "language" "en-US"
+    [ constField "Author"            "Alex Washburn"
+    , constField "BaseURL"           websiteURL
+    , constField "rights"            "Creative Commons Non-Commercial Share Alike 3.0"
+    , constField "language"          "en-US"
     , constField "WebsiteRepository" websiteRepository
     , constField "WebsiteVersion" $ showVersion websiteVersion
     , constField "AssetRefCSS"      assetReferenceToCSS
@@ -171,24 +173,24 @@ contextOfWebsite = fold
 
 
 duplicateMapField :: String -> String -> (String -> String) -> Context a
-duplicateMapField original clone f = field clone $ \i ->
-    maybe empty f . lookupString original <$> getMetadata (itemIdentifier i)
+duplicateMapField original clone f =
+    field clone $ \i -> maybe empty f . lookupString original <$> getMetadata (itemIdentifier i)
 
 
 duplicatedFields :: Context String
 duplicatedFields = fold
     [ "Author" `contextAliasFieldAs` "name"
-    , "Title"  `contextAliasFieldAs` "title"
-    , "Date"   `contextAliasFieldAs` "date"
+    , "Title" `contextAliasFieldAs` "title"
+    , "Date" `contextAliasFieldAs` "date"
     ]
 
 
 fromDataDirectory :: FilePath -> FilePath
 fromDataDirectory =
     let dropDataDirectory = \case
-          []  -> []
-          x:xs | "data" `isPrefixOf` x -> xs
-          xs  -> xs
+            []                             -> []
+            x : xs | "data" `isPrefixOf` x -> xs
+            xs                             -> xs
     in  joinPath . dropDataDirectory . splitDirectories
 
 
@@ -200,9 +202,9 @@ robustModificationTimeField :: String -> String -> Context String
 robustModificationTimeField key fmt = field key $ \i -> do
     let identifier = itemIdentifier i
     provider <- compilerProvider <$> compilerAsk
-    modTime  <- if   resourceExists provider identifier
-      then pure $ resourceModificationTime provider identifier
-      else unsafeCompiler getCurrentTime
+    modTime  <- if resourceExists provider identifier
+        then pure $ resourceModificationTime provider identifier
+        else unsafeCompiler getCurrentTime
     pure $ formatTime defaultTimeLocale fmt modTime
 
 
@@ -216,5 +218,4 @@ websiteURL = "https://recursion.ninja"
 
 websiteVersion :: Version
 websiteVersion = version
-
 

@@ -1,9 +1,9 @@
 module Compiler.Markdown
-  ( compileFormatMarkdown
-  ) where
+    ( compileFormatMarkdown
+    ) where
 
 import Compiler.Generic
-import Data.Text                      (unpack)
+import Data.Text (unpack)
 import Hakyll.Core.Compiler
 import Hakyll.Core.Identifier
 import Hakyll.Core.Identifier.Pattern
@@ -14,14 +14,8 @@ import Hakyll.Web.Template.Context
 import Text.Pandoc.Writers
 
 
-compileFormatMarkdown
-  :: Context String
-  -> Pattern
-  -> (String -> Routes)
-  -> [Identifier]
-  -> Rules ()
-compileFormatMarkdown =
-    compilerFromSpecification "md" markdownCompiler
+compileFormatMarkdown :: Context String -> Pattern -> (String -> Routes) -> [Identifier] -> Rules ()
+compileFormatMarkdown = compilerFromSpecification "md" markdownCompiler
 
 
 markdownCompiler :: Compiler (Item String)

@@ -1,9 +1,9 @@
 module Compiler.AsciiDoc
-  ( compileFormatAsciiDoc
-  ) where
+    ( compileFormatAsciiDoc
+    ) where
 
 import Compiler.Generic
-import Data.Text            (unpack)
+import Data.Text (unpack)
 import Hakyll.Core.Compiler
 import Hakyll.Core.Item
 import Text.Pandoc.Writers

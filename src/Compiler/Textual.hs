@@ -1,9 +1,9 @@
 module Compiler.Textual
-  ( compileFormatTextual
-  ) where
+    ( compileFormatTextual
+    ) where
 
 import Compiler.Generic
-import Data.Text                      (unpack)
+import Data.Text (unpack)
 import Hakyll.Core.Compiler
 import Hakyll.Core.Identifier
 import Hakyll.Core.Identifier.Pattern
@@ -14,14 +14,8 @@ import Hakyll.Web.Template.Context
 import Text.Pandoc.Writers
 
 
-compileFormatTextual
-  :: Context String
-  -> Pattern
-  -> (String -> Routes)
-  -> [Identifier]
-  -> Rules ()
-compileFormatTextual =
-    compilerFromSpecification "txt" textualCompiler
+compileFormatTextual :: Context String -> Pattern -> (String -> Routes) -> [Identifier] -> Rules ()
+compileFormatTextual = compilerFromSpecification "txt" textualCompiler
 
 
 textualCompiler :: Compiler (Item String)

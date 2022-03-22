@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# Language OverloadedStrings #-}
 
 module Indexer.SiteMap
     ( constructSiteMap
@@ -14,10 +14,9 @@ constructSiteMap :: Rules ()
 constructSiteMap =
     let siteMapTemplate = fromString $ pathToTemplates </> "sitemap.xml"
     in  create ["sitemap.xml"] $ do
-          route idRoute
-          compile $ do
-            allMapPoints <- loadAllSnapshots (hasVersion "html") "content"
-            let siteMapContext = contextUsing
-                    [ listField "SiteEntries" (contextUsing []) $ pure allMapPoints
-                    ]
-            makeItem "" >>= loadAndApplyTemplate siteMapTemplate siteMapContext
+            route idRoute
+            compile $ do
+                allMapPoints <- loadAllSnapshots (hasVersion "html") "content"
+                let siteMapContext =
+                        contextUsing [listField "SiteEntries" (contextUsing []) $ pure allMapPoints]
+                makeItem "" >>= loadAndApplyTemplate siteMapTemplate siteMapContext
