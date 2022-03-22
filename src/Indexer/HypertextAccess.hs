@@ -4,7 +4,9 @@ module Indexer.HypertextAccess
   ( constructHypertextAccess
   ) where
 
-import Hakyll
+import Hakyll.Core.Compiler (makeItem)
+import Hakyll.Core.Routes (idRoute)
+import Hakyll.Core.Rules (Rules, compile, create, route)
 
 
 constructHypertextAccess :: Rules ()

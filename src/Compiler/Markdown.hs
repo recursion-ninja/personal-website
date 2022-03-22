@@ -1,5 +1,5 @@
 module Compiler.Markdown
-  ( compileMarkdownFormat
+  ( compileFormatMarkdown
   ) where
 
 import Compiler.Generic
@@ -14,14 +14,14 @@ import Hakyll.Web.Template.Context
 import Text.Pandoc.Writers
 
 
-compileMarkdownFormat
+compileFormatMarkdown
   :: Context String
   -> Pattern
   -> (String -> Routes)
   -> [Identifier]
   -> Rules ()
-compileMarkdownFormat =
-    customCompiler "md" markdownCompiler
+compileFormatMarkdown =
+    compilerFromSpecification "md" markdownCompiler
 
 
 markdownCompiler :: Compiler (Item String)

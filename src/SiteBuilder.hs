@@ -4,10 +4,10 @@ module Main
     ( main
     ) where
 
-import Compiler.Constants
+import AssetIncludes
 import Data.Foldable
-import Data.String
-import Hakyll
+import Hakyll.Core.Rules (Rules)
+import Hakyll.Main (hakyll)
 import Indexer.Feed
 import Indexer.Page
 import Indexer.HypertextAccess
@@ -17,55 +17,53 @@ import PageBuilder.About
 import PageBuilder.Blog
 import PageBuilder.CV
 import PageBuilder.Errors
-import System.FilePath.Posix ((</>))
 
 
 main :: IO ()
 main = hakyll $ do
-    includeAllResources
-    compileAllSitePages
+    compileAllAssets
+    compileAllPages
     compileAllIndices
 
 
-compileAllSitePages :: Rules ()
-compileAllSitePages = sequenceA_
-    [    aboutPageBuilder
-    ,     blogListBuilder
-    ,     blogPostBuilder
---    ,       cvPageBuilder
-    , error400PageBuilder
-    , error404PageBuilder
-    , error500PageBuilder
+{- |
+  Include all assets required by website pages.
+-}
+compileAllAssets :: Rules ()
+compileAllAssets = sequenceA_
+    [ includeCSS
+    , includeImages
+    , includeFavicons
+    , includeTemplates
     ]
 
 
+{- |
+  Build all website pages.
+--}
+compileAllPages :: Rules ()
+compileAllPages = sequenceA_
+    [ buildAbout
+    , buildBlogList
+    , buildBlogPosts
+    , buildCV
+    , buildError400
+    , buildError404
+    , buildError500
+    ]
+
+
+{- |
+  Construct all indices of website.
+
+  __NOTE:__ This must occur /after/ assets and webpages have been compiled!
+-}
 compileAllIndices :: Rules ()
 compileAllIndices = sequenceA_
     [ constructAtomFeed
-    , constructIndexPage
+    , constructIndexHTML
     , constructHypertextAccess
     , constructRssFeed
     , constructRobotsTXT
     , constructSiteMap
     ]
-
-
-includeAllResources :: Rules ()
-includeAllResources = do
-    match allTemplates $ compile templateBodyCompiler
-
-    match "data/fav/*" $ do
-      route   pageRouteFromDataDirectory
-      compile copyFileCompiler
-
-    match "data/img/*" $ do
-      route   pageRouteFromDataDirectory
-      compile copyFileCompiler
-
-    match "data/css/*" $ do
-      route   pageRouteFromDataDirectory
-      compile compressCssCompiler
-
-
-allTemplates :: Pattern
-allTemplates = fromString $ pathToTemplates </> "*"

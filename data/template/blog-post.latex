@@ -35,14 +35,6 @@ $endif$
   pdfpagemode = UseNone
 }
 
-\geometry{
-  body={6.5in, 9.0in},
-  left=0.5in,
-  right=0.5in,
-  top=0.5in,
-  bottom=0.5in
-}
-
 \renewcommand{\texttt}{\hfill\normalsize\normalfont}
 \renewcommand{\section}[1]{\Huge \bf \MakeUppercase}
 

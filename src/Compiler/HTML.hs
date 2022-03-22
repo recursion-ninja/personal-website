@@ -1,45 +1,33 @@
 module Compiler.HTML
-    ( pageBuilderWith
-    , pageBuilder
-    , staticPageBuilder
+    ( compileFormatHTML
+    , compileFormatStaticHTML
+    , compileFormatTransformedHTML
     ) where
 
 import Compiler.Constants
 import Compiler.Generic
 import Hakyll.Core.Identifier
 import Hakyll.Core.Identifier.Pattern
-import Hakyll.Core.Routes
 import Hakyll.Core.Rules
 import Hakyll.Web.Pandoc
 import Hakyll.Web.Template.Context
 import Text.Pandoc.Definition
 
 
-pageBuilderWith
-  :: (Pandoc -> Pandoc)
-  -> Context String
+compileFormatHTML :: FormatCompiler
+compileFormatHTML = compileFormatTransformedHTML id
+
+
+compileFormatStaticHTML
+  :: Context String
   -> Pattern
-  -> (String -> Routes)
   -> [Identifier]
   -> Rules ()
-pageBuilderWith transform =
+compileFormatStaticHTML inputContext inputPath =
+    compileFormatHTML inputContext inputPath pageRouteStatic
+
+
+compileFormatTransformedHTML :: (Pandoc -> Pandoc) -> FormatCompiler
+compileFormatTransformedHTML transform =
     let compiler = pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions transform
-    in  customCompiler "html" compiler
-
-
-pageBuilder
-  :: Context String
-  -> Pattern
-  -> (String -> Routes)
-  -> [Identifier]
-  -> Rules ()
-pageBuilder = pageBuilderWith id
-
-
-staticPageBuilder
-  :: Context String
-  -> Pattern
-  -> [Identifier]
-  -> Rules ()
-staticPageBuilder inputContext inputPath =
-    pageBuilder inputContext inputPath pageRouteStatic
+    in  compilerFromSpecification "html" compiler

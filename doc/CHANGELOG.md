@@ -1,6 +1,21 @@
 # Revision history
 
 
+## 2.2.2 -- 12021-03-22
+
+  * Refactoring exported function names to be more consistent and intuitive
+
+  * Refactoring codebase layout:
+
+    - Created `AssetIncludes` module for copying/compiling "asset" files
+
+    - Created `config` directory for configurable build tool files
+
+    - Moved `css`, `fav`, `img`, `mold`, and `page` into `data` directory
+
+    - Renamed `mold` to `template` directory
+
+
 ## 2.2.1 -- 12021-03-18
 
   * Refactored code based on new compiler warnings

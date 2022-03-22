@@ -7,7 +7,7 @@
     <dl id="connections-list">
       $if(PDFImg)$
       <span>
-        <dt><img src="$PDFImg$" alt="PDF"></dt>
+        <dt><img src="$AssetRefImages$/$PDFImg$" alt="PDF"></dt>
         <dd>
           <strong>
             <em>
@@ -19,31 +19,31 @@
       $endif$
       $if(Email)$
       <span>
-        <dt><img src="$EmailImg$" alt="Time Zone"></dt>
+        <dt><img src="$AssetRefImages$/$EmailImg$" alt="Email"></dt>
         <dd><a href="mailto:$Email$">$Email$</a></dd>
       </span>
       $endif$
       $if(GitHub)$
       <span>
-        <dt><img src="$GitHubImg$" alt="Time Zone"></dt>
+        <dt><img src="$AssetRefImages$/$GitHubImg$" alt="GitHub"></dt>
         <dd><a href="https://github.com/$GitHub$">github.com/$GitHub$</a></dd>
       </span>
       $endif$
       $if(StackOverflowUser)$
       <span>
-        <dt><img src="$StackOverflowImg$" alt="Time Zone"></dt>
+        <dt><img src="$AssetRefImages$/$StackOverflowImg$" alt="Stack Overflow"></dt>
         <dd><a href="https://stackoverflow.com/users/$StackOverflowID$/$StackOverflowUser$">stackoverflow.com/$StackOverflowUser$</a></dd>
       </span>
       $endif$
       $if(TimeZoneLabel)$
       <span>
-        <dt><img src="$TimeZoneImg$" alt="Time Zone"></dt>
+        <dt><img src="$AssetRefImages$/$TimeZoneImg$" alt="Time Zone"></dt>
         <dd><a href="https://time.is/compare/now_in_$TimeZoneCity$">$TimeZoneLabel$</a></dd>
       </span>
       $endif$
       $if(LastUpdatedImg)$
       <span>
-        <dt><img src="$LastUpdatedImg$" alt="Last Updated"></dt>
+        <dt><img src="$AssetRefImages$/$LastUpdatedImg$" alt="Last Updated"></dt>
         <dd>Last Updated $LastModified$</dd>
       </span>
       $endif$

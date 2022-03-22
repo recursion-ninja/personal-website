@@ -1,5 +1,5 @@
 module PageBuilder.About
-  ( aboutPageBuilder
+  ( buildAbout
   ) where
 
 import Compiler.Constants
@@ -9,16 +9,16 @@ import Hakyll
 import System.FilePath.Posix ((</>))
 
 
-aboutPageBuilder :: Rules ()
-aboutPageBuilder =
-    staticPageBuilder
+buildAbout :: Rules ()
+buildAbout =
+    compileFormatStaticHTML
       aboutContext
       aboutPageInput
-      [defaultTemplate]
+      [templateDefault]
 
 
 aboutContext :: Context String
-aboutContext = makeContext
+aboutContext = contextUsing
     [ constField "NavRef" "about"
     , constField "Title"  "About"
     ]

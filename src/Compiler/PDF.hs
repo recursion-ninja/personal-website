@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Compiler.PDF
-  ( compilePdfFormat
-  , compilePdfFormatWith
+  ( compileFormatPDF
+  , compileFormatPDFWith
   , blockFilter
   ) where
 
@@ -29,18 +29,18 @@ import Text.Pandoc.Definition
 import Text.Pandoc.Writers
 
 
-compilePdfFormat
+compileFormatPDF
   :: Context String
   -> Pattern
   -> (String -> Routes)
   -> [Identifier]
   -> Rules ()
-compilePdfFormat = compilePdfFormatWith id "pdf"
+compileFormatPDF = compileFormatPDFWith id "pdf"
 
 
 -- |
 -- Compile with an alteration.
-compilePdfFormatWith
+compileFormatPDFWith
   :: (Pandoc -> Pandoc) -- ^ Alteration Function
   -> String             -- ^ Alteration "Versioning Label"
   -> Context String
@@ -48,7 +48,7 @@ compilePdfFormatWith
   -> (String -> Routes)
   -> [Identifier]
   -> Rules ()
-compilePdfFormatWith f v inputContext inputPath inputRoute inputTemplates =
+compileFormatPDFWith f v inputContext inputPath inputRoute inputTemplates =
     match inputPath . version v $ do
         route   $  inputRoute "pdf"
         compile $ texCompiler f

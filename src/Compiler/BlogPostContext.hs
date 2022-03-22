@@ -26,7 +26,7 @@ blogPostPath = "blog/*.md"
 
 
 blogPostContext :: Context String
-blogPostContext = makeContext
+blogPostContext = contextUsing
     [ blogPostMetadataFields
     , blogPostDecription
     ,  dateField "Date"   "1%0Y+%j %A, %B %e"
@@ -42,7 +42,7 @@ blogPostContext = makeContext
 
 
 blogPostDecription :: Context a
-blogPostDecription = duplicateField "Subtitle" "description"
+blogPostDecription =  "Subtitle" `contextAliasFieldAs` "description"
 
 
 blogPostMetadataFields :: Context a

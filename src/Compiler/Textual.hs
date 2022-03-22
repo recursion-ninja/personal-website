@@ -1,5 +1,5 @@
 module Compiler.Textual
-  ( compileTextualFormat
+  ( compileFormatTextual
   ) where
 
 import Compiler.Generic
@@ -14,14 +14,14 @@ import Hakyll.Web.Template.Context
 import Text.Pandoc.Writers
 
 
-compileTextualFormat
+compileFormatTextual
   :: Context String
   -> Pattern
   -> (String -> Routes)
   -> [Identifier]
   -> Rules ()
-compileTextualFormat =
-    customCompiler "txt" textualCompiler
+compileFormatTextual =
+    compilerFromSpecification "txt" textualCompiler
 
 
 textualCompiler :: Compiler (Item String)

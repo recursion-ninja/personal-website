@@ -1,7 +1,7 @@
 module PageBuilder.Errors
-  ( error400PageBuilder
-  , error404PageBuilder
-  , error500PageBuilder
+  ( buildError400
+  , buildError404
+  , buildError500
   ) where
 
 import Compiler.Constants
@@ -11,16 +11,16 @@ import Hakyll
 import System.FilePath.Posix ((</>), (<.>))
 
 
-error400PageBuilder :: Rules ()
-error400PageBuilder = mkErrorPage 400
+buildError400 :: Rules ()
+buildError400 = mkErrorPage 400
 
 
-error404PageBuilder :: Rules ()
-error404PageBuilder = mkErrorPage 404
+buildError404 :: Rules ()
+buildError404 = mkErrorPage 404
 
 
-error500PageBuilder :: Rules ()
-error500PageBuilder = mkErrorPage 500
+buildError500 :: Rules ()
+buildError500 = mkErrorPage 500
 
 
 haikuTemplate :: Identifier
@@ -28,8 +28,8 @@ haikuTemplate = fromString $ pathToTemplates </> "haiku.html"
 
 
 mkErrorPage :: Word -> Rules ()
-mkErrorPage n = staticPageBuilder context input templates
+mkErrorPage n = compileFormatStaticHTML context input templates
   where
     input     = fromString $ pathToPages </> show n <.> "html"
-    context   = makeContext [ constField "Title" $ show n ]
-    templates = [ haikuTemplate, defaultTemplate ]
+    context   = contextUsing [ constField "Title" $ show n ]
+    templates = [ haikuTemplate, templateDefault ]

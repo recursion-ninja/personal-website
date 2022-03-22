@@ -17,7 +17,7 @@ constructSiteMap =
           route idRoute
           compile $ do
             allMapPoints <- loadAllSnapshots (hasVersion "html") "content"
-            let siteMapContext = makeContext
-                    [ listField "SiteEntries" (makeContext []) $ pure allMapPoints
+            let siteMapContext = contextUsing
+                    [ listField "SiteEntries" (contextUsing []) $ pure allMapPoints
                     ]
             makeItem "" >>= loadAndApplyTemplate siteMapTemplate siteMapContext

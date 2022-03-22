@@ -1,21 +1,14 @@
 module Compiler.EPUB
-  ( compileEpubFormat
+  ( compileFormatEPUB
   ) where
 
 import Compiler.Generic
-import Hakyll.Core.Identifier.Pattern
-import Hakyll.Core.Routes
 import Hakyll.Core.Rules
-import Hakyll.Web.Template.Context
 import Text.Pandoc.Writers
 
 
-compileEpubFormat
-  :: Context String
-  -> Pattern
-  -> (String -> Routes)
-  -> Rules ()
-compileEpubFormat _ inputPath inputRoute =
+compileFormatEPUB :: FormatCompiler
+compileFormatEPUB _ inputPath inputRoute _ =
     match inputPath . version "epub" $ do
         route   $  inputRoute "epub"
         compile $ compilerFromWriter "epubCompiler" writeEPUB3

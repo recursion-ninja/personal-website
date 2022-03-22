@@ -1,16 +1,16 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Indexer.Page
-    ( constructIndexPage
+    ( constructIndexHTML
     ) where
 
 import Compiler.Constants
 import Hakyll
 
 
-constructIndexPage :: Rules ()
-constructIndexPage =
-    let indexContext = makeContext
+constructIndexHTML :: Rules ()
+constructIndexHTML =
+    let indexContext = contextUsing
           [ constField "Redirect" "/about.html"
           , constField "Title"    "About"
           , constField "NavRef"   "about"
@@ -18,5 +18,5 @@ constructIndexPage =
     in  create ["index.html"] $ do
           route idRoute
           compile $ makeItem mempty
-              >>= loadAndApplyTemplate defaultTemplate indexContext
-              >>= pageFinalizer
+              >>= loadAndApplyTemplate templateDefault indexContext
+              >>= finalizePage

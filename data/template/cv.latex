@@ -1,18 +1,25 @@
 \documentclass[$if(fontsize)$$fontsize$$else$11pt$endif$,letterpaper]{article}
 
-\usepackage{hyperref}
-\usepackage{geometry}
-\usepackage{enumitem}
-\usepackage{underscore}
-\usepackage[parfill]{parskip}
+
+\usepackage{array}
 \usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{kpfonts}
-%\usepackage{lmodern}
+\usepackage{calc}
+\usepackage{enumitem}
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
-\usepackage[utf8]{inputenc}
+\usepackage{geometry}
 \usepackage{graphicx}
-\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{kpfonts}
+\usepackage{lmodern}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage[parfill]{parskip}
+\usepackage{sectsty}
+\usepackage{siunitx}
+\usepackage[sc]{titlesec}
+\usepackage{underscore}
+
 \setkeys{Gin}{width=10px}
 
 \let\latexincludegraphics\includegraphics
@@ -55,8 +62,6 @@
 \pagestyle{empty}
 
 % Custom section fonts
-\usepackage{sectsty}
-\usepackage[sc]{titlesec}
 \setcounter{secnumdepth}{0}
 
 \titleformat{\section}{   \LARGE\rmfamily\bfseries\scshape}{}{0em}{}[{\titlerule[0.8pt]}]
@@ -70,11 +75,10 @@
 % Clean up longtable rendering
 \setlength\LTleft{1em}
 \setlength\LTright{0pt}
-\renewcommand{\toprule}{\vspace*{-0.7cm}}
+\renewcommand{\toprule}{\vspace{-0.7cm}}
 \renewcommand{\bottomrule}{\vspace*{-01.2cm}}
 
 % Redefin lists to work in the CV context
-\usepackage{enumitem}
 % By putting an empty \item[] at the start of the list, the list
 % starts on a new line.
 \setlist[description]{leftmargin=0em, style=sameline}
@@ -97,12 +101,12 @@
 \end{minipage} % Don't use empty lines after \end and the next \begin{minipage}.
 \begin{minipage}[t]{0.345\textwidth}
 \begin{tabular}{ @{}l l }
-  \includegraphics{        $EmailImg$} & $if(IsCurriculumVitae)$\href{mailto:$Email$}{$Email$}$else$$if(AltEmail)$\href{mailto:$AltEmail$}{$AltEmail$}$else$\href{mailto:$Email$}{$Email$}$endif$$endif$ \\
-  \includegraphics{      $WebsiteImg$} & \href{$BaseURL$}{recursion.ninja} \\
-  \includegraphics{       $GitHubImg$} & \href{https://github.com/$GitHub$}{github.com/$GitHub$} \\
-  \includegraphics{$StackOverflowImg$} & \href{https://stackoverflow.com/users/$StackOverflowID$/$StackOverflowUser$}{stackoverflow.com/$StackOverflowUser$} \\
-  \includegraphics{     $TimeZoneImg$} & \href{https://time.is/compare/now_in_$TimeZoneCity$}{$TimeZoneLabel$} \\
-  \includegraphics{  $LastUpdatedImg$} & Last Updated $LastModified$ \\
+  \includegraphics{$FilepathImages$/$EmailImg$}         & $if(IsCurriculumVitae)$\href{mailto:$Email$}{$Email$}$else$$if(AltEmail)$\href{mailto:$AltEmail$}{$AltEmail$}$else$\href{mailto:$Email$}{$Email$}$endif$$endif$ \\
+  \includegraphics{$FilepathImages$/$WebsiteImg$}       & \href{$BaseURL$}{recursion.ninja} \\
+  \includegraphics{$FilepathImages$/$GitHubImg$}        & \href{https://github.com/$GitHub$}{github.com/$GitHub$} \\
+  \includegraphics{$FilepathImages$/$StackOverflowImg$} & \href{https://stackoverflow.com/users/$StackOverflowID$/$StackOverflowUser$}{stackoverflow.com/$StackOverflowUser$} \\
+  \includegraphics{$FilepathImages$/$TimeZoneImg$}      & \href{https://time.is/compare/now_in_$TimeZoneCity$}{$TimeZoneLabel$} \\
+  \includegraphics{$FilepathImages$/$LastUpdatedImg$}   & Last Updated $LastModified$ \\
 \end{tabular}
 \end{minipage}
 

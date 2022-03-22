@@ -1,10 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module PageBuilder.Blog
-  ( blogListBuilder
-  , blogPostBuilder
-  , blogPostContext
-  , blogPostPath
+  ( buildBlogList
+  , buildBlogPosts
   ) where
 
 import Compiler.AsciiDoc
@@ -18,13 +16,13 @@ import Compiler.Textual
 import Hakyll
 
 
-blogListBuilder :: Rules ()
-blogListBuilder =
+buildBlogList :: Rules ()
+buildBlogList =
     create ["blog.html"] . version "html" $ do
         route idRoute
         compile $ do
             blogPostList <- recentFirst =<< loadAll (blogPostPath .&&. hasVersion "html")
-            let blogListContext = makeContext
+            let blogListContext = contextUsing
                   [  listField "BlogPostList" blogPostMetadataContext $ pure blogPostList
                   , constField "Title"  "Blog"
                   , constField "NavRef" "blog"
@@ -33,53 +31,24 @@ blogListBuilder =
 
             makeItem ""
                 >>= loadAndApplyTemplate blogListTemplate blogListContext
-                >>= loadAndApplyTemplate defaultTemplate  blogListContext
-                >>= pageFinalizer
+                >>= loadAndApplyTemplate templateDefault  blogListContext
+                >>= finalizePage
 
 
-blogPostBuilder :: Rules ()
-blogPostBuilder = do
-
-    compileAsciiDocFormat
-      blogPostContext
-      blogPostPath
-      pageRouteDefault
-      [ blogAsciiDocTemplate ]
-
-    compileEpubFormat
-      blogPostContext
-      blogPostPath
-      pageRouteDefault
-
-    compilePdfFormat
-      blogPostContext
-      blogPostPath
-      pageRouteDefault
-      [ blogLatexTemplate ]
-
-    compileMarkdownFormat
-      blogPostContext
-      blogPostPath
-      pageRouteDefault
-      [ blogMarkdownTemplate ]
-
-    compileTextualFormat
-      blogPostContext
-      blogPostPath
-      pageRouteDefault
-      []
-
-    pageBuilder
-      blogPostContext
-      blogPostPath
-      pageRouteDefault
-      [ blogPostTemplate
-      , defaultTemplate
-      ]
+buildBlogPosts :: Rules ()
+buildBlogPosts =
+    let blogPostUsing :: (Context String -> Pattern -> (String -> Routes) -> t) -> t
+        blogPostUsing x = x blogPostContext blogPostPath pageRouteDefault
+    in  do  compileFormatAsciiDoc `blogPostUsing` [ blogAsciiDocTemplate ]
+            compileFormatEPUB     `blogPostUsing` []
+            compileFormatPDF      `blogPostUsing` [ blogLatexTemplate ]
+            compileFormatMarkdown `blogPostUsing` [ blogMarkdownTemplate ]
+            compileFormatTextual  `blogPostUsing` []
+            compileFormatHTML     `blogPostUsing` [ blogPostTemplate, templateDefault ]
 
 
 blogPostMetadataContext :: Context String
-blogPostMetadataContext = makeContext
+blogPostMetadataContext = contextUsing
     [  dateField "Date"       "1%0Y+%j"
     ,  boolField "IsBlogList" $ const True
     , constField "NavRef"     "blog"
@@ -87,11 +56,11 @@ blogPostMetadataContext = makeContext
 
 
 blogListTemplate :: Identifier
-blogListTemplate = makeTemplate "blog-list.html"
+blogListTemplate = templateUsing "blog-list.html"
 
 
 blogAsciiDocTemplate, blogMarkdownTemplate, blogPostTemplate, blogLatexTemplate :: Identifier
-blogAsciiDocTemplate = makeTemplate "blog-post.adoc"
-blogMarkdownTemplate = makeTemplate "blog-post.md"
-blogPostTemplate     = makeTemplate "blog-post.html"
-blogLatexTemplate    = makeTemplate "blog-post.latex"
+blogAsciiDocTemplate = templateUsing "blog-post.adoc"
+blogMarkdownTemplate = templateUsing "blog-post.md"
+blogPostTemplate     = templateUsing "blog-post.html"
+blogLatexTemplate    = templateUsing "blog-post.latex"

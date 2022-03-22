@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module PageBuilder.CV
-  ( cvPageBuilder
+  ( buildCV
   ) where
 
 import Compiler.Constants
@@ -17,18 +17,18 @@ import System.FilePath.Posix  ((</>))
 import Text.Pandoc.Definition (Pandoc, Block(..), Inline(..))
 import Text.Pandoc.Walk
 
-cvPageBuilder :: Rules ()
-cvPageBuilder = do
+buildCV :: Rules ()
+buildCV = do
 
     -- Full CV PDF
-    compilePdfFormat
+    compileFormatPDF
       cvContext
       cvPageInput
       pageRouteStatic
       [ cvPdfTemplate ]
 
     -- Concise Résumé PDF
-    compilePdfFormatWith
+    compileFormatPDFWith
       cv2Resume
       "résumé"
       resumeContext
@@ -36,18 +36,18 @@ cvPageBuilder = do
       resumeRoute
       [ cvPdfTemplate ]
 
-    pageBuilderWith
+    compileFormatTransformedHTML
       transformForHTML
       cvContext
       cvPageInput
       pageRouteStatic
       [ cvPageTemplate
-      , defaultTemplate
+      , templateDefault
       ]
 
 
 cvContext :: Context String
-cvContext = makeContext
+cvContext = contextUsing
     [  boolField "HasDownloadFormats" $ const True
     ,  boolField "HasPDF"             $ const True
     ,  boolField "IsCurriculumVitae"  $ const True
@@ -84,10 +84,11 @@ cv2Resume = blockFilter excludeSections
 
 
 resumeContext :: Context String
-resumeContext = makeContext
+resumeContext = contextUsing
     [ constField "Title" "Résumé"
     , cvConnectionImages
     ]
+
 
 resumeRoute :: String -> Routes
 resumeRoute = pageRouteAlias "resume.md"
@@ -95,13 +96,13 @@ resumeRoute = pageRouteAlias "resume.md"
 
 cvConnectionImages :: Context String
 cvConnectionImages = fold
-    [ constField         "EmailImg" $ pathToImages </> "email.png"
-    , constField        "GitHubImg" $ pathToImages </> "github.png"
-    , constField   "LastUpdatedImg" $ pathToImages </> "hourglass.png"
-    , constField           "PDFImg" $ pathToImages </> "pdf-logo.png"
-    , constField "StackOverflowImg" $ pathToImages </> "stackoverflow.png"
-    , constField      "TimeZoneImg" $ pathToImages </> "clock.png"
-    , constField       "WebsiteImg" $ pathToImages </> "website.png"
+    [ constField         "EmailImg" "email.png"
+    , constField        "GitHubImg" "github.png"
+    , constField   "LastUpdatedImg" "hourglass.png"
+    , constField           "PDFImg" "pdf-logo.png"
+    , constField "StackOverflowImg" "stackoverflow.png"
+    , constField      "TimeZoneImg" "clock.png"
+    , constField       "WebsiteImg" "website.png"
     ]
 
 

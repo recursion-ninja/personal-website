@@ -1,7 +1,8 @@
 {-# Language LambdaCase #-}
 
 module Compiler.Generic
-    ( customCompiler
+    ( FormatCompiler
+    , compilerFromSpecification
     , compilerFromWriter
     ) where
 
@@ -22,7 +23,18 @@ import Text.Pandoc.Definition
 import Text.Pandoc.Options
 
 
-customCompiler
+{- |
+  Type synonym for compiling alternative blog post formats.
+-}
+type FormatCompiler
+    =  Context String
+    -> Pattern
+    -> (String -> Routes)
+    -> [Identifier]
+    -> Rules ()
+
+
+compilerFromSpecification
   :: Foldable t
   => String
   -> Compiler (Item String)
@@ -31,12 +43,12 @@ customCompiler
   -> (String -> Routes)
   -> t Identifier
   -> Rules ()
-customCompiler extension compiler inputContext inputPath inputRoute inputTemplates =
+compilerFromSpecification extension compiler inputContext inputPath inputRoute inputTemplates =
     match inputPath . version extension $ do
         route   $  inputRoute extension
         compile $ compiler
                 >>= \x -> foldlM (\s t -> loadAndApplyTemplate t inputContext s) x inputTemplates
-                >>= pageFinalizer
+                >>= finalizePage
 
 
 compilerFromWriter

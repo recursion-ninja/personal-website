@@ -12,7 +12,7 @@ with-compiler: ghc-9.2.2
 -- Output paths
 --
 -- Place build output(s) in more accessible locations. Binaries should go in `bin`
--- and log files of the build/benchmarls/tests should go in `log`.
+-- and log files of the build/benchmarks/tests should go in `log`.
 ---------------------------------------------------------------------------------
 
 logs-dir:         ./log
@@ -71,18 +71,27 @@ package personal-website
     documentation:     True
     tests:             True
     library-profiling: False
-    optimization: 0
+    optimization: 2
     ghc-options:
-        -- Interface files for post-compilation static analysis
-        -fwrite-ide-info
-        -hiedir=.hie
+        -- Optimization flags
+        -fexcess-precision
+        -fexpose-all-unfoldings
+        -flate-specialise
+        -fmax-simplifier-iterations=16
+        -foptimal-applicative-do
+        -fspec-constr-count=8
+        -fspec-constr-keen
+        -fspecialize-aggressively
+        -fstatic-argument-transformation        
+
         -- Sanity check warnings:
         --   1. Fail on a warning
         --   2. Include all warnings by default
         --   3. Exclude the undesirable warnings
---        -Werror
+        -Werror
         -Weverything
         -- Exclusions:
+        -Wno-all-missed-specialisations
         -Wno-implicit-prelude
         -Wno-missing-import-lists
         -Wno-missing-kind-signatures
@@ -90,6 +99,11 @@ package personal-website
         -Wno-monomorphism-restriction
         -Wno-type-defaults
         -Wno-unsafe
+
+        -- Usability flags
+        -fdiagnostics-color=always
+        -fhide-source-paths
+        -j
 
 packages: .
 
