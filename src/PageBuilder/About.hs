@@ -5,7 +5,9 @@ module PageBuilder.About
 import Compiler.Constants
 import Compiler.HTML
 import Data.String
-import Hakyll
+import Hakyll.Core.Identifier.Pattern (Pattern)
+import Hakyll.Core.Rules (Rules)
+import Hakyll.Web.Template.Context (Context, constField)
 import System.FilePath.Posix ((</>))
 
 

@@ -14,7 +14,14 @@ import Compiler.Markdown
 import Compiler.PDF
 import Compiler.Textual
 import Data.Foldable (traverse_)
-import Hakyll
+import Hakyll.Core.Compiler (loadAll, makeItem)
+import Hakyll.Core.Identifier (Identifier)
+import Hakyll.Core.Identifier.Pattern (Pattern, hasVersion, (.&&.))
+import Hakyll.Core.Routes (Routes, idRoute)
+import Hakyll.Core.Rules (Rules, compile, create, route, version)
+import Hakyll.Web.Template (loadAndApplyTemplate)
+import Hakyll.Web.Template.Context (Context, constField, dateField, listField)
+import Hakyll.Web.Template.List (recentFirst)
 
 
 buildBlogList :: Rules ()

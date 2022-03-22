@@ -5,7 +5,11 @@ module Indexer.Page
     ) where
 
 import Compiler.Constants
-import Hakyll
+import Hakyll.Core.Compiler (makeItem)
+import Hakyll.Core.Routes (idRoute)
+import Hakyll.Core.Rules (Rules, compile, create, route)
+import Hakyll.Web.Template (loadAndApplyTemplate)
+import Hakyll.Web.Template.Context (constField)
 
 
 constructIndexHTML :: Rules ()

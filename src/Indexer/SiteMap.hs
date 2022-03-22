@@ -6,7 +6,12 @@ module Indexer.SiteMap
 
 import Compiler.Constants
 import Data.String
-import Hakyll
+import Hakyll.Core.Compiler (loadAllSnapshots, makeItem)
+import Hakyll.Core.Identifier.Pattern (hasVersion)
+import Hakyll.Core.Routes (idRoute)
+import Hakyll.Core.Rules (Rules, compile, create, route)
+import Hakyll.Web.Template (loadAndApplyTemplate)
+import Hakyll.Web.Template.Context (listField)
 import System.FilePath.Posix ((</>))
 
 

@@ -6,7 +6,15 @@ module Indexer.Feed
     ) where
 
 import Compiler.BlogPostContext
-import Hakyll
+import Hakyll.Core.Compiler (Compiler, loadAllSnapshots)
+import Hakyll.Core.Identifier (Identifier)
+import Hakyll.Core.Identifier.Pattern (hasVersion, (.&&.))
+import Hakyll.Core.Item (Item)
+import Hakyll.Core.Routes (idRoute)
+import Hakyll.Core.Rules (Rules, compile, create, route)
+import Hakyll.Web.Feed (FeedConfiguration(..), renderAtom, renderRss)
+import Hakyll.Web.Template.Context (Context)
+import Hakyll.Web.Template.List (recentFirst)
 
 
 myFeedConfiguration :: FeedConfiguration
@@ -15,7 +23,7 @@ myFeedConfiguration = FeedConfiguration
     , feedDescription = "Shared Commentary on Selected Computational Topics"
     , feedAuthorName  = "Recursion Ninja"
     , feedAuthorEmail = "contact@recursion.ninja"
-    , feedRoot        = "http://recursion.ninja"
+    , feedRoot        = "https://recursion.ninja"
     }
 
 

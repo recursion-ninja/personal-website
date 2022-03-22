@@ -7,7 +7,9 @@ module PageBuilder.Errors
 import Compiler.Constants
 import Compiler.HTML
 import Data.String
-import Hakyll
+import Hakyll.Core.Identifier (Identifier)
+import Hakyll.Core.Rules (Rules)
+import Hakyll.Web.Template.Context (constField)
 import System.FilePath.Posix ((<.>), (</>))
 
 

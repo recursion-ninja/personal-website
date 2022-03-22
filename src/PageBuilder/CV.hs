@@ -11,7 +11,11 @@ import Control.Applicative
 import Data.Foldable
 import Data.String (fromString)
 import Data.Text (Text, replace, words)
-import Hakyll
+import Hakyll.Core.Identifier (Identifier)
+import Hakyll.Core.Identifier.Pattern (Pattern)
+import Hakyll.Core.Routes (Routes)
+import Hakyll.Core.Rules (Rules)
+import Hakyll.Web.Template.Context (Context, constField)
 import Prelude hiding (words)
 import System.FilePath.Posix ((</>))
 import Text.Pandoc.Definition (Block(..), Inline(..), Pandoc)

@@ -15,7 +15,11 @@ import Data.Foldable
 import Data.Text (Text)
 import Data.Text qualified as T
 import Data.Text.Encoding qualified as T
-import Hakyll
+import Hakyll.Core.Compiler (getResourceString, makeItem, noResult)
+import Hakyll.Core.Identifier.Pattern (Pattern)
+import Hakyll.Core.Item (itemBody)
+import Hakyll.Web.Pandoc (defaultHakyllWriterOptions, readPandoc)
+import Hakyll.Web.Template.Context
 import Text.Pandoc.Class (runPure)
 import Text.Pandoc.Definition
 import Text.Pandoc.Writers
