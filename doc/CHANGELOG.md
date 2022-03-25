@@ -1,6 +1,11 @@
 # Revision history
 
 
+## 2.2.4 -- 12021-03-25
+
+  * Added blog post: "Conspectus 12021 Q1"
+
+
 ## 2.2.3 -- 12021-03-22
 
   * Updated CV
@@ -28,6 +33,8 @@
 
   * Updated `.cabal` file package description
 
+  * Updated to GHC-9.2.2
+
 
 ## 2.2.1 -- 12021-03-18
 
@@ -38,7 +45,7 @@
 
 ## 2.2.0 -- 12021-03-17
 
-  * Addeed PhD admissions announcement blog post
+  * Added blog post: "Matriculation"
 
 
 ## 2.1.10 -- 12021-03-17
