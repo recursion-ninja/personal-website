@@ -1,6 +1,11 @@
 # Revision history
 
 
+## 2.2.5 -- 12021-03-25
+
+  * Corrected posting date of blog post: "Conspectus 12021 Q1"
+
+
 ## 2.2.4 -- 12021-03-25
 
   * Added blog post: "Conspectus 12021 Q1"
