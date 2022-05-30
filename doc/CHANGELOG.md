@@ -1,6 +1,11 @@
 # Revision history
 
 
+## 2.2.6 -- 12021-05-30
+
+  * Adding copyright to website footer
+
+
 ## 2.2.5 -- 12021-03-25
 
   * Corrected posting date of blog post: "Conspectus 12021 Q1"

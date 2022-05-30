@@ -52,6 +52,14 @@ body {
     font-family: 'DejaVu Sans Mono', monospace;
 }
 
+#copyright {
+    display: inline-block;
+    font-size:   22px;
+    height:      15px;
+    margin-top: -15px;
+    vertical-align: middle;
+}
+
 div#browser-frame {
     border:          var(--boarder-caliber);
     box-sizing:      border-box;
@@ -173,6 +181,10 @@ div#footer a {
 
 div#footer-fill {
     flex-grow: 1;
+}
+
+div#footer-left > dl > span > dt {
+    width: 51px;
 }
 
 div#footer-left > dl {

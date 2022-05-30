@@ -1,6 +1,6 @@
 Cabal-Version: 3.6
 Name:          personal-website
-Version:       2.2.5
+Version:       2.2.6
 Stability:     Stable
 Build-Type:    Simple
                
@@ -13,14 +13,20 @@ Maintainer:    Alex Washburn <github@recursion.ninja>
 Homepage:      https://recursion.ninja
 Bug-Reports:   https://github.com/recursion-ninja/personal-website
 
-Category:      Web
 Synopsis:      Website for Alex Washburn's recursion.ninja domain
 Description:   The source code for Alex Washburn's web presence site <https://recursion.ninja>.
                Static site is constructed using Hakyll <http://jaspervdj.be/hakyll>.
                Designed for simple blog post authoring and publishing.
+Category:
+    BSD3
+    Hakyll
+    Markdown
+    Pandoc
+    Semantic Web
+    Web
 
 Tested-With:
-    GHC == 9.2.2
+    GHC == 9.2.3
     GHC == 9.0.2
     GHC == 8.10.7
 
