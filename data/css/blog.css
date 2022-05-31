@@ -1,4 +1,23 @@
 code {
+    color:        var(--code-text-color);
+    background:   var(--code-area-color);
+    font-family:  monospace;
+}
+
+:not(pre) > code {
+    --code-line-radii: calc(var(--page-thin-space) * 2);
+    --code-line-sides: var(--page-thin-space);
+/*  --code-line-sides: calc(var(--page-thin-space) + var(--boarder-breadth)); */
+
+    border-left:   var(--code-line-sides) solid var(--code-area-color);
+    border-radius: var(--code-line-radii);
+    border-right:  var(--code-line-sides) solid var(--code-area-color);
+    margin-left:   calc(var(--code-line-sides) * -1);
+    margin-right:  calc(var(--code-line-sides) * -1);
+    box-shadow: 0 0 1px 1px var(--code-area-color);
+}
+
+pre > code {
 /*
   Here we want the margin of a code block to be either:
     *  0px --> vw >= --page-full-width
@@ -6,7 +25,7 @@ code {
     * -xpx --> vw <= --page-full-width - 2 * var(--boarder-breadth)
   This causes the border of the code block to merge with the border of the page body
 */
-   --code-snip-sides: clamp( calc( -1 * var(--boarder-breadth) )
+   --code-snip-sides: clamp( calc(    var(--boarder-breadth) * -1)
                            , calc( (  var(--view-port-width)
                                    -  var(--page-full-width)
                                    - (var(--boarder-breadth) * 2)
@@ -41,12 +60,9 @@ code {
                            - (var(--boarder-breadth) * 2) /* boarder around code block */
                            );
 
-    color:        var(--code-text-color);
-    display:      block;
-    background:   var(--code-area-color);
     border:       var(--boarder-caliber);
+    display:      block;
     padding:      var(--page-edge-space);
-    font-family:  monospace;
     margin-left:  var(--code-snip-sides);
     margin-right: var(--code-snip-sides);
     overflow-x:   auto;

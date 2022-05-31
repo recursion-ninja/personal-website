@@ -135,7 +135,7 @@ div#header-content nav a:last-child {
 }
 
 /* Link animation */
-
+/*
 div#header-content nav a:hover {
   color: var(--page-text-color);
 }
@@ -156,6 +156,7 @@ div#header-content nav a::before {
 div#header-content nav a:hover::before {
   height: var(--page-edge-space);
 }
+*/
 
 
 div#header-content #title-area {

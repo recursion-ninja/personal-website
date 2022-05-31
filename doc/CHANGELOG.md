@@ -1,6 +1,13 @@
 # Revision history
 
 
+## 2.2.7 -- 12021-05-31
+
+  * Corrected rendering of inline code blocks
+
+  * Updated software `LICENSE`
+
+
 ## 2.2.6 -- 12021-05-30
 
   * Adding copyright to website footer
