@@ -1,0 +1,8 @@
+# Only spellcheck thesis tex files:
+^src/thesis/auxiliary/.*\.tex$
+^src/thesis/chapters/.*\.tex$
+^src/thesis/figures/.*\.tex$
+^src/thesis/tables/.*\.tex$
+^src/thesis/.*\.tex$
+
+

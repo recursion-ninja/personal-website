@@ -1,36 +1,41 @@
 # Revision history
 
 
-## 2.2.7 -- 12021-05-31
+## Unreleased -- 12022-06-29
+
+  * Added continuous integration (CI) via GitHub Actions
+
+
+## 2.2.7 -- 12022-05-31
 
   * Corrected rendering of inline code blocks
 
   * Updated software `LICENSE`
 
 
-## 2.2.6 -- 12021-05-30
+## 2.2.6 -- 12022-05-30
 
   * Adding copyright to website footer
 
 
-## 2.2.5 -- 12021-03-25
+## 2.2.5 -- 12022-03-25
 
   * Corrected posting date of blog post: "Conspectus 12021 Q1"
 
 
-## 2.2.4 -- 12021-03-25
+## 2.2.4 -- 12022-03-25
 
   * Added blog post: "Conspectus 12021 Q1"
 
 
-## 2.2.3 -- 12021-03-22
+## 2.2.3 -- 12022-03-22
 
   * Updated CV
 
   * Corrected DOI image and table rendering issues
 
 
-## 2.2.2 -- 12021-03-22
+## 2.2.2 -- 12022-03-22
 
   * Added explicit import lists for `Hakyll` modules
 
@@ -53,19 +58,19 @@
   * Updated to GHC-9.2.2
 
 
-## 2.2.1 -- 12021-03-18
+## 2.2.1 -- 12022-03-18
 
   * Refactored code based on new compiler warnings
 
   * Moved `CHANGELOG`, `LICENSE`, and `README` to new `doc` directory
 
 
-## 2.2.0 -- 12021-03-17
+## 2.2.0 -- 12022-03-17
 
   * Added blog post: "Matriculation"
 
 
-## 2.1.10 -- 12021-03-17
+## 2.1.10 -- 12022-03-17
 
   * Updated build parameters of `cabal.project`
 
