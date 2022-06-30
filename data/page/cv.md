@@ -114,7 +114,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 ### *SURF Research Team Member* `May 2014 - Dec 2014`
 
   - Calculated cellular automata input density to output density for small N-dimensional toruses
-  - Modeled disease spread with incubation periods & vaccination schedules via cellular autamata
+  - Modeled disease spread with incubation periods & vaccination schedules via cellular automata
 
 ## Outpost Natural Foods Co-op `Milwaukee, WI`
 ### *Software Development Specialist* `Dec 2013 - Dec 2014`

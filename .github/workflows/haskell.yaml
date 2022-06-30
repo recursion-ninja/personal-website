@@ -11,21 +11,13 @@ defaults:
   run:
     shell: bash
 
-env:
-  THISPACKAGE: personal-website
-
 on:
-
   # Build every pull request, to check for regressions.
   pull_request:
 
   # Build when a PR is merged, to update the README's CI badge.
   push:
 #    branches: [master]
-
-  # Build once a month, to detect missing upper bounds.
-  schedule:
-    - cron: '0 0 1 * *'
 
 
 ################################################################################
@@ -38,19 +30,27 @@ jobs:
 ### Cabal build matrix
 ###
   cabal:
-    name: GHC-${{ matrix.ghc }}, cabal-${{matrix.cabal}}, ${{matrix.os}}
-    runs-on: ${{ matrix.os }}
+    env:
+      PROJECT_FILE: --project-file=config/cabal.project.CI
+      WITH_GHC_VER:  --with-compiler=ghc-${{ matrix.ghc }}
+
+    name: GHC-${{ matrix.ghc }}
+    
+    runs-on:  ${{ matrix.os  }}
+    
     strategy:
+
       fail-fast: false
-    # NOTE:                                                                                                          
-    #   Do *not* include macOS in *any* benchmarking/testing build matrix!
-    #   Only include macOS in build matrices checking for compilation success.
-    #     - macOS consumes x10 the free Linux CI minutes
-    #     - macOS bills at x10 the paid Linux CI minute rate
-    #
+
+      # NOTE:
+      #   Do *not* include macOS in *any* benchmarking/testing build matrix!
+      #   Only include macOS in build matrices checking for compilation success.
+      #     - macOS consumes x10 the free Linux CI minutes
+      #     - macOS bills at x10 the paid Linux CI minute rate
+      #
       matrix:
-        ghc:   [ '9.2', 'latest' ]
-        cabal: [ '3.6', 'latest' ]
+        ghc:   [ '8.10', '9.0', '9.2' ]
+        cabal: [ 'latest' ]
         os:    [ ubuntu-latest ]
 
     steps:
@@ -62,13 +62,25 @@ jobs:
         with:
           ghc-version:   ${{ matrix.ghc   }}
           cabal-version: ${{ matrix.cabal }}
-          
-      - name: 'Cabal - Configure'
+
+      - name: Versions
+        run: |
+          cabal --version
+          ghc   --version
+
+      - name: 'Cabal - Initalize'
         run: |
           cabal update
           cabal clean
-          cabal configure
-          cabal freeze
+
+      - name: 'Cabal - Configure'
+        run: |
+          cabal configure $PROJECT_FILE $WITH_GHC_VER
+
+      - name: 'Cabal - Freeze'
+        run: |
+          cabal freeze $PROJECT_FILE
+          ls config
 
       - name: 'Cabal - Cache'
         uses: actions/cache@v3
@@ -76,20 +88,23 @@ jobs:
           path: |
             ~/.cabal/store
             dist-newstyle
-          key: ${{ runner.os }}-${{ matrix.ghc }}-${{ hashFiles('cabal.project.freeze') }}
+          key: ${{ runner.os }}-${{ matrix.ghc }}-${{ hashFiles('**/*.freeze') }}
           # restore keys is a fall back when the freeze plan is different
           restore-keys: |
             ${{ runner.os }}-${{ matrix.ghc }}-
 
-      - name: 'Cabal - Build'
+      - name: 'Cabal - Build package dependencies'
         run: |
-          cabal build --only-dependencies
-          cabal build
+          cabal build all ${PROJECT_FILE} --only-dependencies
+
+      - name: 'Cabal - Build package targets'
+        run: |
+          cabal build all ${PROJECT_FILE}
 
       - name: 'Cabal - Check'
         run: |
-          cabal check || true
-          cabal sdist -o `pwd`
+          cabal check ${PROJECT_FILE} || true
+          cabal sdist ${PROJECT_FILE} -o `pwd`
 
 
 ################################################################################
@@ -97,33 +112,39 @@ jobs:
 ###
   build-min-bounds:
     env:
-      CONSTRAINTS: --project-file=cabal.project.oldest
+      PROJECT_FILE: --project-file=config/cabal.project.oldest
+
     name: 'Check: Cabal lower bounds'
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - ghc:   9.2.1
-            cabal: latest
-            os:    ubuntu-latest
+
+    runs-on: ubuntu-latest
 
     steps:
       - name: 'Clone Project'
         uses: actions/checkout@v3
-      
+
       - name: 'Setup Haskell'
         uses: haskell/actions/setup@v2
         with:
-          ghc-version:   ${{ matrix.ghc   }}
-          cabal-version: ${{ matrix.cabal }}
- 
-      - name: 'Cabal - Configure'
+          ghc-version:   8.10
+          cabal-version: 3.6
+
+      - name: Versions
+        run: |
+          cabal --version
+          ghc   --version
+
+      - name: 'Cabal - Initalize'
         run: |
           cabal update
           cabal clean
-          cabal configure $CONSTRAINTS
-          cabal freeze    $CONSTRAINTS
+
+      - name: 'Cabal - Configure'
+        run: |
+          cabal configure $PROJECT_FILE
+
+      - name: 'Cabal - Freeze'
+        run: |
+          cabal freeze $PROJECT_FILE
 
       - name: 'Cabal - Cache'
         uses: actions/cache@v3
@@ -131,20 +152,23 @@ jobs:
           path: |
             ~/.cabal/store
             dist-newstyle
-          key: ${{ runner.os }}-${{ matrix.ghc }}-${{ hashFiles('cabal.project.freeze') }}
+          key: ${{ runner.os }}-${{ matrix.ghc }}-${{ hashFiles('**/*.freeze') }}
           # restore keys is a fall back when the freeze plan is different
           restore-keys: |
             ${{ runner.os }}-${{ matrix.ghc }}-
 
-      - name: 'Cabal - Build'
+      - name: 'Cabal - Build package dependencies'
         run: |
-          cabal build --only-dependencies
-          cabal build $CONFIG
+          cabal build all ${PROJECT_FILE} --only-dependencies
+
+      - name: 'Cabal - Build package targets'
+        run: |
+          cabal build all ${PROJECT_FILE}
 
       - name: 'Cabal - Check'
         run: |
-          cabal check || true
-          cabal sdist -o `pwd`
+          cabal check ${PROJECT_FILE} || true
+          cabal sdist ${PROJECT_FILE} -o `pwd`
 
 
 ################################################################################
@@ -152,7 +176,9 @@ jobs:
 ###
   hlint:
     name: 'Check: HLint'
+
     needs: build-min-bounds
+
     runs-on: ubuntu-latest
     
     steps:
@@ -167,7 +193,7 @@ jobs:
       - name: 'Run HLint'
         uses: haskell/actions/hlint-run@v2
         with:
-          path: '[ "bench/", "src/", "test/", "util/" ]' 
+          path: '[ "src/" ]' 
           fail-on: warning
 
 
@@ -176,25 +202,35 @@ jobs:
 ###
   spelling:
     name: 'Check: Spelling'
+    
+    outputs:
+      followup: ${{ steps.spelling.outputs.followup }}
+
+    permissions:
+      actions:       read
+      contents:      read
+      pull-requests: read
+
     runs-on: ubuntu-latest
+
     steps:
-
-    - name: checkout-merge
-      if: "contains(github.event_name, 'pull_request')"
-      uses: actions/checkout@v2
-      with:
-        ref: refs/pull/${{github.event.pull_request.number}}/merge
-
-    - name: checkout
-      if: ${{ github.event_name == 'push' ||
-        (
-          contains(github.event.comment.body, '@check-spelling-bot apply')
-        ) }}
-      uses: actions/checkout@v2
-
-    - uses: check-spelling/check-spelling@main
+    - name: check-spelling
       id: spelling
+      uses: check-spelling/check-spelling@prerelease
       with:
-        experimental_apply_changes_via_bot: 0
-        post_comment: 0
+        experimental_apply_changes_via_bot: 1
         suppress_push_for_open_pull_request: 1
+        checkout: true
+        spell_check_this: check-spelling/spell-check-this@prerelease
+        post_comment: 0
+        extra_dictionary_limit: 32
+        extra_dictionaries:
+          cspell:css/css.txt
+          cspell:filetypes/filetypes.txt
+          cspell:fullstack/fullstack.txt
+          cspell:html/html.txt
+          cspell:haskell/haskell.txt
+          cspell:latex/latex.txt
+          cspell:html-symbol-entities/entities.txt
+          cspell:software-terms/softwareTerms.txt
+          cspell:scientific_terms_US/custom_scientific_US.dic.txt

@@ -8,10 +8,10 @@ https://recursion.ninja
 ### Installation
 
 ```
-$ cabal build
-$ cabal exec site clean
-$ cabal exec site build
-$ cabal exec site server
+$ cabal build personal-website
+$ cabal exec  personal-website clean
+$ cabal exec  personal-website build
+$ cabal exec  personal-website server
 ```
 
 The compiled website will be placed in the `_site` directory.

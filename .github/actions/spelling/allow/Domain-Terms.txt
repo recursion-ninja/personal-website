@@ -1,3 +1,4 @@
+
 Abadi
 AEAD
 chall
@@ -18,7 +19,6 @@ SGM
 SSL
 TLS
 TODO
-# CGKA game terms:
 CGKA
 chall
 init
@@ -26,14 +26,9 @@ upd
 rmv
 proc
 del
-# Abreviations
-AS
-DS
-SM
 SGM
 LTL
 MLS
-ART
 FS
 FSU
 PCS
@@ -41,9 +36,19 @@ CGKA
 IETF
 ITM
 LBBT
-# Other
 Backmatter
 Frontmatter
 Gameplay
 Erilia
 knowledgebase
+AMNH
+Bioinformatics
+BMC
+Cladistics
+DOI
+DSL
+FASTC
+GPA
+Subash
+ShareAlike
+Emph

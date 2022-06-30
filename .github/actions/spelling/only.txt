@@ -1,8 +1,6 @@
 # Only spellcheck thesis tex files:
-^src/thesis/auxiliary/.*\.tex$
-^src/thesis/chapters/.*\.tex$
-^src/thesis/figures/.*\.tex$
-^src/thesis/tables/.*\.tex$
-^src/thesis/.*\.tex$
+^(blog|doc)/.*\.md$
+^data/.*\.(adoc|css|html|latex|md|xml)$
+^src/.*\.hs$
 
 

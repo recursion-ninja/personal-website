@@ -1,22 +1,31 @@
 api
+blocklist
+blocklists
 brightgreen
 broadword
+changefreq
 changelog
 codebase
 deps
 dirs
 docdir
+endfor
+endif
 endian
 Endian
 endianness
 enum
 Enum
 exitcode
+favicon
+Favicons
+fontsize
 filepath
 github
 hashable
 Hashable
 Homepage
+htaccess
 htmldir
 http
 https
@@ -26,11 +35,18 @@ img
 inlined
 inlining
 installdir
+lastmod
+linkcolor
 lts
+msapplication
 ncpus
+numbersections
 opensource
 plugin
 README
+refactored
+reposting
+rss
 scalability
 src
 stdio
@@ -53,10 +69,54 @@ config
 commonmark
 Facebook
 Google
+adoc
+apps
+backend
+blocklist
+blog
+browserconfig
+Dhall
+Emacs
+epub
+fav
+favicon
+Firefox
+hakyll
+hardcoded
+HEVC
+Hypertext
+MSSQL
+MVC
+mailto
+Octiles
+pdf
+pdfauthor
+pdfkeywords
+pdflatex
+pdfpagemode
+pdfsubject
+pdftitle
+PHP
+png
+SARS
+scrollbar
+Sitemap
+Sybase
+URI
+url
+urlcolor
+urlstyle
+utf
+webkit
+webpages
+website
+www
+xml
+xpx
 
 # SI: Binary magnitudes
 
-## Prefixes:
+# Prefixes
 kibi
 mebi
 gibi
@@ -66,7 +126,7 @@ exbi
 zebi
 yobi
 
-## Bits:
+# Bits
 kibibit
 mebibit
 gibibit
@@ -84,7 +144,7 @@ exbibits
 zebibits
 yobibits
 
-## Bytes:
+# Bytes
 kibibyte
 mebibyte
 gibibyte

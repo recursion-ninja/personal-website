@@ -20,9 +20,9 @@ code {
 pre > code {
 /*
   Here we want the margin of a code block to be either:
-    *  0px --> vw >= --page-full-width
-    * -npx --> vw == --page-full-width - n / 2
-    * -xpx --> vw <= --page-full-width - 2 * var(--boarder-breadth)
+    *  0 px --> vw >= --page-full-width
+    * -N px --> vw == --page-full-width - N / 2
+    * -X px --> vw <= --page-full-width - 2 * var(--boarder-breadth)
   This causes the border of the code block to merge with the border of the page body
 */
    --code-snip-sides: clamp( calc(    var(--boarder-breadth) * -1)

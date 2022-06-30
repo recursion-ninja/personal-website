@@ -84,7 +84,7 @@
 
 ## 2.1.8 -- 12021-12-06
 
-  * Added direct link to Winter Simulation Confrence 2021 paper
+  * Added direct link to Winter Simulation Conference 2021 paper
 
 
 ## 2.1.7 -- 12021-11-29
@@ -124,9 +124,9 @@
 
   * Added `.htaccess` file generation for:
 
-    - Route trimmimg of HTML pages
+    - Route trimming of HTML pages
 
-    - Redirect to enfore SSL
+    - Redirect to enforce SSL
 
 
 ## 2.1.1 -- 12021-10-27
@@ -148,7 +148,7 @@
 
   * Beautified font-size on small screens
 
-  * Abbreviated dates and standardizeing their spacing on CV
+  * Abbreviated dates and standardizing their spacing on CV
 
 
 ## 2.0.1 -- 12021-10-24

@@ -1,52 +1,26 @@
-# LaTeX formatting
-\\left
-\\right
-\\textbf
-\\textnormal
-\\textrm
-\\texttt
-\\times
-\\normalfont
-\llparenthesis
-\rrparenthesis
-versio
-bibfile
-
 # Citation references in markdown
 \[\@[\w\-\.\:]+\]
+
+# Email addresses
+[a-z]+\@recursion.ninja
 
 # URL matcher
 (((ht|f)tp(s?))\://)?(www.|[a-zA-Z].)?[a-zA-Z0-9\-\.]+\.\w+(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\;\?\'\\\+&amp;%\$#\=~_\-]+))*
 
+# HTML color codes
+\#[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]
 
-# ((ht|f)tp(s?)\://)?([\w\-]+\.)+(\w\w+)(\:[0-9]+)?(/[a-zA-Z0-9\.\,\;\?\'\$#\=~_\-]+)*/? 
-
-%------------------------------------- Custom *Term* definitions ---------------
-% Shorthands for: CGKA 
-\\xspace
-\\CGKAsec
-\\CGKAdef
-\\CGKAmod
-\\VersionAny
-\\VersionOne
-\\VersionTwo
-\\Protocol
-\\Oracle
-\\OutOfMemory
-\\MinimizedDFA
-\\NA
-\\cmark
-\\xmark
-\\LTLPredicate
-\\siBytes
-\\siMiBytes
-\\siGiBytes
-\\Abrev
-\\DefineAbreviation
-\\addtocontents
-\\abstractname
-\\adjustbox
-\\usepackage\{[\w\-\.\:]+\}
-\\autocite\{[\w\-\.\:]+\}
-\\hypertarget
-%------------------------------------- Custom *Term* definitions ---------------
+# Weird false positives
+Alike
+bibfile
+bottom
+configurable
+estimate
+import
+left
+module
+Pandoc
+right
+rule
+template
+version
