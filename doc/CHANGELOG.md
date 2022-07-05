@@ -1,9 +1,15 @@
 # Revision history
 
 
-## Unreleased -- 12022-06-29
+## 2.2.8 -- 12022-07-05
 
   * Added continuous integration (CI) via GitHub Actions
+
+  * Corrected many spelling errors
+
+  * Posted weblog: "Conspectus 12022 Q2"
+
+  * Updated hypertext access file
 
 
 ## 2.2.7 -- 12022-05-31
@@ -20,19 +26,19 @@
 
 ## 2.2.5 -- 12022-03-25
 
-  * Corrected posting date of blog post: "Conspectus 12021 Q1"
+  * Corrected posting date of weblog: "Conspectus 12022 Q1"
 
 
 ## 2.2.4 -- 12022-03-25
 
-  * Added blog post: "Conspectus 12021 Q1"
+  * Posted weblog: "Conspectus 12022 Q1"
 
 
 ## 2.2.3 -- 12022-03-22
 
-  * Updated CV
-
   * Corrected DOI image and table rendering issues
+
+  * Updated CV
 
 
 ## 2.2.2 -- 12022-03-22
@@ -67,7 +73,7 @@
 
 ## 2.2.0 -- 12022-03-17
 
-  * Added blog post: "Matriculation"
+  * Posted weblog: "Matriculation"
 
 
 ## 2.1.10 -- 12022-03-17
@@ -108,25 +114,25 @@
 
 ## 2.1.4 -- 12021-10-29
 
-  * Changed subtitle of a blog post
+  * Changed subtitle of a weblog post
 
-  * Ensure only `.md` files in `blog` are processed as blog posts
+  * Ensure only `.md` files in `blog` are processed as weblog posts
 
 
 ## 2.1.3 -- 12021-10-28
 
-  * Extended `.htaccess` routing for some custom error pages
-
   * Added a Pandoc transformation before HTML rendering
+
+  * Extended `.htaccess` routing for some custom error pages
 
 
 ## 2.1.2 -- 12021-10-27
 
   * Added `.htaccess` file generation for:
 
-    - Route trimming of HTML pages
-
     - Redirect to enforce SSL
+
+    - Route trimming of HTML pages
 
 
 ## 2.1.1 -- 12021-10-27
@@ -136,7 +142,7 @@
 
 ## 2.1.0 -- 12021-10-27
 
-  * Revising and reposting first blog entry
+  * Revising and reposting first weblog entry
 
 
 ## 2.0.4 -- 12021-10-26

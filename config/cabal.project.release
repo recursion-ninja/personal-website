@@ -5,7 +5,7 @@
 ---------------------------------------------------------------------------------
 
 executable-static: False
-with-compiler: ghc-8.10.7
+with-compiler: ghc-9.2.3
 
 
 ---------------------------------------------------------------------------------
@@ -131,8 +131,6 @@ allow-newer:
     text,
     -- Security update
     aeson,
-    -- Lagging project dependency
-    memory,
 
 preferences:
     aeson          >= 2.0.0,
