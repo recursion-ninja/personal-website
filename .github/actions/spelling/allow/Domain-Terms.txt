@@ -1,5 +1,5 @@
-
 Abadi
+abbreviations
 AEAD
 chall
 IETF
@@ -52,3 +52,4 @@ GPA
 Subash
 ShareAlike
 Emph
+Szamotulski
