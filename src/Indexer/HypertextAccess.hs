@@ -4,7 +4,6 @@ module Indexer.HypertextAccess
     ( constructHypertextAccess
     ) where
 
-import Compiler.Constants (websiteDomain)
 import Hakyll.Core.Compiler (makeItem)
 import Hakyll.Core.Routes (idRoute)
 import Hakyll.Core.Rules (Rules, compile, create, route)
