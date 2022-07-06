@@ -702,5 +702,4 @@ alpha
 \\acute
 \{abc\}\{xyz\}
 \{abc\}
-abbrev
 \\AA

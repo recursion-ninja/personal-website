@@ -16,7 +16,7 @@ bibfile
 bottom
 configurable
 estimate
-import
+import(ant(ly)?)?
 left
 module
 Pandoc
