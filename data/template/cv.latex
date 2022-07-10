@@ -22,7 +22,7 @@
 
 \setkeys{Gin}{width=10px}
 
-\let\latexincludegraphics\includegraphics
+\let\latexincludegraphics\includegraphics%
 % pass the image to \shadowbox
 \renewcommand{\includegraphics}[2][]{%
   \raisebox{-.25\height}{\latexincludegraphics[#1]{#2}}}

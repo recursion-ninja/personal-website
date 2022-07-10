@@ -1,6 +1,11 @@
 # Revision history
 
 
+## Unreleased
+
+  * Added [MegaLinter](https://megalinter.github.io) to CI
+
+
 ## 2.2.8 -- 12022-07-05
 
   * Added continuous integration (CI) via GitHub Actions
