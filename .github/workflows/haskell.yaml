@@ -75,11 +75,11 @@ jobs:
 
       - name: 'Cabal - Configure'
         run: |
-          cabal configure $PROJECT_FILE $WITH_GHC_VER
+          cabal configure "${PROJECT_FILE}" "${WITH_GHC_VER}"
 
       - name: 'Cabal - Freeze'
         run: |
-          cabal freeze $PROJECT_FILE
+          cabal freeze "${PROJECT_FILE}"
           ls config
 
       - name: 'Cabal - Cache'
@@ -95,16 +95,16 @@ jobs:
 
       - name: 'Cabal - Build package dependencies'
         run: |
-          cabal build all ${PROJECT_FILE} --only-dependencies
+          cabal build all "${PROJECT_FILE}" --only-dependencies
 
       - name: 'Cabal - Build package targets'
         run: |
-          cabal build all ${PROJECT_FILE}
+          cabal build all "${PROJECT_FILE}"
 
       - name: 'Cabal - Check'
         run: |
-          cabal check ${PROJECT_FILE} || true
-          cabal sdist ${PROJECT_FILE} -o `pwd`
+          cabal check "${PROJECT_FILE}" || true
+          cabal sdist "${PROJECT_FILE}" -o "$(pwd)"
 
 
 ################################################################################
@@ -140,11 +140,11 @@ jobs:
 
       - name: 'Cabal - Configure'
         run: |
-          cabal configure $PROJECT_FILE
+          cabal configure "${PROJECT_FILE}"
 
       - name: 'Cabal - Freeze'
         run: |
-          cabal freeze $PROJECT_FILE
+          cabal freeze "${PROJECT_FILE}"
 
       - name: 'Cabal - Cache'
         uses: actions/cache@v3
@@ -152,23 +152,23 @@ jobs:
           path: |
             ~/.cabal/store
             dist-newstyle
-          key: ${{ runner.os }}-${{ matrix.ghc }}-${{ hashFiles('**/*.freeze') }}
+          key: ${{ runner.os }}-lowest-bounds-${{ hashFiles('**/*.freeze') }}
           # restore keys is a fall back when the freeze plan is different
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.ghc }}-
+            ${{ runner.os }}-lowest-bounds-
 
       - name: 'Cabal - Build package dependencies'
         run: |
-          cabal build all ${PROJECT_FILE} --only-dependencies
+          cabal build all "${PROJECT_FILE}" --only-dependencies
 
       - name: 'Cabal - Build package targets'
         run: |
-          cabal build all ${PROJECT_FILE}
+          cabal build all "${PROJECT_FILE}"
 
       - name: 'Cabal - Check'
         run: |
-          cabal check ${PROJECT_FILE} || true
-          cabal sdist ${PROJECT_FILE} -o `pwd`
+          cabal check "${PROJECT_FILE}" || true
+          cabal sdist "${PROJECT_FILE}" -o "$(pwd)"
 
 
 ################################################################################
@@ -214,23 +214,106 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: check-spelling
-      id: spelling
-      uses: check-spelling/check-spelling@prerelease
-      with:
-        experimental_apply_changes_via_bot: 1
-        suppress_push_for_open_pull_request: 1
-        checkout: true
-        spell_check_this: check-spelling/spell-check-this@prerelease
-        post_comment: 0
-        extra_dictionary_limit: 32
-        extra_dictionaries:
-          cspell:css/css.txt
-          cspell:filetypes/filetypes.txt
-          cspell:fullstack/fullstack.txt
-          cspell:html/html.txt
-          cspell:haskell/haskell.txt
-          cspell:latex/latex.txt
-          cspell:html-symbol-entities/entities.txt
-          cspell:software-terms/softwareTerms.txt
-          cspell:scientific_terms_US/custom_scientific_US.dic.txt
+      - name: check-spelling
+        id: spelling
+        uses: check-spelling/check-spelling@prerelease
+        with:
+          experimental_apply_changes_via_bot: 1
+          suppress_push_for_open_pull_request: 1
+          checkout: true
+          spell_check_this: check-spelling/spell-check-this@prerelease
+          post_comment: 0
+          extra_dictionary_limit: 32
+          extra_dictionaries:
+            cspell:css/css.txt
+            cspell:filetypes/filetypes.txt
+            cspell:fullstack/fullstack.txt
+            cspell:html/html.txt
+            cspell:haskell/haskell.txt
+            cspell:latex/latex.txt
+            cspell:html-symbol-entities/entities.txt
+            cspell:scientific_terms_US/custom_scientific_US.dic.txt
+            cspell:software-terms/src/software-terms.txt
+
+
+################################################################################
+### MegaLinter GitHub Action configuration file
+### More info at https://megalinter.github.io
+  megalinter:
+    concurrency:
+      group: ${{ github.ref }}-${{ github.workflow }}
+      cancel-in-progress: true
+
+    env: # Comment env block if you do not want to apply fixes
+      # Apply linter fixes configuration
+      # When active, APPLY_FIXES must also be defined as environment variable in github/workflows/mega-linter.yaml
+      APPLY_FIXES: all
+      
+      # Decide which event triggers application of fixes in a commit or a PR (pull_request, push, all)
+      APPLY_FIXES_EVENT: pull_request
+    
+      # If APPLY_FIXES is used, defines if the fixes are directly committed (commit) or posted in a PR (pull_request)
+      APPLY_FIXES_MODE: pull_request
+    
+    name: 'Check: MegaLinter'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # Git Checkout
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      # MegaLinter
+      - name: MegaLinter
+        id: ml
+        # You can override MegaLinter flavor used to have faster performances
+        # More info at https://megalinter.github.io/flavors/
+        uses: megalinter/megalinter@v6
+        env:
+          # All available variables are described in documentation
+          # https://megalinter.github.io/configuration/
+          VALIDATE_ALL_CODEBASE: true # Set ${{ github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/main&#39; }} to validate only diff with main branch
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # ADD YOUR CUSTOM ENV VARIABLES HERE TO OVERRIDE VALUES OF mega-linter.yaml
+          MEGALINTER_CONFIG: config/mega-linter.yaml
+
+      # Upload MegaLinter artifacts
+      - name: Archive production artifacts
+        if: ${{ success() }} || ${{ failure() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: MegaLinter reports
+          path: |
+            /github/workspace/report
+            /github/workspace/mega-linter.log
+
+      # Create pull request if applicable (for now works only on PR from same repository, not from forks)
+      - name: Create Pull Request with applied fixes
+        id: cpr
+        if: steps.ml.outputs.has_updated_sources == 1 && (env.APPLY_FIXES_EVENT == 'all' || env.APPLY_FIXES_EVENT == github.event_name) && env.APPLY_FIXES_MODE == 'pull_request' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) && !contains(github.event.head_commit.message, 'skip fix')
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+          commit-message: "[MegaLinter] Apply linters automatic fixes"
+          title: "[MegaLinter] Apply linters automatic fixes"
+          labels: bot
+      - name: Create PR output
+        if: steps.ml.outputs.has_updated_sources == 1 && (env.APPLY_FIXES_EVENT == 'all' || env.APPLY_FIXES_EVENT == github.event_name) && env.APPLY_FIXES_MODE == 'pull_request' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) && !contains(github.event.head_commit.message, 'skip fix')
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+
+      # Push new commit if applicable (for now works only on PR from same repository, not from forks)
+      - name: Prepare commit
+        if: steps.ml.outputs.has_updated_sources == 1 && (env.APPLY_FIXES_EVENT == 'all' || env.APPLY_FIXES_EVENT == github.event_name) && env.APPLY_FIXES_MODE == 'commit' && github.ref != 'refs/heads/main' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) && !contains(github.event.head_commit.message, 'skip fix')
+        run: sudo chown -Rc $UID .git/
+      - name: Commit and push applied linter fixes
+        if: steps.ml.outputs.has_updated_sources == 1 && (env.APPLY_FIXES_EVENT == 'all' || env.APPLY_FIXES_EVENT == github.event_name) && env.APPLY_FIXES_MODE == 'commit' && github.ref != 'refs/heads/main' && (github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository) && !contains(github.event.head_commit.message, 'skip fix')
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: ${{ github.event.pull_request.head.ref || github.head_ref || github.ref }}
+          commit_message: "[MegaLinter] Apply linters fixes"

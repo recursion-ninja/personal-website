@@ -1,63 +1,63 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
-        <meta name="author"                content="Alex Washburn">
-        <meta name="copyright"             content="The Owner" />
-        <meta name="language"              content="EN">
-        <meta name="distribution"          content="Global">
+        <meta name="author"                content="Alex Washburn"/>
+        <meta name="copyright"             content="The Owner"/>
+        <meta name="language"              content="EN"/>
+        <meta name="distribution"          content="Global"/>
 
-        <meta name="subtitle"              content="The simulacra is defined in terms of the simulacra">
-        <meta name="description"           content="A place to share my technical findings.">
-        <meta name="rating"                content="general">
-        <meta name="robots"                content="index, follow">
-        <meta name="viewport"              content="width=device-width, initial-scale=1">
-	<meta name="msapplication-config"  content="/fav/browserconfig.xml">
-	<meta name="theme-color"           content="#282c34">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="subtitle"              content="The simulacra is defined in terms of the simulacra"/>
+        <meta name="description"           content="A place to share my technical findings."/>
+        <meta name="rating"                content="general"/>
+        <meta name="robots"                content="index, follow"/>
+        <meta name="viewport"              content="width=device-width, initial-scale=1"/>
+        <meta name="msapplication-config"  content="/fav/browserconfig.xml"/>
+        <meta name="theme-color"           content="#282c34"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
         <title>Recursion Ninja - $Title$</title>
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/fav/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon-16x16.png">
-	<link rel="manifest" href="/fav/manifest.json">
-	<link rel="mask-icon" href="/fav/safari-pinned-tab.svg" color="#000000">
-	<link rel="shortcut icon" href="/fav/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="/fav/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/fav/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="/fav/favicon-16x16.png"/>
+        <link rel="manifest" href="/fav/manifest.json"/>
+        <link rel="mask-icon" href="/fav/safari-pinned-tab.svg" color="#000000"/>
+        <link rel="shortcut icon" href="/fav/favicon.ico"/>
 
-        <link href="https://cdn.jsdelivr.net/gh/maxwell-k/dejavu-sans-mono-web-font/index.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/gh/maxwell-k/dejavu-sans-mono-web-font/index.css" rel="stylesheet"/>
 
         $if(Redirect)$
-        <meta http-equiv="refresh" content="0; url='$Redirect$'" />
+        <meta http-equiv="refresh" content="0; url='$Redirect$'"/>
         $endif$
 
-        <link rel="stylesheet" href="/css/style.css" />
-	$if(AddCSS)$
-        <link rel="stylesheet" href="/css/$AddCSS$.css" />
+        <link rel="stylesheet" href="/css/style.css"/>
+        $if(AddCSS)$
+        <link rel="stylesheet" href="/css/$AddCSS$.css"/>
         $endif$
-	$if(IsBlogPost)$
-        <link rel="stylesheet" href="/css/blog.css" />
+        $if(IsBlogPost)$
+        <link rel="stylesheet" href="/css/blog.css"/>
         $endif$
         $if(NavRef)$
-	<style>
-	  div#header #navigation a#$NavRef$ { border-bottom-color: inherit; }
-	</style>
+        <style>
+          div#header #navigation a#$NavRef$ { border-bottom-color: inherit; }
+        </style>
         $endif$
-	$if(IsBlogPost)$
-	<style>
-	  div#header { margin-bottom: var(--page-edge-space); }
-	</style>
+        $if(IsBlogPost)$
+        <style>
+          div#header { margin-bottom: var(--page-edge-space); }
+        </style>
         $endif$
-	$if(IsCurriculumVitae)$
-	<style>
+        $if(IsCurriculumVitae)$
+        <style>
         @media (max-width:550px) {
             #content > h2 > code,
             #content > h3 > code {
                 display: none;
             }
         }
-	</style>
+        </style>
         $endif$
     </head>
     <body>
@@ -84,7 +84,7 @@
         </div>
 
         <div id="footer">
-	    <div id="footer-left" class="footer-end-cap">
+            <div id="footer-left" class="footer-end-cap">
               <dl>
                 <span class="footer-row">
                   <dt>Version</dt>
@@ -94,39 +94,39 @@
                 </span>
                 <span class="footer-row">
                   <dt>
-                    <span id="copyright">&copy;</span>
-                    <span style="float:right;">2021</span>
+                    <span id="copyright-icon">&copy;</span>
+                    <span id="copyright-year">2021</span>
                   </dt>
                   <dd>
                     <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt">CC BY-SA</a>
                   </dd>
                 </span>
               </dl>
-	    </div>
+            </div>
             <div id="footer-fill">
               $if(HasDownloadFormats)$
-              <div class="footer-row" style="text-align:center;">Download formats</div>
+              <div class="footer-row download-formats-title">Download formats</div>
               <div class="footer-row center-inner-content">
                 $partial("data/template/page-format-list.html")$
               </div>
               $endif$
             </div>
-	    <div id="footer-right" class="footer-end-cap">
+            <div id="footer-right" class="footer-end-cap">
               <dl>
                 <span class="footer-row">
-                  <dt><img class="icon match-color" src="/img/rss-feed.png"></dt>
+                  <dt><img alt="RSS Feed" class="icon match-color" src="/img/rss-feed.png" height="15px;" width="15px;"/></dt>
                   <dd>
-                    <a style="margin-right: -4px;" href="/atom.xml">Atom</a> / <a style="margin-left: -4px;" href="/rss.xml">RSS</a>
+                    <a id="title-feed-atom" href="/atom.xml">Atom</a> / <a id="title-feed-rss" href="/rss.xml">RSS</a>
                   </dd>
                 </span>
                 <span class="footer-row">
-                  <dt><img class="icon match-color" src="/img/sitemap.png"></dt>
+                  <dt><img alt="Site Map" class="icon match-color" src="/img/sitemap.png" height="15px;" width="15px;"/></dt>
                   <dd>
                     <a href="/sitemap.xml">Sitemap</a>
                   </dd>
                 </span>
               </dl>
-	    </div>
+            </div>
         </div>
         </div>
     </body>
