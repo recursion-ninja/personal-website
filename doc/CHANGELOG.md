@@ -3,7 +3,7 @@
 
 ## Unreleased
 
-  * None
+  * Added [StAn](https://github.com/kowainik/stan) to CI
 
 ## 2.2.9 -- 12022-08-28
 
