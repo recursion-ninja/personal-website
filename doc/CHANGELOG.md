@@ -3,6 +3,8 @@
 
 ## Unreleased
 
+  * Added [SCC](https://github.com/boyter/scc) to CI
+
   * Corrected favicon references
 
   * Corrected license information in `meta` tag
