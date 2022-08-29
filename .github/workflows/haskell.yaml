@@ -317,3 +317,36 @@ jobs:
         with:
           branch: ${{ github.event.pull_request.head.ref || github.head_ref || github.ref }}
           commit_message: "[MegaLinter] Apply linters fixes"
+
+
+################################################################################
+### Generate codebase summary with Succinct Code Counter (SCC)
+###
+  scc:
+    name: 'Info: SCC'
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 'Setup - Clone Project'
+        uses: actions/checkout@v3
+
+      - name: 'Setup - SCC'
+        run: |
+          wget -O - -q https://api.github.com/repos/boyter/scc/releases/latest | \
+          grep "browser_download_url.*x86_64-unknown-linux.zip" | \
+          cut -d : -f 2,3 | \
+          tr -d \" | \
+          wget -i - -O - -q | \
+          gunzip -c > scc; \
+          chmod +x scc
+
+      - name: 'Run - SCC'
+        run: |
+          ./scc --version
+          ./scc \
+              --avg-wage 111000 \
+              --exclude-dir "[.git,.github,config]" \
+              --no-duplicates \
+              --no-min-gen \
+              --wide

@@ -3,7 +3,8 @@
 
 ## Unreleased
 
-  * None
+  * Added [SCC](https://github.com/boyter/scc) to CI
+
 
 ## 2.2.9 -- 12022-08-28
 
