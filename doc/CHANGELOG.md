@@ -3,7 +3,14 @@
 
 ## Unreleased
 
-  * None
+  * Corrected favicon references
+
+  * Corrected license information in `meta` tag
+
+  * Updated `manifest.json` with more available favicons
+
+  * Updated `meta` and `link` tag content for readability
+
 
 ## 2.2.9 -- 12022-08-28
 
