@@ -60,6 +60,10 @@ package *
     documentation:     False
     tests:             False
     optimization: 0
+    ghc-options:
+        -- Interface files for post-compilation static analysis
+        -fwrite-ide-info
+        -hiedir=.hie
 
 -- Applies to *only* the specified packages!
 package pandoc
