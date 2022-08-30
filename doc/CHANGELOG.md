@@ -5,6 +5,8 @@
 
   * Added [SCC](https://github.com/boyter/scc) to CI
 
+  * Added [StAn](https://github.com/kowainik/stan) to CI
+
   * Added [Weeder](https://github.com/ocharles/weeder) to CI
 
   * Corrected favicon references
