@@ -5,6 +5,8 @@
 
   * Added [SCC](https://github.com/boyter/scc) to CI
 
+  * Added [Weeder](https://github.com/ocharles/weeder) to CI
+
   * Corrected favicon references
 
   * Corrected license information in `meta` tag

@@ -54,51 +54,38 @@ jobs:
         os:    [ ubuntu-latest ]
 
     steps:
-      - name: 'Clone Project'
+      - name: 'Setup - Clone Project'
         uses: actions/checkout@v3
       
-      - name: 'Setup Haskell'
+      - name: 'Setup - Haskell'
         uses: haskell/actions/setup@v2
         with:
           ghc-version:   ${{ matrix.ghc   }}
           cabal-version: ${{ matrix.cabal }}
 
-      - name: Versions
+      - name: 'Setup - Cabal'
         run: |
-          cabal --version
           ghc   --version
-
-      - name: 'Cabal - Initalize'
-        run: |
+          cabal --version
           cabal update
           cabal clean
-
-      - name: 'Cabal - Configure'
-        run: |
           cabal configure "${PROJECT_FILE}" "${WITH_GHC_VER}"
+          cabal freeze    "${PROJECT_FILE}"
 
-      - name: 'Cabal - Freeze'
-        run: |
-          cabal freeze "${PROJECT_FILE}"
-          ls config
-
-      - name: 'Cabal - Cache'
+      - name: 'Cache - Cabal'
         uses: actions/cache@v3
         with:
           path: |
             ~/.cabal/store
-            dist-newstyle
+            ./dist-newstyle
           key: ${{ runner.os }}-${{ matrix.ghc }}-${{ hashFiles('**/*.freeze') }}
           # restore keys is a fall back when the freeze plan is different
           restore-keys: |
             ${{ runner.os }}-${{ matrix.ghc }}-
 
-      - name: 'Cabal - Build package dependencies'
+      - name: 'Cabal - Build'
         run: |
           cabal build all "${PROJECT_FILE}" --only-dependencies
-
-      - name: 'Cabal - Build package targets'
-        run: |
           cabal build all "${PROJECT_FILE}"
 
       - name: 'Cabal - Check'
@@ -119,50 +106,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Clone Project'
+      - name: 'Setup - Clone Project'
         uses: actions/checkout@v3
 
-      - name: 'Setup Haskell'
+      - name: 'Setup - Haskell'
         uses: haskell/actions/setup@v2
         with:
           ghc-version:   8.10
           cabal-version: 3.6
 
-      - name: Versions
+      - name: 'Setup - Cabal'
         run: |
-          cabal --version
           ghc   --version
-
-      - name: 'Cabal - Initalize'
-        run: |
+          cabal --version
           cabal update
           cabal clean
-
-      - name: 'Cabal - Configure'
-        run: |
           cabal configure "${PROJECT_FILE}"
+          cabal freeze    "${PROJECT_FILE}"
 
-      - name: 'Cabal - Freeze'
-        run: |
-          cabal freeze "${PROJECT_FILE}"
-
-      - name: 'Cabal - Cache'
+      - name: 'Cache - Cabal'
         uses: actions/cache@v3
         with:
           path: |
             ~/.cabal/store
-            dist-newstyle
+            ./dist-newstyle
           key: ${{ runner.os }}-lowest-bounds-${{ hashFiles('**/*.freeze') }}
           # restore keys is a fall back when the freeze plan is different
           restore-keys: |
             ${{ runner.os }}-lowest-bounds-
 
-      - name: 'Cabal - Build package dependencies'
+      - name: 'Cabal - Build'
         run: |
           cabal build all "${PROJECT_FILE}" --only-dependencies
-
-      - name: 'Cabal - Build package targets'
-        run: |
           cabal build all "${PROJECT_FILE}"
 
       - name: 'Cabal - Check'
@@ -182,10 +157,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: 'Clone Project'
+      - name: 'Setup - Clone Project'
         uses: actions/checkout@v3
 
-      - name: 'Set up HLint'
+      - name: 'Setup - HLint'
         uses: haskell/actions/hlint-setup@v2
         with:
           version: '3.4'
@@ -198,42 +173,65 @@ jobs:
 
 
 ################################################################################
-### Check for spelling errors
+### Check that Weeder does not detect dead code
 ###
-  spelling:
-    name: 'Check: Spelling'
-    
-    outputs:
-      followup: ${{ steps.spelling.outputs.followup }}
+  weeder:
+    env:
+      PROJECT_FILE: --project-file=config/cabal.project.CI
+      WEEDER_START: '-=-=-=-=--=-=-=-=-=-=-=-=-\n    Dead code detected:\n-=-=-=-=--=-=-=-=-=-=-=-=-\n\n'
+      WEEDER_CLEAN: '  > None!\n'
 
-    permissions:
-      actions:       read
-      contents:      read
-      pull-requests: read
+    name: 'Check: Weeder'
+
+    needs: build-min-bounds
 
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: check-spelling
-        id: spelling
-        uses: check-spelling/check-spelling@prerelease
+      - name: 'Setup - Clone Project'
+        uses: actions/checkout@v3
+
+      - name: 'Setup - Haskell'
+        uses: haskell/actions/setup@v2
         with:
-          experimental_apply_changes_via_bot: 1
-          suppress_push_for_open_pull_request: 1
-          checkout: true
-          spell_check_this: check-spelling/spell-check-this@prerelease
-          post_comment: 0
-          extra_dictionary_limit: 32
-          extra_dictionaries:
-            cspell:css/css.txt
-            cspell:filetypes/filetypes.txt
-            cspell:fullstack/fullstack.txt
-            cspell:html/html.txt
-            cspell:haskell/haskell.txt
-            cspell:latex/latex.txt
-            cspell:html-symbol-entities/entities.txt
-            cspell:scientific_terms_US/custom_scientific_US.dic.txt
-            cspell:software-terms/src/software-terms.txt
+          ghc-version:   9.2
+          cabal-version: 3.6
+
+      - name: 'Setup - Cabal'
+        run: |
+          ghc   --version
+          cabal --version
+          cabal update
+          cabal clean
+          cabal configure "${PROJECT_FILE}"
+          cabal freeze    "${PROJECT_FILE}"
+
+      - name: 'Setup - Weeder'
+        run: |
+          ls ./weeder || cabal install weeder --install-method=copy --installdir=.
+          ./weeder --version
+
+      - name: 'Cache - Cabal'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cabal/store
+            ./dist-newstyle
+            ./weeder
+          key: ${{ runner.os }}-Weeder-${{ hashFiles('**/*.freeze') }}
+          # restore keys is a fall back when the freeze plan is different
+          restore-keys: |
+            ${{ runner.os }}-Weeder-
+
+      - name: 'Cabal - Build'
+        run: |
+          cabal build all "${PROJECT_FILE}" --only-dependencies
+          cabal build all "${PROJECT_FILE}"
+
+      - name: 'Run - Weeder'
+        run: |
+          echo -en "${WEEDER_START}"
+          ./weeder --config ./config/.weeder.dhall && echo -en "${WEEDER_CLEAN}"
 
 
 ################################################################################
@@ -317,6 +315,45 @@ jobs:
         with:
           branch: ${{ github.event.pull_request.head.ref || github.head_ref || github.ref }}
           commit_message: "[MegaLinter] Apply linters fixes"
+
+
+################################################################################
+### Check for spelling errors
+###
+  spelling:
+    name: 'Check: Spelling'
+    
+    outputs:
+      followup: ${{ steps.spelling.outputs.followup }}
+
+    permissions:
+      actions:       read
+      contents:      read
+      pull-requests: read
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check-spelling
+        id: spelling
+        uses: check-spelling/check-spelling@prerelease
+        with:
+          experimental_apply_changes_via_bot: 1
+          suppress_push_for_open_pull_request: 1
+          checkout: true
+          spell_check_this: check-spelling/spell-check-this@prerelease
+          post_comment: 0
+          extra_dictionary_limit: 32
+          extra_dictionaries:
+            cspell:css/css.txt
+            cspell:filetypes/filetypes.txt
+            cspell:fullstack/fullstack.txt
+            cspell:html/html.txt
+            cspell:haskell/haskell.txt
+            cspell:latex/latex.txt
+            cspell:html-symbol-entities/entities.txt
+            cspell:scientific_terms_US/custom_scientific_US.dic.txt
+            cspell:software-terms/src/software-terms.txt
 
 
 ################################################################################
