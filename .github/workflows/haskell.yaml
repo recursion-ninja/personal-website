@@ -438,11 +438,11 @@ jobs:
       - name: 'Setup - SCC'
         run: |
           wget -O - -q https://api.github.com/repos/boyter/scc/releases/latest | \
-          grep "browser_download_url.*x86_64-unknown-linux.zip" | \
+          grep "browser_download_url.*Linux_x86_64.tar.gz" | \
           cut -d : -f 2,3 | \
           tr -d \" | \
           wget -i - -O - -q | \
-          gunzip -c > scc; \
+          tar -xzf - > scc; \
           chmod +x scc
 
       - name: 'Run - SCC'
@@ -452,5 +452,4 @@ jobs:
               --avg-wage 111000 \
               --exclude-dir "[.git,.github,config]" \
               --no-duplicates \
-              --no-min-gen \
-              --wide
+              --no-min-gen

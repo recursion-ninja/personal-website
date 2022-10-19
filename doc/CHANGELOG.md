@@ -1,7 +1,12 @@
 # Revision history
 
 
-## Unreleased
+## Unreleased changes
+
+  * None
+
+
+## 2.2.10 -- 12022-10-19
 
   * Added [SCC](https://github.com/boyter/scc) to CI
 
@@ -12,6 +17,10 @@
   * Corrected favicon references
 
   * Corrected license information in `meta` tag
+
+  * Posted weblog: "Conspectus 12022 Q3"
+
+  * Updated "About" page with new professional synopsis
 
   * Updated `manifest.json` with more available favicons
 
