@@ -3,7 +3,7 @@
 
 ## Unreleased changes
 
-  * None
+  * Updated WSC-2021 link to use proper DOI reference
 
 
 ## 2.2.10 -- 12022-10-19
