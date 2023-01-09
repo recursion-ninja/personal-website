@@ -1,7 +1,13 @@
 # Revision history
 
+The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on GitHub][GitHub-Ghangelog].
+
+[GitHub-Ghangelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
+
 
 ## Unreleased changes
+
+  * Updated to GHC-9.2.5
 
   * Updated WSC-2021 link to use proper DOI reference
 
@@ -198,3 +204,5 @@
 ## 2.0.0 -- 12021-10-24
 
   * Second major incarnation; initially released on an unsuspecting world
+
+

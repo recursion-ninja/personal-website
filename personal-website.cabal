@@ -24,7 +24,7 @@ Category:
     Web
 
 Tested-With:
-    GHC == 9.2.4
+    GHC == 9.2.5
     GHC == 9.0.2
     GHC == 8.10.7
 
