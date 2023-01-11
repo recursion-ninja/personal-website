@@ -55,11 +55,11 @@ compileFormatPDFWith f v inContext inPath inRoute inTemplates = match inPath . v
 
 
 blockFilter :: (Foldable f, Functor f) => f (Int, Text) -> Pandoc -> Pandoc
-blockFilter excludedHeaderings (Pandoc meta blocks) = Pandoc meta $ fold blocks'
+blockFilter excludedHeaders (Pandoc meta blocks) = Pandoc meta $ fold blocks'
     where
         blocks' :: [[Block]]
         blocks' = runST $ do
-            exclusionSet <- newSTRef excludedHeaderings
+            exclusionSet <- newSTRef excludedHeaders
             excluded     <- newSTRef Nothing
             let filterExcludes input = do
                     es <- readSTRef exclusionSet
@@ -112,12 +112,12 @@ isSameBlockType _                _                = False
 
 
 getHeaderTitle :: Block -> (Int, Text)
-getHeaderTitle (Header n _ inlines) = (n, foldMap inlineText inlines)
-getHeaderTitle _                    = (0, "")
+getHeaderTitle (Header n _ lineParts) = (n, foldMap inlineText lineParts)
+getHeaderTitle _                      = (0, mempty)
 
 
 inlineText :: Inline -> Text
-inlineText (Str         txt) = unspace txt
+inlineText (Str         txt) = clearSpaces txt
 inlineText (Emph        ts ) = foldMap inlineText ts
 inlineText (Underline   ts ) = foldMap inlineText ts
 inlineText (Strong      ts ) = foldMap inlineText ts
@@ -127,14 +127,14 @@ inlineText (Subscript   ts ) = foldMap inlineText ts
 inlineText (SmallCaps   ts ) = foldMap inlineText ts
 inlineText (Quoted    _ ts ) = foldMap inlineText ts
 inlineText (Cite      _ ts ) = foldMap inlineText ts
-inlineText (Code      _ txt) = unspace txt
-inlineText (Math      _ txt) = unspace txt
-inlineText (RawInline _ txt) = unspace txt
+inlineText (Code      _ txt) = clearSpaces txt
+inlineText (Math      _ txt) = clearSpaces txt
+inlineText (RawInline _ txt) = clearSpaces txt
 inlineText (Link  _ ts _   ) = foldMap inlineText ts
 inlineText (Image _ ts _   ) = foldMap inlineText ts
 inlineText (Span _ ts      ) = foldMap inlineText ts
 inlineText _                 = ""
 
 
-unspace :: Text -> Text
-unspace = fold . words
+clearSpaces :: Text -> Text
+clearSpaces = fold . words

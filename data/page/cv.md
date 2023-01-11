@@ -71,7 +71,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
   - [![DOI][DOI-img]][DOI-0] Wheeler, W. C. and A. J. **Washburn**. 2019. FASTC: A file format for multi-character sequence data. Cladistics.
 
 [DOI-img]: data/img/doi-logo.png
-[DOI-3]:   https://ssl.linklings.net/conferences/wsc/wsc2021_program/views/includes/files/con274s3-file1.pdf
+[DOI-3]:   https://doi.org/10.1109/WSC52266.2021.9715384
 [DOI-2]:   https://doi.org/10.1186/s12859-020-03595-2
 [DOI-1]:   https://www.youtube.com/watch?v=ZaboF2eP_BY
 [DOI-0]:   https://doi.org/10.1111/cla.12370
@@ -114,7 +114,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 ### *SURF Research Team Member* `May 2014 - Dec 2014`
 
   - Calculated cellular automata input density to output density for small N-dimensional toruses
-  - Modeled disease spread with incubation periods & vaccination schedules via cellular autamata
+  - Modeled disease spread with incubation periods & vaccination schedules via cellular automata
 
 ## Outpost Natural Foods Co-op `Milwaukee, WI`
 ### *Software Development Specialist* `Dec 2013 - Dec 2014`

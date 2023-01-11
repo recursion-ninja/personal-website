@@ -1,29 +1,86 @@
 # Revision history
 
+The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on GitHub][GitHub-Ghangelog].
 
-## 2.2.6 -- 12021-05-30
+[GitHub-Ghangelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
+
+
+## Unreleased changes
+
+  * Updated to GHC-9.2.5
+
+  * Updated WSC-2021 link to use proper DOI reference
+
+
+## 2.2.10 -- 12022-10-19
+
+  * Added [SCC](https://github.com/boyter/scc) to CI
+
+  * Added [StAn](https://github.com/kowainik/stan) to CI
+
+  * Added [Weeder](https://github.com/ocharles/weeder) to CI
+
+  * Corrected favicon references
+
+  * Corrected license information in `meta` tag
+
+  * Posted weblog: "Conspectus 12022 Q3"
+
+  * Updated "About" page with new professional synopsis
+
+  * Updated `manifest.json` with more available favicons
+
+  * Updated `meta` and `link` tag content for readability
+
+
+## 2.2.9 -- 12022-08-28
+
+  * Added [MegaLinter](https://megalinter.github.io) to CI
+
+  * Updating contents to conform to MegaLinter suggestions
+
+
+## 2.2.8 -- 12022-07-05
+
+  * Added continuous integration (CI) via GitHub Actions
+
+  * Corrected many spelling errors
+
+  * Posted weblog: "Conspectus 12022 Q2"
+
+  * Updated hypertext access file
+
+
+## 2.2.7 -- 12022-05-31
+
+  * Corrected rendering of inline code blocks
+
+  * Updated software `LICENSE`
+
+
+## 2.2.6 -- 12022-05-30
 
   * Adding copyright to website footer
 
 
-## 2.2.5 -- 12021-03-25
+## 2.2.5 -- 12022-03-25
 
-  * Corrected posting date of blog post: "Conspectus 12021 Q1"
-
-
-## 2.2.4 -- 12021-03-25
-
-  * Added blog post: "Conspectus 12021 Q1"
+  * Corrected posting date of weblog: "Conspectus 12022 Q1"
 
 
-## 2.2.3 -- 12021-03-22
+## 2.2.4 -- 12022-03-25
 
-  * Updated CV
+  * Posted weblog: "Conspectus 12022 Q1"
+
+
+## 2.2.3 -- 12022-03-22
 
   * Corrected DOI image and table rendering issues
 
+  * Updated CV
 
-## 2.2.2 -- 12021-03-22
+
+## 2.2.2 -- 12022-03-22
 
   * Added explicit import lists for `Hakyll` modules
 
@@ -46,19 +103,19 @@
   * Updated to GHC-9.2.2
 
 
-## 2.2.1 -- 12021-03-18
+## 2.2.1 -- 12022-03-18
 
   * Refactored code based on new compiler warnings
 
   * Moved `CHANGELOG`, `LICENSE`, and `README` to new `doc` directory
 
 
-## 2.2.0 -- 12021-03-17
+## 2.2.0 -- 12022-03-17
 
-  * Added blog post: "Matriculation"
+  * Posted weblog: "Matriculation"
 
 
-## 2.1.10 -- 12021-03-17
+## 2.1.10 -- 12022-03-17
 
   * Updated build parameters of `cabal.project`
 
@@ -72,7 +129,7 @@
 
 ## 2.1.8 -- 12021-12-06
 
-  * Added direct link to Winter Simulation Confrence 2021 paper
+  * Added direct link to Winter Simulation Conference 2021 paper
 
 
 ## 2.1.7 -- 12021-11-29
@@ -96,25 +153,25 @@
 
 ## 2.1.4 -- 12021-10-29
 
-  * Changed subtitle of a blog post
+  * Changed subtitle of a weblog post
 
-  * Ensure only `.md` files in `blog` are processed as blog posts
+  * Ensure only `.md` files in `blog` are processed as weblog posts
 
 
 ## 2.1.3 -- 12021-10-28
 
-  * Extended `.htaccess` routing for some custom error pages
-
   * Added a Pandoc transformation before HTML rendering
+
+  * Extended `.htaccess` routing for some custom error pages
 
 
 ## 2.1.2 -- 12021-10-27
 
   * Added `.htaccess` file generation for:
 
-    - Route trimmimg of HTML pages
+    - Redirect to enforce SSL
 
-    - Redirect to enfore SSL
+    - Route trimming of HTML pages
 
 
 ## 2.1.1 -- 12021-10-27
@@ -124,7 +181,7 @@
 
 ## 2.1.0 -- 12021-10-27
 
-  * Revising and reposting first blog entry
+  * Revising and reposting first weblog entry
 
 
 ## 2.0.4 -- 12021-10-26
@@ -136,7 +193,7 @@
 
   * Beautified font-size on small screens
 
-  * Abbreviated dates and standardizeing their spacing on CV
+  * Abbreviated dates and standardizing their spacing on CV
 
 
 ## 2.0.1 -- 12021-10-24
@@ -147,3 +204,5 @@
 ## 2.0.0 -- 12021-10-24
 
   * Second major incarnation; initially released on an unsuspecting world
+
+

@@ -99,14 +99,14 @@ cvConnectionImages = fold
 
 
 transformForHTML :: Pandoc -> Pandoc
-transformForHTML = removeDataDirectory . niceDateSeperator
+transformForHTML = removeDataDirectory . niceDateSeparator
 
 
 -- |
 -- Replaces ASCII dashes with Unicode em dash in all code blocks which occur in
 -- all headers.
-niceDateSeperator :: Pandoc -> Pandoc
-niceDateSeperator =
+niceDateSeparator :: Pandoc -> Pandoc
+niceDateSeparator =
     let f (Header n a is) = Header n a $ walk h is
         f x               = x
         h (Code a txt) = Code a $ replace " - " " — " txt
@@ -120,7 +120,7 @@ niceDateSeperator =
 -- also having the LaTeX documents reference @data/img/doi.png@, but both references
 -- are required for a successfully compiled website.
 -- This conundrum is solved by specifying @data/img/doi.png@ in the original
--- markdown file and prunning off the @data/@ prefix during HTML generation and
+-- markdown file and pruning off the @data/@ prefix during HTML generation and
 -- preserving the @data/@ prefix during LaTeX generation.
 --
 -- /It __is__ a bit ugly, but it works!/

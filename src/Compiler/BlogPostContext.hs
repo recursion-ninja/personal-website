@@ -32,7 +32,7 @@ blogPostPath = "blog/*.md"
 blogPostContext :: Context String
 blogPostContext = contextUsing
     [ blogPostMetadataFields
-    , blogPostDecription
+    , blogPostDescription
     , constField "NavRef" "blog"
     , dateField "Date" "1%0Y+%j %A, %B %e"
     , flagField "IsBlogPost"
@@ -45,8 +45,8 @@ blogPostContext = contextUsing
     ]
 
 
-blogPostDecription :: Context a
-blogPostDecription = "Subtitle" `contextAliasFieldAs` "description"
+blogPostDescription :: Context a
+blogPostDescription = "Subtitle" `contextAliasFieldAs` "description"
 
 
 blogPostMetadataFields :: Context a
@@ -54,14 +54,14 @@ blogPostMetadataFields = Context $ \k _ _ -> do
     raw <- getResourceString
     doc <- readPandoc raw
     let (wc, loc, hash) = collateBlogPostMetadata $ itemBody doc
-    let hashVal         = toUpper <$> show hash
+    let hashValue       = toUpper <$> show hash
     let hashRows        = 8
-    let hashToks        = length hashVal
-    let rowLen          = hashToks `div` hashRows
+    let hashTokens      = length hashValue
+    let rowLen          = hashTokens `div` hashRows
     let str             = pure . StringField . show
-    let hashOctile i = take rowLen $ drop (i * rowLen) hashVal
+    let hashOctile i = take rowLen $ drop (i * rowLen) hashValue
     case k of
-        "Hash"        -> pure $ StringField hashVal
+        "Hash"        -> pure $ StringField hashValue
         "HashOctiles" -> ListField octileContext <$> traverse (makeItem . hashOctile) [0 .. hashRows - 1]
         "HashOctile0" -> fmap (ListField defaultContext) . traverse (makeItem . pure) $ hashOctile 0
         "HashOctile1" -> fmap (ListField defaultContext) . traverse (makeItem . pure) $ hashOctile 1
@@ -93,22 +93,22 @@ blogPostMetadataFields = Context $ \k _ _ -> do
 
 
 -- |
--- An accumulator type to collect revevant blog post metrics in a single pass.
-newtype PanDocAccum
-    = A { unAccum :: (Word, Word, Text, ByteString) }
+-- An accumulator type to collect relevant blog post metrics in a single pass.
+newtype PandocDigestion
+    = A { vomitContents :: (Word, Word, Text, ByteString) }
 
 
-instance Semigroup PanDocAccum where
+instance Semigroup PandocDigestion where
 
     (A (w, x, y, z)) <> (A (a, b, c, d)) = A (w + a, x + b, y <> c, z <> d)
 
 
-instance Monoid PanDocAccum where
+instance Monoid PandocDigestion where
 
     mempty = A (0, 0, mempty, mempty)
 
 
-codeAccum, wordAccum :: Text -> PanDocAccum
+codeAccum, wordAccum :: Text -> PandocDigestion
 codeAccum x = let ls = T.lines x in A (0, toEnum $ length ls, x, T.encodeUtf8 $ T.unlines ls)
 wordAccum x = let ws = T.words x in A (toEnum $ length ws, 0, mempty, T.encodeUtf8 $ T.unwords ws)
 
@@ -121,7 +121,7 @@ wordAccum x = let ws = T.words x in A (toEnum $ length ws, 0, mempty, T.encodeUt
 collateBlogPostMetadata :: Pandoc -> (Word, Word, Digest SHA3_512)
 collateBlogPostMetadata doc@(Pandoc _ blocks) = (wordCount, codeCount, hashDigest)
     where
-        (wordCount, codeCount, _, _) = unAccum $ cbs blocks
+        (wordCount, codeCount, _, _) = vomitContents $ eatBlocks blocks
 
         renderTxtDoc                 = runPure . writePlain defaultHakyllWriterOptions
         tokenizeText                 = T.unwords . T.words . T.intercalate " " . T.lines
@@ -129,59 +129,57 @@ collateBlogPostMetadata doc@(Pandoc _ blocks) = (wordCount, codeCount, hashDiges
             Left  _   -> error "Could not serialize data for hashing"
             Right txt -> hashWith SHA3_512 . T.encodeUtf8 $ tokenizeText txt
 
-        cbs :: [Block] -> PanDocAccum
-        cbss :: [[Block]] -> PanDocAccum
-        cbs  = foldMap cb
-        cbss = foldMap cbs
-
-        cb :: Block -> PanDocAccum
-        cb (Plain     is      )    = cis is
-        cb (Para      is      )    = cis is
-        cb (LineBlock iss     )    = ciss iss
-        cb (CodeBlock _ s     )    = codeAccum s
-        cb (RawBlock  _ s     )    = wordAccum s
-        cb (BlockQuote bs     )    = cbs bs
-        cb (OrderedList _ bss )    = cbss bss
-        cb (BulletList     bss)    = cbss bss
-        cb (DefinitionList ls )    = foldMap (\(is, bss) -> cis is <> cbss bss) ls
-        cb (Header _ _ is     )    = cis is
-        cb (Div _ bs          )    = cbs bs
-        cb HorizontalRule          = mempty
-        cb Null                    = mempty
-        cb (Table _ _ _ th tbs tf) = fold [thi th, foldMap tbi tbs, tfi tf]
-
-        cis :: [Inline] -> PanDocAccum
-        ciss :: [[Inline]] -> PanDocAccum
-        cis  = foldMap ci
-        ciss = foldMap cis
-
-        ci :: Inline -> PanDocAccum
-        ci (Str       s      ) = wordAccum s
-        ci (Emph      is     ) = cis is
-        ci (Underline is     ) = cis is
-        ci (Span _ is        ) = cis is
-        ci (Strong      is   ) = cis is
-        ci (Strikeout   is   ) = cis is
-        ci (Superscript is   ) = cis is
-        ci (Subscript   is   ) = cis is
-        ci (SmallCaps   is   ) = cis is
-        ci (Quoted    _ is   ) = cis is
-        ci (Cite      _ is   ) = cis is
-        ci (Code      _ s    ) = wordAccum s
-        ci (Math      _ s    ) = wordAccum s
-        ci (RawInline _ s    ) = wordAccum s
-        ci (Link  _ is (_, s)) = cis is <> wordAccum s
-        ci (Image _ is (_, s)) = cis is <> wordAccum s
-        ci (Note bs          ) = cbs bs
-        ci Space               = singleWord
-        ci SoftBreak           = singleWord
-        ci LineBreak           = singleWord
-
         singleWord = A (1, 0, mempty, mempty)
 
-        thi (TableHead _ rs) = foldMap rowi rs
-        tfi (TableFoot _ rs) = foldMap rowi rs
-        tbi (TableBody _ _ rs1 rs2) = foldMap rowi (rs1 <> rs2)
+        eatBody (TableBody _ _ rows1 rows2) = foldMap eatRow (rows1 <> rows2)
+        eatCell (Cell _ _ _ _ bPart) = eatBlocks bPart
+        eatFoot (TableFoot _ rows) = foldMap eatRow rows
+        eatHead (TableHead _ rows) = foldMap eatRow rows
+        eatRow (Row _ cells) = foldMap eatCell cells
 
-        rowi (Row _ cs) = foldMap celli cs
-        celli (Cell _ _ _ _ bs) = cbs bs
+        eatBlock :: Block -> PandocDigestion
+        eatBlock (Table _ _ _ tHead tBody tFoot) = fold [eatHead tHead, foldMap eatBody tBody, eatFoot tFoot]
+        eatBlock HorizontalRule                  = mempty
+        eatBlock Null                            = mempty
+        eatBlock (CodeBlock _ txt     )          = codeAccum txt
+        eatBlock (RawBlock  _ txt     )          = wordAccum txt
+        eatBlock (Plain iPart         )          = eatLines iPart
+        eatBlock (Para  iPart         )          = eatLines iPart
+        eatBlock (Header _ _ iPart    )          = eatLines iPart
+        eatBlock (BlockQuote bPart    )          = eatBlocks bPart
+        eatBlock (Div         _ bPart )          = eatBlocks bPart
+        eatBlock (OrderedList _ bParts)          = foldMap eatBlocks bParts
+        eatBlock (BulletList bParts   )          = foldMap eatBlocks bParts
+        eatBlock (LineBlock  iParts   )          = foldMap eatLines iParts
+        eatBlock (DefinitionList list) =
+            let f :: Foldable t => ([Inline], t [Block]) -> PandocDigestion
+                f (iPart, bParts) = eatLines iPart <> foldMap eatBlocks bParts
+            in  foldMap f list
+
+        eatBlocks :: [Block] -> PandocDigestion
+        eatBlocks = foldMap eatBlock
+
+        eatLine :: Inline -> PandocDigestion
+        eatLine Space                  = singleWord
+        eatLine SoftBreak              = singleWord
+        eatLine LineBreak              = singleWord
+        eatLine (Note        bPart   ) = eatBlocks bPart
+        eatLine (Emph        iPart   ) = eatLines iPart
+        eatLine (Underline   iPart   ) = eatLines iPart
+        eatLine (Strong      iPart   ) = eatLines iPart
+        eatLine (Strikeout   iPart   ) = eatLines iPart
+        eatLine (Superscript iPart   ) = eatLines iPart
+        eatLine (Subscript   iPart   ) = eatLines iPart
+        eatLine (SmallCaps   iPart   ) = eatLines iPart
+        eatLine (Span      _ iPart   ) = eatLines iPart
+        eatLine (Quoted    _ iPart   ) = eatLines iPart
+        eatLine (Cite      _ iPart   ) = eatLines iPart
+        eatLine (Code      _ txt     ) = wordAccum txt
+        eatLine (Math      _ txt     ) = wordAccum txt
+        eatLine (RawInline _ txt     ) = wordAccum txt
+        eatLine (Str txt             ) = wordAccum txt
+        eatLine (Link  _ iPart (_, s)) = eatLines iPart <> wordAccum s
+        eatLine (Image _ iPart (_, s)) = eatLines iPart <> wordAccum s
+
+        eatLines :: [Inline] -> PandocDigestion
+        eatLines = foldMap eatLine

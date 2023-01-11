@@ -68,6 +68,9 @@ package *
     optimization: 0
 
 -- Applies to *only* the specified package!
+package pandoc
+    flags: +embed_data_files
+
 package personal-website
     benchmarks:        True
     documentation:     True
@@ -75,15 +78,13 @@ package personal-website
     library-profiling: False
     optimization: 0
     ghc-options:
-        -- Usability flags
-        -fdiagnostics-color=always
-        -fhide-source-paths
-        -j
         -- Don't need code, just type-checking
         -fno-code
         -- Interface files for post-compilation static analysis
         -fwrite-ide-info
         -hiedir=.hie
+        -- Multi-threaded build
+        -j
         -- Adjust compiler memory parameters
         +RTS -A128m -n2m -RTS
 
@@ -144,10 +145,7 @@ allow-newer:
     -- Lagging project dependency
     memory,
 
-constraints:
-    pandoc +embed_data_files
-
 preferences:
     aeson          >= 2.0.0,
     bytestring     >= 0.11.3,
-    text           >= 2.0.0,
+    text           >= 2.0,

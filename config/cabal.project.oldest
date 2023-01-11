@@ -5,7 +5,7 @@
 ---------------------------------------------------------------------------------
 
 executable-static: False
-with-compiler: ghc-9.2.4
+with-compiler: ghc-8.10.7
 
 
 ---------------------------------------------------------------------------------
@@ -59,96 +59,45 @@ minimize-conflict-set:    True
 -- Applies to *all* packages, not just dependencies...
 package *
     benchmarks:        False
-    documentation:     True
+    documentation:     False
     tests:             False
-    library-profiling: True
-    library-profiling-detail: all-functions
-    optimization: 2
+    optimization: 0
 
--- Applies to *only* the specified package!
+-- Applies to *only* the specified packages!
+package pandoc
+    flags: +embed_data_files
+    
 package personal-website
     benchmarks:        True
     documentation:     True
     tests:             True
-    library-profiling: True
     optimization: 0
     ghc-options:
-        -- Sanity check warnings:
-        --   1. Fail on a warning
-        --   2. Include all warnings by default
-        --   3. Exclude the undesirable warnings
+        -- Don't need code, just type-checking
+        -fno-code
+        -- Multi-threaded build
+        -j
+        -- Adjust compiler memory parameters
+        +RTS -A128m -n2m -RTS
+        -- Warnings cause failure
         -Werror
-        -Weverything
-        -- Exclusions:
-        -Wno-implicit-prelude
-        -Wno-missing-import-lists
-        -Wno-missing-kind-signatures
-        -Wno-missing-safe-haskell-mode
-        -Wno-monomorphism-restriction
-        -Wno-type-defaults
-        -Wno-unsafe
-
+    
 packages: .
 
 
 ---------------------------------------------------------------------------------
 -- Dependency specifications
---
--- Always allow a newer version of libraries which are tightly coupled to the GHC
--- compiler version. This allows the project to build with newer versions of the
--- compiler without having to tediously tinker with dependencies, both direct and
--- transitive.
---
--- Furthermore, always allow a newer version of libraries which have had a major
--- release due to a security or performance patch. Add a preference for using a
--- version greater than or equal to the patch.
 ---------------------------------------------------------------------------------
 
-allow-newer:
-    -- Core library
-    base,
-    ghc,
-    ghc-compact,
-    ghc-prim,
-    integer-gmp,
-    template-haskell,
-    -- Internal compiler library
-    ghc-boot,
-    ghc-boot-th,
-    ghc-heap,
-    libiserv,
-    -- Dependency of `ghc` library
-    array,
-    binary,
-    bytestring,
-    containers,
-    deepseq,
-    directory,
-    exceptions,
-    filepath,
-    pretty,
-    process,
-    time,
-    transformers,
-    unix,
-    Win32,
-    -- Core tool library
-    ghci,
-    hpc,
-    Cabal,
-    -- Dependency of `Cabal` library
-    mtl,
-    parsec,
-    text,
-    -- Security update
-    aeson,
-    -- Lagging project dependency
-    memory,
-
 constraints:
-    pandoc +embed_data_files
-
-preferences:
-    aeson          >= 2.0.0,
-    bytestring     >= 0.11.3,
-    text           >= 2.0,
+    base         ==4.14.*,
+    binary       ==0.8.7.0,
+    bytestring   ==0.10.12.1,
+    cryptonite   ==0.25,
+    filepath     ==1.4.2.1,
+    hakyll       ==4.13.4.1,
+    pandoc       ==2.10,
+    pandoc-types ==1.21,
+    process      ==1.6.7.0,
+    text         ==1.2.3.2,
+    time         ==1.9.2,

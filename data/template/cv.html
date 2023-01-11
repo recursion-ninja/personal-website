@@ -1,4 +1,4 @@
-<div id="CV-title-region">
+<div id="cv-title-region">
   <div id="name-region">
     <span id="author">$Author$</span>
     <span id="job-title">$JobTitle$</span>
@@ -7,11 +7,11 @@
     <dl id="connections-list">
       $if(PDFImg)$
       <span>
-        <dt><img src="$AssetRefImages$/$PDFImg$" alt="PDF"></dt>
+        <dt><img alt="PDF" src="$AssetRefImages$/$PDFImg$" height="19px;" width="19px;"/></dt>
         <dd>
           <strong>
             <em>
-              <a href="$BaseRoute$.pdf">Curriculum Vitae</a><span style="padding-right:12px;">,</span><a href="/resume.pdf">Résumé</a>
+              <a href="$BaseRoute$.pdf">Curriculum Vitae</a><span id="cv-resume-separator">,</span><a href="/resume.pdf">Résumé</a>
             </em>
           </strong>
         </dd>
@@ -19,31 +19,31 @@
       $endif$
       $if(Email)$
       <span>
-        <dt><img src="$AssetRefImages$/$EmailImg$" alt="Email"></dt>
+        <dt><img alt="Email" src="$AssetRefImages$/$EmailImg$" height="19px;" width="19px;"/></dt>
         <dd><a href="mailto:$Email$">$Email$</a></dd>
       </span>
       $endif$
       $if(GitHub)$
       <span>
-        <dt><img src="$AssetRefImages$/$GitHubImg$" alt="GitHub"></dt>
+        <dt><img alt="GitHub" src="$AssetRefImages$/$GitHubImg$" height="19px;" width="19px;"/></dt>
         <dd><a href="https://github.com/$GitHub$">github.com/$GitHub$</a></dd>
       </span>
       $endif$
       $if(StackOverflowUser)$
       <span>
-        <dt><img src="$AssetRefImages$/$StackOverflowImg$" alt="Stack Overflow"></dt>
+        <dt><img alt="Stack Overflow" src="$AssetRefImages$/$StackOverflowImg$" height="19px;" width="16px;"/></dt>
         <dd><a href="https://stackoverflow.com/users/$StackOverflowID$/$StackOverflowUser$">stackoverflow.com/$StackOverflowUser$</a></dd>
       </span>
       $endif$
       $if(TimeZoneLabel)$
       <span>
-        <dt><img src="$AssetRefImages$/$TimeZoneImg$" alt="Time Zone"></dt>
+        <dt><img alt="Time Zone" src="$AssetRefImages$/$TimeZoneImg$" height="19px;" width="19px;"/></dt>
         <dd><a href="https://time.is/compare/now_in_$TimeZoneCity$">$TimeZoneLabel$</a></dd>
       </span>
       $endif$
       $if(LastUpdatedImg)$
       <span>
-        <dt><img src="$AssetRefImages$/$LastUpdatedImg$" alt="Last Updated"></dt>
+        <dt><img alt="Last Updated" src="$AssetRefImages$/$LastUpdatedImg$" height="19px;" width="19px;"/></dt>
         <dd>Last Updated $LastModified$</dd>
       </span>
       $endif$

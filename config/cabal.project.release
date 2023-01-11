@@ -66,44 +66,16 @@ package *
     optimization: 2
 
 -- Applies to *only* the specified package!
+package pandoc
+    flags: +embed_data_files
+
 package personal-website
     benchmarks:        True
     documentation:     True
     tests:             True
     library-profiling: False
     optimization: 2
-    ghc-options:
-        -- Optimization flags
-        -fexcess-precision
-        -fexpose-all-unfoldings
-        -flate-specialise
-        -fmax-simplifier-iterations=16
-        -foptimal-applicative-do
-        -fspec-constr-count=8
-        -fspec-constr-keen
-        -fspecialize-aggressively
-        -fstatic-argument-transformation        
-
-        -- Sanity check warnings:
-        --   1. Fail on a warning
-        --   2. Include all warnings by default
-        --   3. Exclude the undesirable warnings
-        -Werror
-        -Weverything
-        -- Exclusions:
-        -Wno-all-missed-specialisations
-        -Wno-implicit-prelude
-        -Wno-missing-import-lists
-        -Wno-missing-kind-signatures
-        -Wno-missing-safe-haskell-mode
-        -Wno-monomorphism-restriction
-        -Wno-type-defaults
-        -Wno-unsafe
-
-        -- Usability flags
-        -fdiagnostics-color=always
-        -fhide-source-paths
-        -j
+    ghc-options: -j -Werror
 
 packages: .
 
@@ -159,13 +131,8 @@ allow-newer:
     text,
     -- Security update
     aeson,
-    -- Lagging project dependency
-    memory,
-
-constraints:
-    pandoc +embed_data_files
 
 preferences:
     aeson          >= 2.0.0,
     bytestring     >= 0.11.3,
-    text           >= 2.0.0,
+    text           >= 2.0,

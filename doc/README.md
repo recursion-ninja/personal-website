@@ -1,4 +1,5 @@
-### Personal Website of Recursion Ninja
+## Personal Website of Recursion Ninja
+
 
 The live site can be viewed here:
 
@@ -7,11 +8,11 @@ https://recursion.ninja
 
 ### Installation
 
-```
-$ cabal build
-$ cabal exec site clean
-$ cabal exec site build
-$ cabal exec site server
+```bash
+$ cabal build personal-website
+$ cabal exec  personal-website clean
+$ cabal exec  personal-website build
+$ cabal exec  personal-website server
 ```
 
 The compiled website will be placed in the `_site` directory.
