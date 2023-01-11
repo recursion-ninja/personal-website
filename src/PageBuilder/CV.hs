@@ -20,7 +20,7 @@ import Hakyll.Web.Template.Context (Context, constField)
 import Prelude hiding (drop, words)
 import System.FilePath.Posix ((</>))
 import Text.Pandoc.Definition (Block(..), Inline(..), Pandoc)
-import Text.Pandoc.Walk
+import Text.Pandoc.Walk (walk)
 
 
 buildCV :: Rules ()

@@ -98,6 +98,8 @@ With the permutation parser evaluation described above, there are exactly `6` re
 
 Below is a rendering of the generic permutation parse tree  The symbols `(...)` represent edge transition which correspond to the enclosed combinator. The `[...]` symbols spanning two lines represent a node's parser state.
 
+![parse tree](data/img/perm-parser-00.png)
+
 ```
                 [___]
             /     |   \

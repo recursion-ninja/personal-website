@@ -11,7 +11,6 @@
 \usepackage{tabularx}
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
 \usepackage[utf8]{inputenc}
-$if(graphics)$
 \usepackage{graphicx}
 \setkeys{Gin}{width=10px}
 
@@ -20,7 +19,6 @@ $if(graphics)$
 % pass the image to \shadowbox
 \renewcommand{\includegraphics}[2][]{%
   \raisebox{-.25\height}{\latexincludegraphics[#1]{#2}}}
-$endif$
 
 \def\name{$Author$}
 

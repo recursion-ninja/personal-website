@@ -1,3 +1,4 @@
+{-# Language LambdaCase #-}
 {-# Language OverloadedStrings #-}
 
 module PageBuilder.Blog
@@ -9,11 +10,13 @@ import Compiler.AsciiDoc
 import Compiler.BlogPostContext
 import Compiler.Constants
 import Compiler.EPUB
+import Compiler.Generic (FormatCompiler)
 import Compiler.HTML
 import Compiler.Markdown
 import Compiler.PDF
 import Compiler.Textual
 import Data.Foldable (traverse_)
+import Data.Text (drop, isPrefixOf)
 import Hakyll.Core.Compiler (loadAll, makeItem)
 import Hakyll.Core.Identifier (Identifier)
 import Hakyll.Core.Identifier.Pattern (Pattern, hasVersion, (.&&.))
@@ -22,6 +25,9 @@ import Hakyll.Core.Rules (Rules, compile, create, route, version)
 import Hakyll.Web.Template (loadAndApplyTemplate)
 import Hakyll.Web.Template.Context (Context, constField, dateField, listField)
 import Hakyll.Web.Template.List (recentFirst)
+import Prelude hiding (drop)
+import Text.Pandoc.Definition (Inline(..), Pandoc)
+import Text.Pandoc.Walk (walk)
 
 
 buildBlogList :: Rules ()
@@ -53,8 +59,22 @@ buildBlogPosts =
         , (compileFormatPDF     , [blogLatexTemplate])
         , (compileFormatMarkdown, [blogMarkdownTemplate])
         , (compileFormatTextual , [])
-        , (compileFormatHTML    , [blogPostTemplate, templateDefault])
+        , (compileFormatBlogHTML, [blogPostTemplate, templateDefault])
         ]
+
+
+
+compileFormatBlogHTML :: FormatCompiler
+compileFormatBlogHTML =
+    let alterDataDirectory :: Pandoc -> Pandoc
+        alterDataDirectory = walk transform
+
+
+        transform = \case
+            Image a b (url, c) | "data/" `isPrefixOf` url -> Image a b (".." <> drop 4 url, c)
+            x                                             -> x
+
+    in  compileFormatTransformedHTML alterDataDirectory
 
 
 blogPostMetadataContext :: Context String
