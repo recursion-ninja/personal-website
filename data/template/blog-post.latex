@@ -20,6 +20,10 @@
 \renewcommand{\includegraphics}[2][]{%
   \raisebox{-.25\height}{\latexincludegraphics[#1]{#2}}}
 
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
 \def\name{$Author$}
 
 % The following metadata will show up in the PDF properties

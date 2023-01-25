@@ -20,6 +20,8 @@
 	--page-edge-space: 16px;
 	--page-list-space: calc(var(--page-edge-space) / 2);
 	--page-thin-space: calc(var(--page-edge-space) / 4);
+	--page-wide-space: calc(var(--page-edge-space) * 2);
+	--page-huge-space: calc(var(--page-edge-space) * 4);
 	--page-font-small: calc((3/4) * var(--page-font-normal));
 	--page-font-normal: 16px;
 	--page-font-large: calc( clamp(         var(--page-font-normal), 3.50vw, (5/4) * var(--page-font-normal) ) );
@@ -88,9 +90,8 @@ div#content
 {
 	display: block;
 	overflow: hidden;
-	margin: 0px auto 0px auto;
+	margin: var(--page-wide-space) auto var(--page-wide-space) auto;
 	max-width: var(--page-full-width);
-	padding-bottom: calc(var(--page-edge-space) * 2);
 }
 
 div#content > :first-child
@@ -108,7 +109,6 @@ div#header
 {
 	align-items: baseline;
 	border-bottom: var(--boarder-caliber);
-	margin-bottom: calc(var(--page-edge-space) * 2);
 	padding: var(--page-edge-space) 0px 0px 0px;
 }
 
@@ -248,6 +248,11 @@ dl > .footer-row:nth-of-type( 2 )
 	padding-top: var(--page-thin-space);
 }
 
+.footer-row > dt > img
+{
+    padding: 0px;
+}
+
 div.footer-end-cap > dl > span > dt
 {
 	margin-right: var(--page-list-space);
@@ -270,28 +275,37 @@ h2
 	font-size: var(--page-font-large);
 }
 
-#content p,
 #content h1,
 #content h2,
 #content h3,
 #content h4,
 #content h5,
-#content h6
+#content h6,
+#content p
 {
+	margin-bottom: var(--page-edge-space);
 	padding-left: var(--page-edge-space);
 	padding-right: var(--page-edge-space);
 }
 
-#content h1,
-#content h2,
-#content h3,
-#content h4,
-#content h5,
-#content h6
+#content h1
 {
-	display: grid;
+	margin-top: var(--page-wide-space);
 }
 
+#content h2,
+#content h3
+{
+	margin-top: calc(var(--page-edge-space) + var(--page-list-space));
+}
+
+#content h4,
+#content h5,
+#content h6,
+#content p
+{
+	margin-top: calc(var(--page-edge-space));
+}
 
 a
 {
@@ -345,13 +359,13 @@ img.icon
 	margin-bottom: var(--page-edge-space);
 }
 
-#blog-list
+div#content > dl#blog-list
 {
 	display: flex;
 	flex-direction: column;
 }
 
-#blog-list > span
+div#content > dl#blog-list > span
 {
 	display: flex;
 	flex-direction: row;
@@ -361,12 +375,12 @@ img.icon
 	text-overflow: ellipsis;
 }
 
-#blog-list > span > dt
+div#content > dl#blog-list > span > dt
 {
 	padding-right: 32px;
 }
 
-#blog-list > span > dd
+div#content > dl#blog-list > span > dd
 {
 	flex-grow: 1;
 	margin: 0;
@@ -396,6 +410,24 @@ img.icon
 #header-content > .brand-logo:hover
 {
 	transform: rotate(calc(1.5 * -360deg)) scale(calc(62/34));
+}
+
+
+figure {
+    display: block;
+    margin-block-start: 1.5em;
+    margin-block-end: 1.5em;
+    margin-inline-start: var(--page-edge-space);
+    margin-inline-end: var(--page-edge-space);
+    max-width: var(--page-full-width);
+}
+
+img
+{
+    display: block;
+    filter: var(--image-transform);
+    overflow: hidden;
+    margin: 0px auto 0px auto;
 }
 
 .download-formats-title
