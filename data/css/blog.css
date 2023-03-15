@@ -1,20 +1,89 @@
-/*
-*** BEGIN
-*** Weblog Post -- Front Matter
-*/
-
-#format-list-container
+html
 {
-	margin-left: -4px;
+	overflow-x: hidden;
 }
 
-#post-metadata
+#content :not( pre ) > code
+{
+	--code-line-radii: calc(var(--page-thin-space) * 2);
+	--code-line-sides: var(--page-thin-space);
+	border-left: var(--code-line-sides) solid var(--code-area-color);
+	border-radius: var(--code-line-radii);
+	border-right: var(--code-line-sides) solid var(--code-area-color);
+	box-shadow: 0 0 1px 1px var(--code-area-color);
+	margin-left: calc(var(--code-line-sides) * -1);
+	margin-right: calc(var(--code-line-sides) * -1);
+	width: fit-content;
+}
+
+#content code
+{
+	background: var(--code-area-color);
+	color: var(--code-text-color);
+	font-family: monospace;
+}
+
+#content pre > code
+{
+	/*
+	Variable Descriptors ( --code-snip-ample ):
+	  - Max width of page content
+	  - Boarder around page block
+	  - Padding around code block
+	  - Boarder around code block
+	  - Boarder around page block
+	*/
+	--code-snip-ample: calc( ( ( var(--page-full-width) ) + ( var(--boarder-breadth) * 2 ) )
+	- ( ( var(--page-edge-space) * 2 ) + ( var(--boarder-breadth) * 2 ) + ( var(--boarder-breadth) * 2 ) ));
+	/*
+	Variable Description ( --code-snip-sides ):
+	Here we want the margin of a code block to be either:
+	  -  0 px --> vw >= --page-full-width
+	  - -N px --> vw == --page-full-width - N / 2
+	  - -X px --> vw <= --page-full-width - 2 * var(--boarder-breadth)
+	This causes the border of the code block to merge with the border of the page body
+	*/
+	--code-snip-sides: clamp( calc( var(--boarder-breadth) * -1 )
+	, calc( ( var(--view-port-width) - var(--page-full-width) - (var(--boarder-breadth) * 2) ) / 2 )
+	, 0px);
+	/*
+	Variable Descriptors ( --code-snip-trunk ):
+	  - Screen size
+	  - Padding around code block
+	  - Boarder around code block
+	*/
+	--code-snip-trunk: calc( var(--view-port-width) - ( var(--page-edge-space) * 2 ) - ( var(--boarder-breadth) * 2 ) );
+	/*
+	This calculation subtracts the border and padding widths
+	from the viewport width to ensure that the code block
+	never exceeds the width of the viewport.
+
+	This is very important as failing to do so it will cause
+	the page body to exceed the viewport width and break many
+	of the beautiful flex rendering functionalities.
+	*/
+	--code-snip-width: min( var(--code-snip-ample), var(--code-snip-trunk) );
+	border: var(--boarder-caliber);
+	display: block;
+	margin-left: var(--code-snip-sides);
+	margin-right: var(--code-snip-sides);
+	overflow-x: auto;
+	padding: var(--page-edge-space);
+	width: var(--code-snip-width);
+}
+
+#post-front-matter
 {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-#post-metadata > .hash
+#post-front-matter #format-list-container
+{
+	margin-left: -4px;
+}
+
+#post-front-matter > .post-hash
 {
 	display: flex;
 	flex-grow: 1;
@@ -26,35 +95,13 @@
 	padding-right: var(--page-edge-space);
 }
 
-#post-metadata > div
-{
-	flex-grow: 100;
-	min-width: 0;
-}
-
-#post-metadata > div > ol
-{
-	list-style: none;
-	margin: 0px;
-	padding: 0px;
-}
-
-#post-metadata > div > ol > li
-{
-	height: var(--metadata-height);
-	line-height: var(--metadata-height);
-	text-align: left;
-	width: 168px;
-	word-spacing: -8.75px;
-}
-
-#post-metadata > .post-description
+#post-front-matter > .post-description
 {
 	margin-bottom: var(--page-edge-space);
 	margin-top: var(--page-edge-space);
 }
 
-#post-metadata > .post-description > dl
+#post-front-matter > .post-description > dl
 {
 	display: flex;
 	flex-direction: column;
@@ -62,11 +109,11 @@
 	min-width: 0px;
 }
 
-#post-metadata > .post-description > dl > span
+#post-front-matter > .post-description > dl > span
 {
 	display: flex;
-	flex-direction: row;
 	flex: 1;
+	flex-direction: row;
 	height: var(--metadata-height);
 	line-height: var(--metadata-height);
 	min-width: 0;
@@ -75,29 +122,19 @@
 	white-space: nowrap;
 }
 
-#post-metadata > .post-description > dl > span > dt
-{
-	height: var(--metadata-height);
-	line-height: var(--metadata-height);
-	padding-left: var(--page-edge-space);
-	padding-right: calc(var(--page-edge-space) * 2);
-	text-align: left;
-	width: var(--metadata-spread);
-}
-
-#post-metadata > .post-description > dl > span > dd
+#post-front-matter > .post-description > dl > span > dd
 {
 	flex-grow: 1;
 	height: var(--metadata-height);
 	line-height: var(--metadata-height);
 	margin: 0;
 	/*
-        Variable Descriptors ( max-width ):
-          - Screen size
-          - Width of the "dt" descriptor
-          - Padding surrounding "dt" & "dd"
-          - Width of the colored boarders
-        */
+	Variable Descriptors ( max-width ):
+	  - Screen size
+	  - Width of the "dt" descriptor
+	  - Padding surrounding "dt" & "dd"
+	  - Width of the colored boarders
+	*/
 	max-width: calc( var(--view-port-width)
 	- var(--metadata-spread)
 	- ( var(--page-edge-space) * 4 )
@@ -110,180 +147,129 @@
 	white-space: nowrap;
 }
 
-#post-metadata ~ h1:first-of-type {
-    margin-top: var(--page-edge-space);
+#post-front-matter > .post-description > dl > span > dt
+{
+	height: var(--metadata-height);
+	line-height: var(--metadata-height);
+	padding-left: var(--page-edge-space);
+	padding-right: calc(var(--page-edge-space) * 2);
+	text-align: left;
+	width: var(--metadata-spread);
 }
 
-/*
-*** CLOSE
-*** Weblog Post -- Front Matter
-*/
-
-/*
-*** BEGIN
-*** Weblog Post -- Exposition
-*/
-
-html
+#post-front-matter > div
 {
-	overflow-x: hidden;
+	flex-grow: 100;
+	min-width: 0;
 }
 
-code
+#post-front-matter > div > ol
 {
-	color: var(--code-text-color);
-	background: var(--code-area-color);
-	font-family: monospace;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
 }
 
-pre > code
+#post-front-matter > div > ol > li
 {
-	/*
-        Variable Description ( --code-snip-sides ):
-          Here we want the margin of a code block to be either:
-            *  0 px --> vw >= --page-full-width
-            * -N px --> vw == --page-full-width - N / 2
-            * -X px --> vw <= --page-full-width - 2 * var(--boarder-breadth)
-          This causes the border of the code block to merge with the border of the page body
-        */
-	--code-snip-sides: clamp( calc( var(--boarder-breadth) * -1 )
-	, calc( ( var(--view-port-width) - var(--page-full-width) - (var(--boarder-breadth) * 2) ) / 2 )
-	, 0px);
+	height: var(--metadata-height);
+	line-height: var(--metadata-height);
+	text-align: left;
+	width: 168px;
+	word-spacing: -8.75px;
+}
 
-	/*
-        This calculation subtracts the border and padding widths
-        from the viewport width to ensure that the code block
-        never exceeds the width of the viewport.
+#post-front-matter ~ h1:first-of-type
+{
+	margin-top: var(--page-edge-space);
+}
 
-        This is very important as failing to do so it will cause
-        the page body to exceed the viewport width and break many
-        of the beautiful flex rendering functionalities.
-        */
-	/*    --code-snip-width: min( var(--code-snip-ample), var(--code-snip-trunk));*/
-	--code-snip-width: min( var(--code-snip-ample), var(--code-snip-trunk) );
-
-	/*
-        Variable Descriptors ( --code-snip-ample ):
-          - Max width of page content
-          - Boarder around page block
-          - Padding around code block
-          - Boarder around code block
-          - Boarder around page block
-        */
-	--code-snip-ample: calc( ( ( var(--page-full-width) ) + ( var(--boarder-breadth) * 2 ) )
-	- ( ( var(--page-edge-space) * 2 ) + ( var(--boarder-breadth) * 2 ) + ( var(--boarder-breadth) * 2 ) ));
-
-	/*
-        Variable Descriptors ( --code-snip-trunk ):
-          - Screen size
-          - Padding around code block
-          - Boarder around code block
-        */
-	--code-snip-trunk: calc( var(--view-port-width) - ( var(--page-edge-space) * 2 ) - ( var(--boarder-breadth) * 2 ) );
-	border: var(--boarder-caliber);
+#post-text-matter :not( :is( h1, h2, h3, h4, h5, h6 ) ) + :is( h1, h2, h3, h4, h5, h6 )::before
+{
+	/* Insert "asterism" separators between sections within exposition */
+	content: "⁂";
 	display: block;
-	padding: var(--page-edge-space);
-	margin-left: var(--code-snip-sides);
-	margin-right: var(--code-snip-sides);
-	overflow-x: auto;
-	width: var(--code-snip-width);
+	font-size: var(--page-font-huge);
+	font-weight: bold;
+	margin-bottom: var(--page-wide-space);
+	margin-top: var(--page-wide-space);
+	padding-left: var(--page-edge-space);
+	padding-right: var(--page-edge-space);
+	text-align: center;
 }
 
-:not( pre ) > code
+
+#post-text-matter dd
 {
-	--code-line-radii: calc(var(--page-thin-space) * 2);
-	--code-line-sides: var(--page-thin-space);
-	/*  --code-line-sides: calc(var(--page-thin-space) + var(--boarder-breadth)); */
-	border-left: var(--code-line-sides) solid var(--code-area-color);
-	border-radius: var(--code-line-radii);
-	border-right: var(--code-line-sides) solid var(--code-area-color);
-	margin-left: calc(var(--code-line-sides) * -1);
-	margin-right: calc(var(--code-line-sides) * -1);
-	box-shadow: 0 0 1px 1px var(--code-area-color);
-        width: fit-content;
+	grid-column-start: 2;
+	margin-right: var(--page-edge-space);
 }
 
-/* Insert "asterism" separators between sections within exposition */
-:not( :is(h1, h2, h3, h4, h5, h6) ) + :is(h1, h2, h3, h4, h5, h6)::before
+#post-text-matter dd,
+#post-text-matter dt
 {
-    content: "⁂";
-    display: block;
-    font-size: var(--page-font-huge);
-    font-weight: bold;
-    margin-bottom: var(--page-wide-space);
-    margin-top: var(--page-wide-space);
-    padding-left: var(--page-edge-space);
-    padding-right: var(--page-edge-space);
-    text-align: center;
+	display: inline-flex;
+	margin-left: var(--page-edge-space);
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
-/* Insert "editorial coronis" at end of exposition */
-#post-exposition::after
+#post-text-matter dd::before
 {
-    content: "⸎";
-    display: block;
-    font-size: calc(var(--page-font-giant)*(6/5));
-    margin-bottom: calc(var(--page-edge-space) + var(--page-wide-space));
-    margin-top: var(--page-huge-space);
-    padding-left: var(--page-edge-space);
-    padding-right: var(--page-edge-space);
-    text-align: center;
+	content: "❱❭";
+	margin-right: var(--page-edge-space);
 }
 
-#post-exposition dl
+#post-text-matter dl
 {
-    display: grid;
-    grid-template-columns: max-content auto;
-    margin: calc(var(--page-edge-space));
+	display: grid;
+	grid-template-columns: max-content auto;
+	margin: calc(var(--page-edge-space));
 }
 
-#post-exposition dd,
-#post-exposition dt
+#post-text-matter dt
 {
-    display: inline-flex;
-    margin-left: var(--page-edge-space);
-    padding-left: 0px;
-    padding-right: 0px;
+	grid-column-start: 1;
 }
 
-#post-exposition dd
+#post-text-matter dt::before
 {
-    grid-column-start: 2;
-    margin-right: var(--page-edge-space);
+	content: "━";
+	margin-right: var(--page-edge-space);
 }
 
-#post-exposition dd::before
+#post-text-matter figcaption
 {
-    content: "❱❭";
-    margin-right: var(--page-edge-space);
+	font-size: var(--page-font-small);
+	margin-block-end: var(--page-edge-space);
+	margin-block-start: var(--page-edge-space);
+	text-align: center;
 }
 
-#post-exposition dt
+#post-text-matter img
 {
-    grid-column-start: 1;
+	margin-block-end: var(--page-edge-space);
+	margin-block-start: var(--page-edge-space);
+	max-width: calc(var(--page-full-width) - (var(--page-edge-space)*2) );
 }
 
-#post-exposition dt::before
+#post-text-matter ol
 {
-    content: "━";
-    margin-right: var(--page-edge-space);
+	margin: var(--page-wide-space);
+	padding-left: var(--page-wide-space);
+	padding-right: var(--page-wide-space);
 }
 
-#post-exposition ol
+#post-text-matter::after
 {
-    margin: var(--page-wide-space);
-    padding-left: var(--page-wide-space);
-    padding-right: var(--page-wide-space);
+	/* Insert "editorial coronis" at end of exposition */
+	content: "⸎";
+	display: block;
+	font-size: calc(var(--page-font-giant)*(6/5));
+	margin-bottom: calc(var(--page-edge-space) + var(--page-wide-space));
+	margin-top: var(--page-huge-space);
+	padding-left: var(--page-edge-space);
+	padding-right: var(--page-edge-space);
+	text-align: center;
 }
 
-#post-exposition img
-{
-    max-width: calc(var(--page-full-width) - (var(--page-edge-space)*2) );
-    padding-bottom: var(--page-wide-space);
-    padding-top: var(--page-wide-space);
-}
-
-/*
-*** CLOSE
-*** Weblog Post -- Exposition
-*/

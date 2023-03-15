@@ -5,7 +5,7 @@
 ---------------------------------------------------------------------------------
 
 executable-static: False
-with-compiler: ghc-9.2.4
+with-compiler: ghc-9.4.4
 
 
 ---------------------------------------------------------------------------------
@@ -144,6 +144,8 @@ allow-newer:
     aeson,
     -- Lagging project dependency
     memory,
+    -- Improved library
+    pandoc,
 
 constraints:
     pandoc +embed_data_files
@@ -151,4 +153,5 @@ constraints:
 preferences:
     aeson          >= 2.0.0,
     bytestring     >= 0.11.3,
+    pandoc         >= 3.1,
     text           >= 2.0,

@@ -140,7 +140,6 @@ collateBlogPostMetadata doc@(Pandoc _ blocks) = (wordCount, codeCount, hashDiges
         eatBlock :: Block -> PandocDigestion
         eatBlock (Table _ _ _ tHead tBody tFoot) = fold [eatHead tHead, foldMap eatBody tBody, eatFoot tFoot]
         eatBlock HorizontalRule                  = mempty
-        eatBlock Null                            = mempty
         eatBlock (CodeBlock _ txt     )          = codeAccum txt
         eatBlock (RawBlock  _ txt     )          = wordAccum txt
         eatBlock (Plain iPart         )          = eatLines iPart
@@ -148,6 +147,7 @@ collateBlogPostMetadata doc@(Pandoc _ blocks) = (wordCount, codeCount, hashDiges
         eatBlock (Header _ _ iPart    )          = eatLines iPart
         eatBlock (BlockQuote bPart    )          = eatBlocks bPart
         eatBlock (Div         _ bPart )          = eatBlocks bPart
+        eatBlock (Figure _ _  bParts  )          = eatBlocks bParts
         eatBlock (OrderedList _ bParts)          = foldMap eatBlocks bParts
         eatBlock (BulletList bParts   )          = foldMap eatBlocks bParts
         eatBlock (LineBlock  iParts   )          = foldMap eatLines iParts

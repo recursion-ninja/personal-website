@@ -415,10 +415,12 @@ div#content > dl#blog-list > span > dd
 
 figure {
     display: block;
-    margin-block-start: 1.5em;
-    margin-block-end: 1.5em;
-    margin-inline-start: var(--page-edge-space);
-    margin-inline-end: var(--page-edge-space);
+    margin-block-start: var(--page-wide-space);
+    margin-block-end: var(--page-wide-space);
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: var(--page-edge-space);
+    padding-inline-end: var(--page-edge-space);
     max-width: var(--page-full-width);
 }
 

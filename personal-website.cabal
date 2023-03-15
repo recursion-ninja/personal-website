@@ -1,6 +1,6 @@
 Cabal-Version: 3.4
 Name:          personal-website
-Version:       2.2.11
+Version:       2.2.12
 Stability:     Stable
 Build-Type:    Simple
                
@@ -61,7 +61,8 @@ Executable personal-website
     cryptonite >= 0.25,
     filepath >= 1.4.2.1,
     hakyll >= 4.13.4.1,
-    pandoc >= 2.10,
+    pandoc >= 3.1,
+--    pandoc >= 2.10,
     pandoc-types >= 1.21,
     process >= 1.6.7.0,
     text >= 1.2.3.2,

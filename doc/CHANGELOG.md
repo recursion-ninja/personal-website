@@ -5,6 +5,13 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 [GitHub-Ghangelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
 
 
+## 2.2.12 -- 12023-03-15
+
+  * Posted weblog: "Parsing Permutations"
+
+  * Updated to GHC-9.4.4
+
+
 ## 2.2.11 -- 12023-01-20
 
   * Added asterism section seperators in HTML weblog posts
@@ -16,8 +23,6 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
   * Improved rendering of "data lists"
 
   * Posted weblog: "Conspectus 12022 Q4"
-
-  * Posted weblog: "Parsing Permutations"
 
   * Updated to GHC-9.2.5
 

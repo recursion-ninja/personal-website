@@ -107,7 +107,6 @@ isSameBlockType (Header x _ _)   (Header y _ _)   = x == y
 isSameBlockType HorizontalRule   HorizontalRule   = True
 isSameBlockType Table{}          Table{}          = True
 isSameBlockType Div{}            Div{}            = True
-isSameBlockType Null             Null             = True
 isSameBlockType _                _                = False
 
 
