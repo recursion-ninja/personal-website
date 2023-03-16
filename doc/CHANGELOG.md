@@ -7,6 +7,8 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
 ## 2.2.12 -- 12023-03-15
 
+  * Corrected many spelling errors
+
   * Posted weblog: "Parsing Permutations"
 
   * Updated to GHC-9.4.4
