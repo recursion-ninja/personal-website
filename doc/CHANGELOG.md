@@ -5,6 +5,13 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 [GitHub-Ghangelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
 
 
+## 2.2.13 -- 12023-03-17
+
+  * Added responsive rendering of `figure` elements, rsiing to fit small viewports
+
+  * Corrected many spelling errors
+
+
 ## 2.2.12 -- 12023-03-15
 
   * Posted weblog: "Parsing Permutations"

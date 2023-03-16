@@ -11,7 +11,7 @@ date:     2023-03-15
 Since 2015 I have intermittently worked with [Mark Karpov][gh-mrkkrp] on the venerable [`megaparsec`][mp-package] Haskell package.
 With the release of [`megaparsec-6.0.0`][mp-v6.0.0], all polymorphic parsing combinators were moved to the newly released [`parser-combinators`][pc-package] package.
 Unlike `megaparsec`, `parser-combinators` is a fully generic parsing package with a truly minimal dependency footprint! 
-According to a hackage reverse dependency query, `parser-combinators` is a *direct* [depenacy of 63 packages][pc-rev-dep] at the time of writing, so ecosystem adoption is modest but notable.
+According to a hackage reverse dependency query, `parser-combinators` is a *direct* [dependency of 63 packages][pc-rev-dep] at the time of writing, so ecosystem adoption is modest but notable.
 
 With the release of [`parser-combinators-0.2.0`][pc-v0.2.0] I added the [`Control.Applicative.Permutations`][pc-module] module, and since then my maintenance contributions to both `megaparsec` and `parser-combinators` has waned to primarily this sole module.
 Despite the module's small interface, simple type signatures, and succinct code, I greatly appreciate the practicality provided as well as the theoretical underpinnings.
@@ -25,7 +25,7 @@ While the correctness and elegance of this pearl will never age, what follows is
 # Postulate
 
 My present comprehension of and commentary on permutation paring did not manifest from the ether.
-The inciting incedent emerged as an evidently [innocent issue][gh-feature].
+The inciting incident emerged as an evidently [innocent issue][gh-feature].
 A feature request was made for an extension of the [`parser-combinators`][pc-v0.2.0] package's [`Control.Applicative.Permutations`][pc-module] module to include the following additional parser combinator definitions:
 
 ```
@@ -50,7 +50,7 @@ spec = (,,)
     <*> somePerm (char 'c')
 ```
 
-The feature request expects the behavior of `spec` to successpully parse the following input/output pairings:
+The feature request expects the behavior of `spec` to successfully parse the following input/output pairings:
 
 `"abc"`
   ~ `('a', Just 'b', "c" )`
@@ -64,7 +64,7 @@ The feature request expects the behavior of `spec` to successpully parse the fol
 `"cabc"`
   ~ `('a', Just 'b', "cc")`
 
-The last three pairings exemplify how the semantics of the requested parser combinators differs from the existing cominators' functionality, by "grouping up" `'c'` values encountered within the input string and returning the collection of `'c'` values in the third slot of the permutation parser's result.
+The last three pairings exemplify how the semantics of the requested parser combinators differs from the existing combinators' functionality, by "grouping up" `'c'` values encountered within the input string and returning the collection of `'c'` values in the third slot of the permutation parser's result.
 
 
 Permutation Parsers
@@ -126,7 +126,7 @@ At the root of the tree the permutation parser attempts to parse each of the $N$
 The edges leading from the root node to the second layer of nodes correspond to successfully parsing one of the combinators.
 For each successfully parsed combinator at the root node, the computation follows the corresponding edge to the node in the second layer.
 Note that not all nodes on the second layer are visited.
-A parse failure of a combinator means that the corresponding edge to the second layer will not be traversed and the whole subtree will be pruned from the computation.
+A parse failure of a combinator means that the corresponding edge to the second layer will not be traversed and the whole sub-tree will be pruned from the computation.
 
 
 Each node in the second layer uniquely represents the partial computation state of $1$ successful combinator parse result.
@@ -134,12 +134,12 @@ The partial computation at the node contains the result of the permutation combi
 The nondeterministic computation continues on the second level with each visited node independently resuming the partial computation.
 The nodes attempt to parse the $N-1$ combinators remaining, excluding the $1$ combinator which has a parse result stored in the node's partial computation.
 Similarly to the root node, for each successfully parsed combinator at the node in the second layer, the computation follows the corresponding edge to the node in the third layer.
-Again, a parse failure of a combinator on the second layer means that the corresponding edge to the third layer will not be traversed and the whole subtree will be pruned from the computation.
+Again, a parse failure of a combinator on the second layer means that the corresponding edge to the third layer will not be traversed and the whole sub-tree will be pruned from the computation.
 
 This form of nondeterministically extending partial computations down a tree, pruning the search space on combinator parse failures continues.
 Generally speaking, when parsing a permutation with $N$ combinators, a tree of height $N$ is produced.
 The root node is said to have height $N$ and the leaves are said to have height $0$.
-On the layer with height $x$, each node contains a partial computation with $N-x$ combinator results from the path to the root node and there are $x$ remaining combinators which must be parsed in the node's (inclusive) subtree.
+On the layer with height $x$, each node contains a partial computation with $N-x$ combinator results from the path to the root node and there are $x$ remaining combinators which must be parsed in the node's (inclusive) sub-tree.
 The nodes within the layer with height $$` each attempt to parse their unique set of $x$ remaining combinators, excluding the unique set of $N-x$ combinators which parse results are already stored in the node's partial computation.
 For each successfully parsed combinator, the computation follows the corresponding edge to the node in the layer with height $x-1$.
 A parse failure of a combinator corresponding edge to the layer with height $x-1$ will not be traversed and the subtree beneath the untraversed edge will be pruned from the computation.

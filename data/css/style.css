@@ -414,6 +414,14 @@ div#content > dl#blog-list > span > dd
 
 
 figure {
+    --figure-horizontal-margins: calc( var(--page-edge-space) * 2 );
+
+    --figure-width: calc(100% - var(--figure-horizontal-margins));
+
+    --figure-width-max: calc( var(--page-full-width) - var(--figure-horizontal-margins) );
+
+    --figure-width-min: calc( 400px - var(--figure-horizontal-margins) );
+
     display: block;
     margin-block-start: var(--page-wide-space);
     margin-block-end: var(--page-wide-space);
@@ -421,8 +429,18 @@ figure {
     margin-inline-end: 0px;
     padding-inline-start: var(--page-edge-space);
     padding-inline-end: var(--page-edge-space);
-    max-width: var(--page-full-width);
+    max-width: var(--figure-width-max);
+    min-width: var(--figure-width-min);
+    width: var(--figure-width);
+    
 }
+
+
+figure > img
+{
+    width: 100%;
+}
+
 
 img
 {
