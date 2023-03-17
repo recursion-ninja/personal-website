@@ -104,11 +104,6 @@ failure = ('a', "bbb", "ccc")
 ```
 
 
-## Permutation Parsing Mechanics
-
-The implementation of permutations paring is based on the functional pearl paper (citation impending). 
-
-
 ### Alternation Trees
 
 The way permutations are parsed is via a tree structure.
