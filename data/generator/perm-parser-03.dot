@@ -1,0 +1,159 @@
+# Place the cursor inside "graph" to get some refactoring options
+
+graph {
+graph [ fontname="courier", fontsize="45pt" ];
+edge  [ fontname="courier", fontsize="45pt", headport="n", tailport="s" ];
+node  [ fontname="courier", fontsize="45pt", fixedsize=true, height=2, width=3.5, shape=record, style=rounded ];
+bgcolor="transparent"
+rankdir="TB"
+ranksep=1.5
+splines=line
+
+  n_R___ [ label = "(_,_,_)", group=g06 ];
+
+  n_RA__ [ label = "(a,_,_)", group=g02 ];
+  n_R_B_ [ label = "(_,b,_)", group=g06 ];
+  n_R__C [ label = "(_,_,c)", group=g10 ];
+
+  n_AAB_ [ label = "(a,b,_)", group=g01 ];
+  n_AA_C [ label = "(a,_,c)", group=g03 ];
+  n_BAB_ [ label = "(a,b,_)", group=g04 ];
+  n_B_BC [ label = "(_,b,c)", group=g06 ];
+  n_CA_C [ label = "(a,_,c)", group=g10 ];
+  n_C_BC [ label = "(_,b,c)", group=g11 ];
+
+  n_ABX   [ label = "(a,b,c)",  group=g01 ];
+  n_ACX   [ label = "(a,b,c)",  group=g03 ];
+  n_BAC   [ label = "(a,b,c)",  group=g04 ];
+  n_B2A_  [ label = "(a,b²,_)", group=g04 ];
+  n_BCX   [ label = "(a,b,c)",  group=g06 ];
+//  n_CAX   [ label = "(a,b,c)",  group=g10 ];
+//  n_CBX   [ label = "(a,b,c)",  group=g11 ];
+
+  n_AB2C [ label = "(a,b²,c)",   group=g01 ];
+  n_AC2B [ label = "(a,b,c²)",   group=g03 ];
+
+  n_AB2C2 [ label = "(a,b²,c²)", group=g1 ];
+  n_AC2B2 [ label = "(a,b²,c²)", group=g3 ];
+
+  n_B2ACx [ label = "(a,b²,c)",  group=g03 ];
+  n_B2AC  [ label = "(a,b²,c)",  group=g04 ];
+
+  n_B2AC2 [ label = "(a,b²,c²)", group=g03 ];
+  n_B3AC  [ label = "(a,b³,c)",  group=g04 ];
+
+  n_B2CX  [ label = "(a,b²,c)",  group=g05 ];
+  n_BC2X  [ label = "(a,b,c²)",  group=g06 ];
+
+  n_B2C2X  [ label = "(a,b²,c²)", group=g05 ];
+  n_B2C2Xx [ label = "(a,b²,c²)", group=g06 ];
+
+  n_B_B2C [ label = "(_,b²,c)",   group=g07 ];
+
+//  n_B_B2CA [ label = "(a,b²,c)",  group=g06 ];
+//  n_B_B2C2 [ label = "(_,b²,c²)", group=g08 ];
+
+
+  n_CA_CB   [ label = "(a,b,c)",   group=g09 ];
+  n_CA_C2   [ label = "(a,_,c²)",  group=g10 ];
+  n_CA_CBC  [ label = "(a,b,c²)",  group=g09 ];
+  n_CA_C2B  [ label = "(a,b,c²)",  group=g10 ];
+  n_CA_C2B2 [ label = "(a,b²,c²)", group=g09 ];
+  n_CA_C3B1 [ label = "(a,b,c³)",  group=g10 ];
+
+//  n_C_BC2   [ label = "(_,b,c²)", group=g9 ];
+
+//  n_B_B3CA  [ label = "(a,b³,c)",  group=g7 ];
+//  n_B_B2C2A [ label = "(a,b²,c²)", group=g7 ];
+
+//  n_B_B2C2Ax [ label = "(a,b²,c²)", group=g8 ];
+//  n_B_B3C2   [ label = "(_,b³,c²)", group=g8 ];
+
+  n_Dots01 [ label = "⋮", group=g01, shape=plaintext ];
+  n_Dots02 [ label = "⋮", group=g02, shape=plaintext ];
+  n_Dots03 [ label = "⋮", group=g03, shape=plaintext ];
+  n_Dots04 [ label = "⋮", group=g04, shape=plaintext ];
+  n_Dots05 [ label = "⋮", group=g05, shape=plaintext ];
+  n_Dots06 [ label = "⋮", group=g06, shape=plaintext ];
+  n_Dots07 [ label = "⋮", group=g07, shape=plaintext ];
+  n_Dots08 [ label = "⋮", group=g08, shape=plaintext ];
+  n_Dots09 [ label = "⋮", group=g09, shape=plaintext ];
+  n_Dots10 [ label = "⋮", group=g10, shape=plaintext ];
+  n_Dots11 [ label = "⋮", group=g11, shape=plaintext ];
+  n_Dots12 [ label = "⋮", group=g12, shape=plaintext ];
+
+
+  n_R___ -- n_RA__ [ headlabel=<<B> a </B>>, labeldistance=9.50, labelangle=25 ];
+  n_R___ -- n_R_B_ [ label=<<B> b*</B>> ];
+  n_R___ -- n_R__C [ label=<<B> c+</B>> ];
+
+  n_RA__ -- n_AAB_ [    xlabel=<<B> b*</B>> ];
+  n_RA__ -- n_AA_C [ headlabel=<<B> c+</B>>, labeldistance=9.00, labelangle=-25 ];
+  n_R_B_ -- n_BAB_ [    xlabel=<<B> a </B>> ];
+  n_R_B_ -- n_B_BC [ headlabel=<<B> c+</B>>, labeldistance=8.50, labelangle=-35 ];
+  n_R__C -- n_CA_C [    xlabel=<<B> a </B>> ];
+  n_R__C -- n_C_BC [ headlabel=<<B> b*</B>>, labeldistance=9.50, labelangle=-30 ];
+
+  n_AAB_ -- n_ABX  [    xlabel=<<B> c+ </B>> ];
+  n_AA_C -- n_ACX  [    xlabel=<<B> b* </B>> ];
+  n_BAB_ -- n_B2A_ [ headlabel=<<B> b*</B>>, labeldistance=9.00, labelangle=-25 ];
+  n_BAB_ -- n_BAC  [    xlabel=<<B> c+ </B>> ];
+  n_B_BC -- n_BCX  [    xlabel=<<B> a </B>> ];
+//  n_C_BC -- n_CBX [ xlabel=<<B> a </B>> ];
+//  n_C_BC -- n_C_BC2 [ xlabel=<<B> c+ </B>> ];
+
+  n_ABX -- n_AB2C [ xlabel=<<B> b* </B>> ];
+  n_ACX -- n_AC2B [ xlabel=<<B> c+ </B>> ];
+
+  n_AB2C -- n_AB2C2 [ xlabel=<<B> c+ </B>> ];
+  n_AC2B -- n_AC2B2 [ xlabel=<<B> b* </B>> ];
+
+  n_B2A_ -- n_B2AC  [ xlabel=<<B> c+ </B>> ];
+  n_BAC  -- n_B2ACx [ xlabel=<<B> b* </B>> ];
+
+  n_B2AC  -- n_B3AC  [ xlabel=<<B> b* </B>> ];
+  n_B2ACx -- n_B2AC2 [ xlabel=<<B> c+ </B>> ];
+
+  n_BCX -- n_B2CX    [    xlabel=<<B> b* </B>> ];
+  n_BCX -- n_BC2X    [ headlabel=<<B> c+</B>>, labeldistance=9.00, labelangle=-25 ];
+
+  n_B2CX -- n_B2C2X  [ xlabel=<<B> c+ </B>> ];
+  n_BC2X -- n_B2C2Xx [ xlabel=<<B> b* </B>> ];
+
+  n_B_BC -- n_B_B2C  [ headlabel=<<B> b*</B>>, labeldistance=9.50, labelangle=-30 ];
+
+//  n_B_B2C -- n_B_B2CA [ xlabel=<<B> a </B>> ];
+//  n_B_B2C -- n_B_B2C2 [ xlabel=<<B> c+ </B>> ];
+//  n_B_B2CA  -- n_Dots9  [ xlabel=<<B> c+ </B>> ]; // -- n_B_B3CA  [ xlabel=<<B> b* </B>> ];
+//  n_B_B2CA  -- n_Dots10 [ xlabel=<<B> b* </B>> ]; // -- n_B_B2C2A [ xlabel=<<B> c+ </B>> ];
+//  n_B_B2CA  -- n_B_B3CA  [ xlabel=<<B> b* </B>> ];
+//  n_B_B2CA  -- n_B_B2C2A [ xlabel=<<B> c+ </B>> ];
+//  n_B_B3CA  -- n_Dots9  [ xlabel=<<B> c+ </B>> ];
+//  n_B_B2C2A -- n_Dots10 [ xlabel=<<B> b* </B>> ];
+
+
+//  n_B_B2C2 -- n_B_B2C2Ax [ xlabel=<<B> a </B>> ];  
+//  n_B_B2C2 -- n_B_B3C2   [ xlabel=<<B> b* </B>> ];
+
+  n_CA_C -- n_CA_CB [ xlabel=<<B> b* </B>> ];
+  n_CA_C -- n_CA_C2 [ headlabel=<<B> c+</B>>, labeldistance=9.00, labelangle=-25 ];
+
+  n_CA_CB -- n_CA_CBC [ xlabel=<<B> c+ </B>> ];
+  n_CA_C2 -- n_CA_C2B [ xlabel=<<B> b* </B>> ];
+
+  n_CA_CBC -- n_CA_C2B2 [ xlabel=<<B> b* </B>> ];
+  n_CA_C2B -- n_CA_C3B1 [ xlabel=<<B> c+ </B>> ];
+
+  n_AB2C2    -- n_Dots01 [    xlabel=<<B> b* </B>> ];
+  n_AC2B2    -- n_Dots02 [    xlabel=<<B> c+ </B>> ];
+  n_B2AC2    -- n_Dots03 [    xlabel=<<B> b* </B>> ];
+  n_B3AC     -- n_Dots04 [    xlabel=<<B> c+ </B>> ];
+  n_B2C2X    -- n_Dots05 [    xlabel=<<B> b* </B>> ];
+  n_B2C2Xx   -- n_Dots06 [    xlabel=<<B> c+ </B>> ];
+  n_B_B2C    -- n_Dots07 [    xlabel=<<B> a </B>>  ];
+  n_B_B2C    -- n_Dots08 [ headlabel=<<B> c+</B>>, labeldistance=13.25, labelangle=-15 ];
+  n_CA_C2B2  -- n_Dots09 [    xlabel=<<B> c+ </B>> ];
+  n_CA_C3B1  -- n_Dots10 [    xlabel=<<B> b* </B>> ];
+  n_C_BC     -- n_Dots11 [    xlabel=<<B> a </B>>  ];
+  n_C_BC     -- n_Dots12 [ headlabel=<<B> c+</B>>, labeldistance=13.25, labelangle=-15 ];
+}

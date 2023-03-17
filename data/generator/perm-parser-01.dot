@@ -1,0 +1,63 @@
+# Place the cursor inside "graph" to get some refactoring options
+
+graph {
+graph [ fontname="courier", fontsize="30pt" ];
+edge  [ fontname="courier", fontsize="45pt", headport="n", tailport="s" ];
+node  [ fontname="courier", fontsize="30pt", fixedsize=true, height=2, width=3.5, shape=record, style=rounded ];
+bgcolor="transparent"
+rankdir="TB"
+ranksep=1.5
+splines=line
+
+  n_R___ [ group=g5, label = <{ (__,__,__) | <I>"ccba"</I> }> ];
+
+  n_RA__ [ group=g2, label = <<B>FAIL</B>>, fontsize="45pt", shape=Mcircle, style=bold, width=1.5 ];
+  n_R_B_ [ group=g5, label = <{ (__,<I>""</I>,__) | <I>"ccba"</I> }>, ];
+  n_R__C [ group=g8, label = <{ (__,__,<I>"cc"</I>) | <I>"ba"</I> }>, ];
+
+  n_AAB_ [ group=g1, style = invis ];
+  n_AA_C [ group=g3, style = invis ];
+  n_BAB_ [ group=g4, label = <<B>FAIL</B>>, fontsize="45pt", shape=Mcircle, style=bold, width=1.5 ];
+  n_B_BC [ group=g6, label = <{ (__,<I>""</I>,<I>"cc"</I>) | <I>"ba"</I> }>, ];
+  n_CA_C [ group=g7, label = <<B>FAIL</B>>, fontsize="45pt", shape=Mcircle, style=bold, width=1.5 ];
+  n_C_BC [ group=g9, label = <{ (__,<I>"b"</I>,<I>"cc"</I>) | <I>"a"</I> }>, ];
+
+  n_ABX  [ group=g1, style = invis ];
+  n_ACX  [ group=g3, style = invis ];
+  n_BAX  [ group=g4, style = invis ];
+  n_BCX  [ group=g6, label = <<B>FAIL</B>>, fontsize="45pt", shape=Mcircle, style=bold, width=1.5 ];
+  n_CAX  [ group=g7, style = invis ];
+  n_CBX  [ group=g9, label = <{ (<I>"a"</I>,<I>"b"</I>,<I>"cc"</I>) | <I>""</I> }>, penwidth=2];
+
+  n_XABC [ label =<<B>ab*c+</B>>, shape=house, style=bold, fontsize="45pt" ];
+  n_XACB [ label =<<B>ac+b*</B>>, shape=house, style=bold, fontsize="45pt" ];
+  n_XBAC [ label =<<B>b*ac+</B>>, shape=house, style=bold, fontsize="45pt" ];
+  n_XBCA [ label =<<B>b*c+a</B>>, shape=house, style=bold, fontsize="45pt" ];
+  n_XCAB [ label =<<B>c+ab*</B>>, shape=house, style=bold, fontsize="45pt" ];
+  n_XCBA [ label =<<B>c+b*a</B>>, shape=house, style=bold, fontsize="45pt" ];
+  
+  n_R___ -- n_RA__ [ headlabel=<<B> a </B>>, labeldistance=9.5, labelangle=25 ];
+  n_R___ -- n_R_B_ [ label=<<B> b*</B>> ];
+  n_R___ -- n_R__C [ label=<<B> c+</B>> ];
+
+  n_RA__ -- n_AAB_ [ style = invis ];
+  n_RA__ -- n_AA_C [ style = invis ];
+  n_R_B_ -- n_BAB_ [    xlabel=<<B> a </B>> ];
+  n_R_B_ -- n_B_BC [ headlabel=<<B> c+</B>>, labeldistance=8.5, labelangle=-30 ];
+  n_R__C -- n_CA_C [    xlabel=<<B> a </B>> ];
+  n_R__C -- n_C_BC [ headlabel=<<B> b*</B>>, labeldistance=9.5, labelangle=-30 ];
+
+  n_AAB_ -- n_ABX [ style = invis ];
+  n_AA_C -- n_ACX [ style = invis ];
+  n_BAB_ -- n_BAX [ style = invis ];
+  n_B_BC -- n_BCX [ xlabel=<<B> a </B>> ];
+  n_CA_C -- n_CAX [ style = invis ];
+  n_C_BC -- n_CBX [ xlabel=<<B> a </B>> ];
+
+  n_ABX -- n_XABC [ style=invis ];
+  n_ACX -- n_XACB [ style=invis ];
+  n_BAX -- n_XBAC [ style=invis ];
+  n_BCX -- n_XBCA [ style=invis ];
+  n_CAX -- n_XCAB [ style=invis ];
+  n_CBX -- n_XCBA [ style=invis ];
+}

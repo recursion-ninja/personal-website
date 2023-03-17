@@ -33,6 +33,15 @@
 	--view-port-width: calc(100vw - var(--scrollbar-width));
 }
 
+a
+{
+	color: var(--page-text-color);
+	text-align: center;
+	text-decoration: underline;
+	/* This is a pleasing offset */
+	text-underline-offset: 2px;
+}
+
 /* Disable scroll bars so 100vw rendering works correctly */
 html::-webkit-scrollbar
 {
@@ -41,8 +50,13 @@ html::-webkit-scrollbar
 	width: 0px;
 }
 
-html,
-body
+#blog-list-title
+{
+	margin-bottom: var(--page-edge-space);
+}
+
+body,
+html
 {
 	height: 100%;
 	position: relative;
@@ -60,6 +74,38 @@ body
 	color: var(--page-text-color);
 	font-size: var(--page-font-normal);
 	font-family: 'DejaVu Sans Mono', monospace;
+}
+
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6,
+#content p
+{
+	margin-bottom: var(--page-edge-space);
+	padding-left: var(--page-edge-space);
+	padding-right: var(--page-edge-space);
+}
+
+#content h1
+{
+	margin-top: var(--page-wide-space);
+}
+
+#content h2,
+#content h3
+{
+	margin-top: calc(var(--page-edge-space) + var(--page-list-space));
+}
+
+#content h4,
+#content h5,
+#content h6,
+#content p
+{
+	margin-top: calc(var(--page-edge-space));
 }
 
 #copyright-icon
@@ -104,6 +150,37 @@ div#content > :last-child
 	margin-bottom: 0px;
 }
 
+div#content > dl#blog-list
+{
+	display: flex;
+	flex-direction: column;
+}
+
+div#content > dl#blog-list > span
+{
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+div#content > dl#blog-list > span > dt
+{
+	padding-right: 32px;
+}
+
+div#content > dl#blog-list > span > dd
+{
+	flex-grow: 1;
+	margin: 0;
+	overflow: hidden;
+	padding-left: calc(var(--page-edge-space));
+	text-align: right;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 
 div#header
 {
@@ -222,6 +299,11 @@ div#footer-left > dl
 	float: left;
 }
 
+div#footer-left > div > ul.download-formats-list > li
+{
+	padding-top: var(--page-thin-space);
+}
+
 div#footer-right > dl
 {
 	float: right;
@@ -242,17 +324,6 @@ div.footer-end-cap > dl > span
 	flex-direction: row;
 }
 
-div > .footer-row:nth-of-type( 2 ),
-dl > .footer-row:nth-of-type( 2 )
-{
-	padding-top: var(--page-thin-space);
-}
-
-.footer-row > dt > img
-{
-    padding: 0px;
-}
-
 div.footer-end-cap > dl > span > dt
 {
 	margin-right: var(--page-list-space);
@@ -265,75 +336,15 @@ div.footer-end-cap > dl > span > dd
 	text-align: left;
 }
 
-h1
-{
-	font-size: var(--page-font-huge);
-}
-
-h2
-{
-	font-size: var(--page-font-large);
-}
-
-#content h1,
-#content h2,
-#content h3,
-#content h4,
-#content h5,
-#content h6,
-#content p
-{
-	margin-bottom: var(--page-edge-space);
-	padding-left: var(--page-edge-space);
-	padding-right: var(--page-edge-space);
-}
-
-#content h1
-{
-	margin-top: var(--page-wide-space);
-}
-
-#content h2,
-#content h3
-{
-	margin-top: calc(var(--page-edge-space) + var(--page-list-space));
-}
-
-#content h4,
-#content h5,
-#content h6,
-#content p
-{
-	margin-top: calc(var(--page-edge-space));
-}
-
-a
-{
-	color: var(--page-text-color);
-	text-align: center;
-	text-decoration: underline;
-	/* This is a pleasing offset */
-	text-underline-offset: 2px;
-}
-
-ul.download-formats-list
-{
-	display: flex;
-	flex-direction: row;
-	list-style: none;
-	margin: 0;
-	padding-left: 0px;
-}
-
-ul.download-formats-list > li
-{
-	padding-left: var(--page-thin-space);
-	padding-right: var(--page-thin-space);
-}
-
-div#footer-left > div > ul.download-formats-list > li
+div > .footer-row:nth-of-type( 2 ),
+dl > .footer-row:nth-of-type( 2 )
 {
 	padding-top: var(--page-thin-space);
+}
+
+.download-formats-title
+{
+    text-align:center;
 }
 
 .center-inner-content
@@ -342,76 +353,6 @@ div#footer-left > div > ul.download-formats-list > li
 	justify-content: center;
 	width: 100%;
 }
-
-.match-color
-{
-	filter: var(--image-transform);
-}
-
-img.icon
-{
-	height: var(--image-icon-size);
-	margin-bottom: -3px;
-}
-
-#blog-list-title
-{
-	margin-bottom: var(--page-edge-space);
-}
-
-div#content > dl#blog-list
-{
-	display: flex;
-	flex-direction: column;
-}
-
-div#content > dl#blog-list > span
-{
-	display: flex;
-	flex-direction: row;
-	flex: 1;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-div#content > dl#blog-list > span > dt
-{
-	padding-right: 32px;
-}
-
-div#content > dl#blog-list > span > dd
-{
-	flex-grow: 1;
-	margin: 0;
-	overflow: hidden;
-	padding-left: calc(var(--page-edge-space));
-	text-align: right;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.logo-box
-{
-	border: 0px;
-	padding: 0px;
-	height: var(--bookends-height);
-	width: var(--bookends-height);
-	margin: var(--page-edge-space);
-	margin-top: 0px;
-}
-
-#header-content > .brand-logo
-{
-	filter: var(--image-transform);
-	transition: transform calc(1.5 * .75s) ease-in-out;
-}
-
-#header-content > .brand-logo:hover
-{
-	transform: rotate(calc(1.5 * -360deg)) scale(calc(62/34));
-}
-
 
 figure {
     --figure-horizontal-margins: calc( var(--page-edge-space) * 2 );
@@ -435,12 +376,36 @@ figure {
     
 }
 
+.footer-row > dt > img
+{
+    padding: 0px;
+}
 
 figure > img
 {
     width: 100%;
 }
 
+h1
+{
+	font-size: var(--page-font-huge);
+}
+
+h2
+{
+	font-size: var(--page-font-large);
+}
+
+#header-content > .brand-logo
+{
+	filter: var(--image-transform);
+	transition: transform calc(1.5 * .75s) ease-in-out;
+}
+
+#header-content > .brand-logo:hover
+{
+	transform: rotate(calc(1.5 * -360deg)) scale(calc(62/34));
+}
 
 img
 {
@@ -450,9 +415,25 @@ img
     margin: 0px auto 0px auto;
 }
 
-.download-formats-title
+img.icon
 {
-    text-align:center;
+	height: var(--image-icon-size);
+	margin-bottom: -3px;
+}
+
+.logo-box
+{
+	border: 0px;
+	padding: 0px;
+	height: var(--bookends-height);
+	width: var(--bookends-height);
+	margin: var(--page-edge-space);
+	margin-top: 0px;
+}
+
+.match-color
+{
+	filter: var(--image-transform);
 }
 
 #title-feed-atom
@@ -463,4 +444,19 @@ img
 #title-feed-rss
 {
     margin-left: -4px;
+}
+
+ul.download-formats-list
+{
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	margin: 0;
+	padding-left: 0px;
+}
+
+ul.download-formats-list > li
+{
+	padding-left: var(--page-thin-space);
+	padding-right: var(--page-thin-space);
 }
