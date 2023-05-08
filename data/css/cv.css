@@ -20,7 +20,7 @@
 	display: flex;
 	font-size: var(--page-font-large);
 	flex-direction: row;
-	margin-top: var(--page-list-space);
+	margin-top: var(--page-edge-space);
 	margin-bottom: var(--page-thin-space);
 }
 
@@ -161,6 +161,7 @@ dl#connections-list
 {
 	display: flex;
 	flex-direction: column;
+	line-height: 1;
 	margin-bottom: 0px;
 	margin-top: 0px;
 }
@@ -202,7 +203,12 @@ dl#connections-list > span > dd > p
 	padding: 0px;
 }
 
-a > img
+p > a
+{
+	display: inline-block;
+}
+
+p > a > img
 {
 	margin-bottom: calc(var(--page-thin-space) * -1);
 }

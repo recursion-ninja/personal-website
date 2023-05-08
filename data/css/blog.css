@@ -175,8 +175,8 @@ html
 	height: var(--metadata-height);
 	line-height: var(--metadata-height);
 	text-align: left;
-	width: 168px;
-	word-spacing: -8.75px;
+	width: 200px;
+	word-spacing: -7px;
 }
 
 #post-front-matter ~ h1:first-of-type

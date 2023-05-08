@@ -5,6 +5,15 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 [GitHub-Ghangelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
 
 
+## 2.2.15 -- 12023-05-07
+
+  * Corrected CSS rending of DOI links on CV page
+
+  * Increased `line-height` value for easier reading
+
+  * Updating CV content
+
+
 ## 2.2.14 -- 12023-03-29
 
   * Posted weblog: "Responsible A.I. Admonition"

@@ -1,6 +1,6 @@
 :root
 {
-	--animation-width: calc(var(--page-edge-space) - var(--boarder-breadth));
+	--animation-width: calc(var(--pge-edge-space) - var(--boarder-breadth));
 	--boarder-breadth: 2px;
 	--boarder-caliber: var(--boarder-breadth) var(--page-text-color) solid;
 	/* Variable Descriptors ( --bookends-height ):
@@ -13,7 +13,8 @@
 	--image-logo-size: 19px;
 	--image-icon-size: 15px;
 	--image-transform: invert(93%) sepia(4%) saturate(960%) hue-rotate(46deg) brightness(87%) contrast(80%);
-	--metadata-height: 21px;
+        --line-nice-space: 1.6;
+	--metadata-height: 25px;;
 	--metadata-spread: 95px;
 	--page-area-color: #07071A;
 	--page-text-color: #AFCF9F;
@@ -76,6 +77,11 @@ body
 	font-family: 'DejaVu Sans Mono', monospace;
 }
 
+#content
+{
+	line-height: var(--line-nice-space);
+}
+
 #content h1,
 #content h2,
 #content h3,
@@ -106,6 +112,11 @@ body
 #content p
 {
 	margin-top: calc(var(--page-edge-space));
+}
+
+#content p
+{
+	line-height: var(--line-nice-space);
 }
 
 #copyright-icon
@@ -154,6 +165,7 @@ div#content > dl#blog-list
 {
 	display: flex;
 	flex-direction: column;
+	line-height: var(--line-nice-space);
 }
 
 div#content > dl#blog-list > span

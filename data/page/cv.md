@@ -23,13 +23,8 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 ## Hunter College - CUNY `New York, NY`
 ### M.A. Computer Science `Aug 2022`
 
-  - Overall GPA: 4.00
-
 ## University of Wisconsin - Milwaukee `Milwaukee, WI`
 ### B.S. Computer Science, Mathematics (Double Major) `Dec 2014`
-
-  - Overall GPA: 3.44
-  - Nine semesters: Concurrently full time student & **employed full time**
 
 
 # Distinctions
