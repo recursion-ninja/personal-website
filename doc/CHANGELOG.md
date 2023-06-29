@@ -15,6 +15,10 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Enhanced PDF rendering to optionally use the `xelatex` engine instead of `pdflatex`
 
+  * Enhanced rendering of tables in HTML output
+
+  * Enhanced rendering of tables in PDF output
+
   * Updated to GHC-9.4.5
 
   * Updated to GHC-9.2.7

@@ -10,4 +10,4 @@ import Text.Pandoc.Writers
 compileFormatEPUB :: FormatCompiler
 compileFormatEPUB _ inputPath inputRoute _ = match inputPath . version "epub" $ do
     route $ inputRoute "epub"
-    compile $ compilerFromWriter "epubCompiler" writeEPUB3
+    compile $ compilerFromWriter' "epubCompiler" writeEPUB3

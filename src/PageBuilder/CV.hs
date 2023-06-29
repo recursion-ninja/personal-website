@@ -5,6 +5,7 @@ module PageBuilder.CV
     ( buildCV
     ) where
 
+import Compiler.Transformation.HeaderExclusion (excludeHeadersBy)
 import Compiler.Constants
 import Compiler.HTML
 import Compiler.PDF
@@ -27,17 +28,17 @@ buildCV :: Rules ()
 buildCV = do
 
     -- Full CV PDF
-    compileFormatPDF cvContext cvPageInput pageRouteStatic [cvPdfTemplate]
+    compileFormatPDF cvContext cvPageInput pageRouteStatic [ cvPdfTemplate ]
 
     -- Concise Résumé PDF
-    compileFormatPDFWith cv2Resume "résumé" resumeContext cvPageInput resumeRoute [cvPdfTemplate]
+    compileFormatPDFWith cv2Resume "résumé" resumeContext cvPageInput resumeRoute [ cvPdfTemplate ]
 
     compileFormatTransformedHTML
         transformForHTML
         cvContext
         cvPageInput
         pageRouteStatic
-        [cvPageTemplate, templateDefault]
+        [ cvPageTemplate, templateDefault ]
 
 
 cvContext :: Context String
@@ -65,21 +66,21 @@ cvPdfTemplate = fromString $ pathToTemplates </> "cv.latex"
 
 
 cv2Resume :: Pandoc -> Pandoc
-cv2Resume = blockFilter excludeSections
-    where
-        excludeSections :: [(Int, Text)]
-        excludeSections =
-            fmap (fold . words)
-                <$> [ (1, "Publications & Presentations")
-                    , (1, "Manuscripts in Preparation")
-                    , (1, "Distinctions")
-                    , (2, "Hunter College New York, NY")
-                    , (2, "University of Wisconsin - Milwaukee Milwaukee, WI")
-                    ]
+cv2Resume =
+    let theseMatchingSections :: [(Int, Text)]
+        theseMatchingSections = fmap (fold . words) <$>
+            [ (1, "Publications & Presentations")
+            , (1, "Manuscripts in Preparation")
+            , (1, "Distinctions")
+            , (2, "Hunter College New York, NY")
+            , (2, "University of Wisconsin - Milwaukee Milwaukee, WI")
+            , (2, "Outpost Natural Foods Co-op Milwaukee, WI")
+            ]
+    in  excludeHeadersBy theseMatchingSections
 
 
 resumeContext :: Context String
-resumeContext = contextUsing [constField "Title" "Résumé", cvConnectionImages]
+resumeContext = contextUsing [ constField "Title" "Résumé", cvConnectionImages ]
 
 
 resumeRoute :: String -> Routes

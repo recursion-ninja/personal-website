@@ -6,12 +6,17 @@ module Compiler.HTML
 
 import Compiler.Constants
 import Compiler.Generic
-import Hakyll.Core.Identifier
-import Hakyll.Core.Identifier.Pattern
-import Hakyll.Core.Rules
+--import Data.Text (unpack)
+import Hakyll.Core.Compiler (Compiler)
+import Hakyll.Core.Item (Item)
+import Hakyll.Core.Identifier (Identifier)
+import Hakyll.Core.Identifier.Pattern (Pattern)
+import Hakyll.Core.Rules (Rules)
 import Hakyll.Web.Pandoc
-import Hakyll.Web.Template.Context
-import Text.Pandoc.Definition
+import Text.Pandoc.Options (ReaderOptions, WriterOptions)
+import Hakyll.Web.Template.Context (Context)
+import Text.Pandoc.Definition (Pandoc)
+--import Text.Pandoc.Writers (writeHtml5String)
 
 
 compileFormatHTML :: FormatCompiler
@@ -24,5 +29,16 @@ compileFormatStaticHTML inputContext inputPath = compileFormatHTML inputContext 
 
 compileFormatTransformedHTML :: (Pandoc -> Pandoc) -> FormatCompiler
 compileFormatTransformedHTML =
-    let compiler = pandocCompilerWithTransform defaultHakyllReaderOptions defaultHakyllWriterOptions
-    in  compilerFromSpecification "html" . compiler
+    let htmlCompiler  :: (Pandoc -> Pandoc) -> Compiler (Item String)
+        htmlCompiler  = pandocCompilerWithTransform optsR optsW
+
+        htmlTranstion :: (Pandoc -> Pandoc) -> (Pandoc -> Pandoc)
+        htmlTranstion = getPandocTransform . pandocTransform
+
+        optsR :: ReaderOptions
+        optsR = defaultWebsiteReaderOptions
+
+        optsW :: WriterOptions
+        optsW = defaultHakyllWriterOptions
+
+    in  formatCompilerFromSpecification "html" . htmlCompiler . htmlTranstion

@@ -75,11 +75,10 @@ $endif$
 \titlespacing{\subsubsection}{0pt}{1pt}{1pt}
 
 % Clean up longtable rendering
-\setlength{\tabcolsep}{0pt}
-\setlength\LTleft{1em}
-\setlength\LTright{0pt}
-\renewcommand{\toprule}{}%{\vspace*{-0.7cm}}
+\setlength\tabcolsep{1mm}
+\renewcommand{\toprule}{}%\vspace*{-0.7cm}}
 \renewcommand{\bottomrule}{}
+\AtBeginEnvironment{longtable}{\footnotesize}{}{} %% change all longtable content to ``small size''
 
 % Section numbers or not (default)
 $if(numbersections)$

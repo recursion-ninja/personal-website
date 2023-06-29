@@ -47,13 +47,15 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
 # Technical Strengths
 
- |  |  |
- |:---------------|:-----------------------------------------------------------------------------|
- | Languages      | C, C++, C#, Dhall, Haskell, Idris, Java, JavaScript, PHP, Python |
- | APIs/Protocols | CSS3, HTML5, REST |
- | Databases      | MySQL, MSSQL, Sybase |
- | Tools          | Cabal, Emacs, Git, LaTeX, Pandoc, Spin, VS Code |
-
++:---------------+:-----------------------------------------------------------------------------+
+| Languages      | C, C++, C#, Dhall, Haskell, Idris, Java, JavaScript, PHP, Python             |
++----------------+------------------------------------------------------------------------------+
+| APIs/Protocols | CSS3, HTML5, REST                                                            |
++----------------+------------------------------------------------------------------------------+
+| Databases      | MySQL, MSSQL, Sybase                                                         |
++----------------+------------------------------------------------------------------------------+
+| Tools          | Cabal, Emacs, Git, LaTeX, Pandoc, Spin, VS Code                              |
++----------------+------------------------------------------------------------------------------+
 
 # Publications & Presentations
 

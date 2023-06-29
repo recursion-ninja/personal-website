@@ -4,19 +4,14 @@ module Compiler.Textual
 
 import Compiler.Generic
 import Data.Text (unpack)
-import Hakyll.Core.Compiler
-import Hakyll.Core.Identifier
-import Hakyll.Core.Identifier.Pattern
-import Hakyll.Core.Item
-import Hakyll.Core.Routes
-import Hakyll.Core.Rules
-import Hakyll.Web.Template.Context
-import Text.Pandoc.Writers
+import Hakyll.Core.Compiler (Compiler)
+import Hakyll.Core.Item (Item)
+import Text.Pandoc.Writers (writePlain)
 
 
-compileFormatTextual :: Context String -> Pattern -> (String -> Routes) -> [Identifier] -> Rules ()
-compileFormatTextual = compilerFromSpecification "txt" textualCompiler
+compileFormatTextual :: FormatCompiler
+compileFormatTextual = formatCompilerFromSpecification "txt" textualCompiler
 
 
 textualCompiler :: Compiler (Item String)
-textualCompiler = fmap unpack <$> compilerFromWriter "textualCompiler" writePlain
+textualCompiler = fmap unpack <$> compilerFromWriter' "textualCompiler" writePlain

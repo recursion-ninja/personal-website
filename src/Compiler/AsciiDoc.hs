@@ -10,8 +10,8 @@ import Text.Pandoc.Writers
 
 
 compileFormatAsciiDoc :: FormatCompiler
-compileFormatAsciiDoc = compilerFromSpecification "adoc" asciiDocCompiler
+compileFormatAsciiDoc = formatCompilerFromSpecification "adoc" asciiDocCompiler
 
 
 asciiDocCompiler :: Compiler (Item String)
-asciiDocCompiler = fmap unpack <$> compilerFromWriter "asciiDocCompiler" writeAsciiDoc
+asciiDocCompiler = fmap unpack <$> compilerFromWriter' "asciiDocCompiler" writeAsciiDoc

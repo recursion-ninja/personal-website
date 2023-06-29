@@ -15,8 +15,8 @@ import Text.Pandoc.Writers
 
 
 compileFormatMarkdown :: Context String -> Pattern -> (String -> Routes) -> [Identifier] -> Rules ()
-compileFormatMarkdown = compilerFromSpecification "md" markdownCompiler
+compileFormatMarkdown = formatCompilerFromSpecification "md" markdownCompiler
 
 
 markdownCompiler :: Compiler (Item String)
-markdownCompiler = fmap unpack <$> compilerFromWriter "markdownCompiler" writeMarkdown
+markdownCompiler = fmap unpack <$> compilerFromWriter' "markdownCompiler" writeMarkdown

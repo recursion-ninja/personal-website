@@ -126,6 +126,8 @@ Executable personal-website
     Compiler.Markdown
     Compiler.PDF
     Compiler.Textual
+    Compiler.Transformation.HeaderExclusion
+    Compiler.Transformation.Table
     Indexer.Feed
     Indexer.Page
     Indexer.HypertextAccess
