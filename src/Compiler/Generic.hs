@@ -53,4 +53,13 @@ compilerFromWriter label writer =
             Left  err -> error $ label <> ": " <> show err
             Right val -> pure val
         makeCompiler = handleError . applyWriter
-    in  getResourceBody >>= readPandoc >>= withItemBody makeCompiler
+    in  getResourceBody >>= readPandocWith markdownReaderOptions >>= withItemBody makeCompiler
+
+
+markdownReaderOptions :: ReaderOptions
+markdownReaderOptions =
+    let defaultOpts :: ReaderOptions
+        defaultOpts = defaultHakyllReaderOptions
+        defaultExts = readerExtensions def
+        updatedExts = foldr enableExtension defaultExts [ Ext_grid_tables, Ext_tex_math_dollars ]
+    in  defaultOpts { readerExtensions = updatedExts }

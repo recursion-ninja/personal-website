@@ -5,6 +5,23 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 [GitHub-Ghangelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
 
 
+## 2.2.16 -- 12023-06-29
+
+  * Added table styling for weblog posts
+
+  * Corrected broken table LaTeX generation
+
+  * Enhanced Pandoc reader with `grid_tables` extension
+
+  * Enhanced PDF rendering to optionally use the `xelatex` engine instead of `pdflatex`
+
+  * Updated to GHC-9.4.5
+
+  * Updated to GHC-9.2.7
+
+  * Updated by dropping support for GHC-8.10.7
+
+
 ## 2.2.15 -- 12023-05-07
 
   * Corrected CSS rending of DOI links on CV page
@@ -25,8 +42,12 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Corrected many spelling errors
 
+  * Posted weblog: "Conspectus 12023 Q1"
+
 
 ## 2.2.12 -- 12023-03-15
+
+  * Corrected many spelling errors
 
   * Posted weblog: "Parsing Permutations"
 

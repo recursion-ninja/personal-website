@@ -63,13 +63,12 @@ buildBlogPosts =
         ]
 
 
-
 compileFormatBlogHTML :: FormatCompiler
 compileFormatBlogHTML =
     let alterDataDirectory :: Pandoc -> Pandoc
         alterDataDirectory = walk transform
 
-
+        transform :: Inline -> Inline
         transform = \case
             Image a b (url, c) | "data/" `isPrefixOf` url -> Image a b (".." <> drop 4 url, c)
             x                                             -> x

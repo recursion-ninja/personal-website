@@ -1,18 +1,23 @@
 \documentclass[$if(fontsize)$$fontsize$$else$12pt$endif$,letterpaper]{article}
 
-\usepackage{hyperref}
-\usepackage{geometry}
-\usepackage{enumitem}
-\usepackage{underscore}
 \usepackage[parfill]{parskip}
+\usepackage{bbold}
 \usepackage{booktabs}
-\usepackage{longtable}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{lmodern}
+\usepackage{longtable}
+\usepackage{multirow}
 \usepackage{tabularx}
+\usepackage{underscore}
 \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
 \setkeys{Gin}{width=10px}
+
+$if(header-includes)$$header-includes$$endif$
 
 \let\latexincludegraphics\includegraphics%
 
@@ -70,9 +75,10 @@ $endif$
 \titlespacing{\subsubsection}{0pt}{1pt}{1pt}
 
 % Clean up longtable rendering
+\setlength{\tabcolsep}{0pt}
 \setlength\LTleft{1em}
 \setlength\LTright{0pt}
-\renewcommand{\toprule}{\vspace*{-0.7cm}}
+\renewcommand{\toprule}{}%{\vspace*{-0.7cm}}
 \renewcommand{\bottomrule}{}
 
 % Section numbers or not (default)

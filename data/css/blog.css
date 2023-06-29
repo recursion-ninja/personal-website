@@ -105,8 +105,8 @@ html
 {
 	display: flex;
 	flex-direction: column;
-	margin: 0px;
-	min-width: 0px;
+	margin: 0;
+	min-width: 0;
 }
 
 #post-front-matter > .post-description > dl > span
@@ -166,8 +166,8 @@ html
 #post-front-matter > div > ol
 {
 	list-style: none;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 #post-front-matter > div > ol > li
@@ -187,7 +187,7 @@ html
 #post-text-matter :not( :is( h1, h2, h3, h4, h5, h6 ) ) + :is( h1, h2, h3, h4, h5, h6 )::before
 {
 	/* Insert "asterism" separators between sections within exposition */
-	content: "⁂";
+	content: '⁂';
 	display: block;
 	font-size: var(--page-font-huge);
 	font-weight: bold;
@@ -210,13 +210,13 @@ html
 {
 	display: inline-flex;
 	margin-left: var(--page-edge-space);
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 #post-text-matter dd::before
 {
-	content: "❱❭";
+	content: '❱❭';
 	margin-right: var(--page-edge-space);
 }
 
@@ -234,7 +234,7 @@ html
 
 #post-text-matter dt::before
 {
-	content: "━";
+	content: '━';
 	margin-right: var(--page-edge-space);
 }
 
@@ -260,10 +260,33 @@ html
 	padding-right: var(--page-wide-space);
 }
 
+#post-text-matter table
+{
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#post-text-matter thead
+{
+	border-bottom-style: solid;
+	border-bottom-width: ver(--boarder-breadth);
+}
+
+#post-text-matter thead > tr > th
+{
+	padding-block-end: var(--page-thin-space);
+}
+
+#post-text-matter tbody > tr:first-child > td
+{
+	padding-block-start: var(--page-edge-space);
+}
+
 #post-text-matter::after
 {
 	/* Insert "editorial coronis" at end of exposition */
-	content: "⸎";
+	content: '⸎';
 	display: block;
 	font-size: calc(var(--page-font-giant)*(6/5));
 	margin-bottom: calc(var(--page-edge-space) + var(--page-wide-space));
@@ -272,4 +295,3 @@ html
 	padding-right: var(--page-edge-space);
 	text-align: center;
 }
-

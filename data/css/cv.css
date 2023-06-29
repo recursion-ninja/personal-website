@@ -3,8 +3,8 @@
 	border-bottom: var(--boarder-caliber);
 	font-size: var(--page-font-giant);
 	margin-bottom: var(--page-edge-space);
-	margin-left: 0px;
-	margin-right: 0px;
+	margin-left: 0;
+	margin-right: 0;
 	margin-top: var(--page-edge-space);
 	padding-left: var(--page-edge-space);
 	padding-right: var(--page-edge-space);
@@ -38,7 +38,7 @@
 #content > h3 > code
 {
 	background: var(--page-area-color);
-	border: 0px;
+	border: 0;
 	color: var(--page-text-color);
 	display: block;
 	flex-grow: 1;
@@ -70,21 +70,21 @@ ul
 	margin-bottom: var(--page-thin-space);
 	margin-left: calc(var(--page-edge-space) * 2);
 	margin-right: var(--page-edge-space);
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 h1 + ul
-  {
-	margin-bottom: 0px;
+{
+	margin-bottom: 0;
 	margin-left: var(--page-edge-space);
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 h2 + h3,
 h3 + h3
 {
-	margin-top: 0px !important;
+	margin-top: 0 !important;
 }
 
 h3 + ul
@@ -98,8 +98,8 @@ h3 + ul
 	display: inline-block;
 	margin-top: var(--page-thin-space);
 	margin-bottom: var(--page-thin-space);
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 #cv-title-region
@@ -115,7 +115,7 @@ h3 + ul
 	flex-direction: column;
 	flex-grow: 1;
 	margin-bottom: var(--page-edge-space);
-	margin-top: 0px;
+	margin-top: 0;
 	min-width: 270px;
 }
 
@@ -123,8 +123,8 @@ h3 + ul
 {
 	margin-left: var(--page-edge-space);
 	margin-right: var(--page-edge-space);
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 #author
@@ -143,7 +143,7 @@ h3 + ul
 	display: flex;
 	flex-direction: column;
 	margin-bottom: var(--page-edge-space);
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 #connections-region > p
@@ -153,8 +153,8 @@ h3 + ul
 	margin-left: var(--page-edge-space);
 	margin-right: var(--page-edge-space);
 	margin-top: var(--page-thin-space);
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 dl#connections-list
@@ -162,8 +162,8 @@ dl#connections-list
 	display: flex;
 	flex-direction: column;
 	line-height: 1;
-	margin-bottom: 0px;
-	margin-top: 0px;
+	margin-bottom: 0;
+	margin-top: 0;
 }
 
 dl#connections-list > span
@@ -174,8 +174,8 @@ dl#connections-list > span
 	margin-left: var(--page-edge-space);
 	margin-right: var(--page-edge-space);
 	margin-top: var(--page-thin-space);
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 dl#connections-list > span > dt
@@ -193,14 +193,14 @@ dl#connections-list > span > dd
 {
 	align-self: center;
 	flex-grow: 1;
-	margin-left: 0px;
+	margin-left: 0;
 }
 
 dl#connections-list > span > dd > p
 {
 	display: inline-block;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 p > a
@@ -221,11 +221,11 @@ table
 td
 {
 	margin-bottom: var(--page-thin-space);
-	margin-left: 0px;
-	margin-right: 0px;
+	margin-left: 0;
+	margin-right: 0;
 	margin-top: var(--page-thin-space);
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-left: 0;
+	padding-right: 0;
 	vertical-align: top;
 }
 
