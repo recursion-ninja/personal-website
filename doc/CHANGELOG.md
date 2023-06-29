@@ -11,6 +11,8 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Corrected broken table LaTeX generation
 
+  * Corrected code block HTML rendering
+
   * Enhanced Pandoc reader with `grid_tables` extension
 
   * Enhanced PDF rendering to optionally use the `xelatex` engine instead of `pdflatex`
@@ -18,6 +20,8 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
   * Enhanced rendering of tables in HTML output
 
   * Enhanced rendering of tables in PDF output
+
+  * Updated CV & Resume context
 
   * Updated to GHC-9.4.5
 

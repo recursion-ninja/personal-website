@@ -129,13 +129,23 @@ compilerFromWriter' = flip flip (pandocTransform id) . compilerFromWriter
 Default reader options for personal website.
 
 Enables extentions:
+  * 'Ext_auto_identifiers'
+  * 'Ext_backtick_code_blocks'
   * 'Ext_grid_tables'
+  * 'Ext_header_attributes'
   * 'Ext_tex_math_dollars'
 -}
 defaultWebsiteReaderOptions :: ReaderOptions
 defaultWebsiteReaderOptions =
     let defaultOpts :: ReaderOptions
         defaultOpts = defaultHakyllReaderOptions
-        defaultExts = readerExtensions def
-        updatedExts = foldr enableExtension defaultExts [ Ext_grid_tables, Ext_tex_math_dollars ]
+        defaultExts = readerExtensions defaultOpts
+        updatedExts = foldr enableExtension defaultExts ensureEnabledExts
+        ensureEnabledExts =
+            [ Ext_auto_identifiers
+            , Ext_backtick_code_blocks
+            , Ext_grid_tables
+            , Ext_header_attributes
+            , Ext_tex_math_dollars
+            ]
     in  defaultOpts { readerExtensions = updatedExts }

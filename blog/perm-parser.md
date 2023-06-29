@@ -33,7 +33,6 @@ manyPerm :: Functor m => m a -> Permutation m [a]
 manyPerm parser = go []
    where
       go acc = P (Just (reverse acc)) (go . (: acc) <$> parser)
-
 somePerm :: Functor m => m a -> Permutation m [a]
 somePerm parser = P Nothing (go . pure <$> parser)
    where
@@ -100,7 +99,6 @@ nonhalting = "ccbacbcb"
 ```
 success = ('a', "b", "cc")
 failure = ('a', "bbb", "ccc")
-
 ```
 
 

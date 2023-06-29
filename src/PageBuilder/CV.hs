@@ -74,7 +74,7 @@ cv2Resume =
             , (1, "Distinctions")
             , (2, "Hunter College New York, NY")
             , (2, "University of Wisconsin - Milwaukee Milwaukee, WI")
-            , (2, "Outpost Natural Foods Co-op Milwaukee, WI")
+            , (1, "Outpost Natural Foods Co-op Milwaukee, WI")
             ]
     in  excludeHeadersBy theseMatchingSections
 
@@ -103,9 +103,10 @@ transformForHTML :: Pandoc -> Pandoc
 transformForHTML = removeDataDirectory . niceDateSeparator
 
 
--- |
--- Replaces ASCII dashes with Unicode em dash in all code blocks which occur in
--- all headers.
+{- |
+Replaces ASCII dashes with Unicode em dash in all code blocks which occur in
+all headers.
+-}
 niceDateSeparator :: Pandoc -> Pandoc
 niceDateSeparator =
     let f (Header n a is) = Header n a $ walk h is
@@ -115,16 +116,17 @@ niceDateSeparator =
     in  walk f
 
 
--- |
--- Removes the prefix @data/@ from any image reference URL.
--- We do this because we cannot have the HTML page reference @img/doi.png@ while
--- also having the LaTeX documents reference @data/img/doi.png@, but both references
--- are required for a successfully compiled website.
--- This conundrum is solved by specifying @data/img/doi.png@ in the original
--- markdown file and pruning off the @data/@ prefix during HTML generation and
--- preserving the @data/@ prefix during LaTeX generation.
---
--- /It __is__ a bit ugly, but it works!/
+{- |
+Removes the prefix @data/@ from any image reference URL.
+We do this because we cannot have the HTML page reference @img/doi.png@ while
+also having the LaTeX documents reference @data/img/doi.png@, but both references
+are required for a successfully compiled website.
+This conundrum is solved by specifying @data/img/doi.png@ in the original
+markdown file and pruning off the @data/@ prefix during HTML generation and
+preserving the @data/@ prefix during LaTeX generation.
+
+/It __is__ a bit ugly, but it works!/
+-}
 removeDataDirectory :: Pandoc -> Pandoc
 removeDataDirectory =
     let f = \case

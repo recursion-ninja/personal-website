@@ -13,6 +13,7 @@ TimeZoneCity:      New_York
 TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 ...
 
+
 # Education
 
 ## The Graduate Center - CUNY `New York, NY`
@@ -57,7 +58,12 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 | Tools          | Cabal, Emacs, Git, LaTeX, Pandoc, Spin, VS Code                              |
 +----------------+------------------------------------------------------------------------------+
 
+
 # Publications & Presentations
+
+  - Wheeler, W. C. and A. J. **Washburn**. 2023. Parsimony Optimization of Phylogenetic Networks. Cladistics.
+
+  - [![DOI][DOI-img]][DOI-4] **Washburn**, A. J. 2022. Formal Verification Applications for the TreeKEM Continuous Group Key Agreement Protocol. Masters Thesis.
 
   - [![DOI][DOI-img]][DOI-3] **Washburn**, A. J. et al. 2021. Simulating SARS-CoV-2 Transmission in the New York Subway. Winter Simulation Conference.
 
@@ -68,16 +74,16 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
   - [![DOI][DOI-img]][DOI-0] Wheeler, W. C. and A. J. **Washburn**. 2019. FASTC: A file format for multi-character sequence data. Cladistics.
 
 [DOI-img]: data/img/doi-logo.png
+[DOI-4]:   https://academicworks.cuny.edu/cgi/viewcontent.cgi?article=2014&context=hc_sas_etds
 [DOI-3]:   https://doi.org/10.1109/WSC52266.2021.9715384
 [DOI-2]:   https://doi.org/10.1186/s12859-020-03595-2
 [DOI-1]:   https://www.youtube.com/watch?v=ZaboF2eP_BY
 [DOI-0]:   https://doi.org/10.1111/cla.12370
 
+
 # Manuscripts in Preparation
 
-  - **Washburn**, A. J. and Subash Shankar. 2022. Formal Verification of the TreeKEM Protocol via SPIN.
-
-  - Wheeler, W. C. and A. J. **Washburn**. 2022. Algorithmic Description of Phylogenetic Component Graphs.
+  - **Washburn**, A. J. and Subash Shankar. 2023. Verifying the TreeKEM protocol with Spin and Continuous Group Key Agreement.
 
 
 # **Work Experience**
@@ -98,13 +104,13 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 ### *Adjunct Lecturer* `Aug 2018 - Jun 2019`
 
   - Present and demonstrate computer science topics to undergraduates in recitation sections
-  - Utilize multiple instructional strategies to engage \& assist students with homework
+  - Utilize multiple instructional strategies to engage & assist students with homework
   - Grade assigned papers, quizzes, and exams
 
 ## MSI Data, LLC `Mequon, WI`
 ### *Software Developer* `Jan 2015 - Aug 2015`
 
-  - Expanded functionality for abstracted data synchronization between multiple backend ERP systems
+  - Expanded abstracted data synchronization capabilities between multiple backend ERP systems
   - Maintained and extensively refactored MVC web service, improving throughput by 33%
 
 ## University of Wisconsin - Milwaukee `Milwaukee, WI`
@@ -119,8 +125,8 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 ### *Maintenance Clerk* `Oct 2010 - May 2011`
 
   - Developed inter-store inventory transfer tracking & reporting system
-  - Implemented electronic invoice processing system which retrieves, archives & parses invoices into reports
-  - Produced ergonomic web-interface to inventory database for quick lookup of item retail & sale info
+  - Implemented an automated system which retrieves, archives & parses invoices into reports
+  - Produced ergonomic web-interface for quick lookup of inventory retail & sale info
   - Automated the sale bulletin preparation platform
   - Engineered database diagnostic software to enforce dynamic business logic invariants
   - Authored scalable data retrieval & analysis queries

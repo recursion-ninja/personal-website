@@ -28,18 +28,28 @@ excludeHeadersBy excludedHeaders (Pandoc meta blocks) = Pandoc meta $ fold block
         blocks' = runST $ do
             exclusionSet <- newSTRef excludedHeaders
             excluded     <- newSTRef Nothing
-            let filterExcludes input = do
-                    es <- readSTRef exclusionSet
-                    ex <- readSTRef excluded
-                    case ex of
-                        Nothing  -> pure ()
-                        Just val -> when (isSameBlockType val input) $ writeSTRef excluded Nothing
-                    let (_, title) = getHeaderTitle input
-                    when ((1, title) `elem` es) $ writeSTRef excluded (Just input)
-                    modifySTRef exclusionSet
-                        $ \x -> (\e@(n, ht) -> if ht == title then (n - 1, ht) else e) <$> x
-                    ex' <- readSTRef excluded
-                    pure $ maybe [input] (const []) ex'
+            let setExcluded = writeSTRef excluded
+            let filterExcludes input =
+                    let title :: Text
+                        (_, title) = getHeaderTitle input
+
+                        decrementMatches :: Functor f => f (Int, Text) -> f (Int, Text)
+                        decrementMatches = fmap decrementOnMatch
+
+                        decrementOnMatch :: (Int, Text) -> (Int, Text)
+                        decrementOnMatch e@(n, ht)
+                            | ht == title = (n - 1, ht)
+                            | otherwise   = e
+
+                    in  do  es <- readSTRef exclusionSet
+                            ex <- readSTRef excluded
+                            case ex of
+                                Nothing  -> pure ()
+                                Just val -> when (isSameBlockType val input) $ setExcluded Nothing
+                            when ((1, title) `elem` es) $ setExcluded (Just input)
+                            modifySTRef exclusionSet decrementMatches
+                            ex' <- readSTRef excluded
+                            pure $ maybe [input] (const []) ex'
             traverse filterExcludes blocks
 
 

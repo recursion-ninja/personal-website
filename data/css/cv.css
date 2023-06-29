@@ -15,23 +15,25 @@
 	margin-top: 0;
 }
 
-#content > h2[id]
+#content > h2,
+#content > h3
 {
 	display: flex;
-	font-size: var(--page-font-large);
 	flex-direction: row;
-	margin-top: var(--page-edge-space);
 	margin-bottom: var(--page-thin-space);
 }
 
-#content > h3[id]
+#content > h2
 {
-	display: flex;
-	flex-direction: row;
+	font-size: var(--page-font-large);
+	margin-top: var(--page-edge-space);
+}
+
+#content > h3
+{
 	font-size: var(--page-font-normal);
 	font-weight: normal;
 	margin-top: var(--page-thin-space);
-	margin-bottom: var(--page-thin-space);
 }
 
 #content > h2 > code,
@@ -249,3 +251,11 @@ img
 {
 	padding-right: 12px;
 }
+
+
+#work-experience ~ :is(h3 + ul) > li {
+	font-size: 80%;
+	padding-top: var(--boarder-breadth);
+	padding-bottom: var(--boarder-breadth);
+}
+
