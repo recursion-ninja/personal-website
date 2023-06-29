@@ -5,7 +5,7 @@
 ---------------------------------------------------------------------------------
 
 executable-static: False
-with-compiler: ghc-9.4.4
+with-compiler: ghc-9.4.5
 
 
 ---------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ package personal-website
         --   1. Fail on a warning
         --   2. Include all warnings by default
         --   3. Exclude the undesirable warnings
-        -Werror
+--        -Werror
         -Weverything
         -- Exclusions:
         -Wno-implicit-prelude

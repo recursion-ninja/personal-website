@@ -31,18 +31,27 @@ import Text.Pandoc.Definition
 import Text.Pandoc.Writers
 
 
+useXeLaTeX :: Bool
+useXeLaTeX = False
+
+
+{- |
+Default PDF format compiler.
+-}
 compileFormatPDF :: Context String -> Pattern -> (String -> Routes) -> [Identifier] -> Rules ()
 compileFormatPDF = compileFormatPDFWith id "pdf"
 
 
--- |
--- Compile with an alteration.
+{- |
+Compile with an alteration.
+-}
 compileFormatPDFWith
     :: (Pandoc -> Pandoc) -- ^ Alteration Function
     -> String             -- ^ Alteration "Versioning Label"
     -> Context String
     -> Pattern
     -> (String -> Routes)
+
     -> [Identifier]
     -> Rules ()
 compileFormatPDFWith f v inContext inPath inRoute inTemplates = match inPath . version v $ do
@@ -54,6 +63,9 @@ compileFormatPDFWith f v inContext inPath inRoute inTemplates = match inPath . v
             >>= saveSnapshot "content"
 
 
+{- |
+Filter out the specified headers.
+-}
 blockFilter :: (Foldable f, Functor f) => f (Int, Text) -> Pandoc -> Pandoc
 blockFilter excludedHeaders (Pandoc meta blocks) = Pandoc meta $ fold blocks'
     where
@@ -76,38 +88,8 @@ blockFilter excludedHeaders (Pandoc meta blocks) = Pandoc meta $ fold blocks'
             traverse filterExcludes blocks
 
 
-latex :: Item String -> Compiler (Item TmpFile)
-latex item = do
-    TmpFile texPath <- newTmpFile "latex.tex"
-    let tmpDir  = takeDirectory texPath
-        pdfPath = replaceExtension texPath "pdf"
-
-    _ <- unsafeCompiler $ do
-        writeFile texPath $ itemBody item
-        system $ unwords ["pdflatex", "--halt-on-error", "-output-directory", tmpDir, texPath]
-
-    makeItem $ TmpFile pdfPath
-
-
-texCompiler :: (Pandoc -> Pandoc) -> Compiler (Item String)
-texCompiler f = fmap unpack <$> compilerFromWriter "latexCompiler" (\opt -> writeLaTeX opt . f)
-
-
-isSameBlockType :: Block -> Block -> Bool
-isSameBlockType Plain{}          Plain{}          = True
-isSameBlockType Para{}           Para{}           = True
-isSameBlockType LineBlock{}      LineBlock{}      = True
-isSameBlockType CodeBlock{}      CodeBlock{}      = True
-isSameBlockType RawBlock{}       RawBlock{}       = True
-isSameBlockType BlockQuote{}     BlockQuote{}     = True
-isSameBlockType OrderedList{}    OrderedList{}    = True
-isSameBlockType BulletList{}     BulletList{}     = True
-isSameBlockType DefinitionList{} DefinitionList{} = True
-isSameBlockType (Header x _ _)   (Header y _ _)   = x == y
-isSameBlockType HorizontalRule   HorizontalRule   = True
-isSameBlockType Table{}          Table{}          = True
-isSameBlockType Div{}            Div{}            = True
-isSameBlockType _                _                = False
+clearSpaces :: Text -> Text
+clearSpaces = fold . words
 
 
 getHeaderTitle :: Block -> (Int, Text)
@@ -135,5 +117,49 @@ inlineText (Span _ ts      ) = foldMap inlineText ts
 inlineText _                 = ""
 
 
-clearSpaces :: Text -> Text
-clearSpaces = fold . words
+isSameBlockType :: Block -> Block -> Bool
+isSameBlockType Plain{}          Plain{}          = True
+isSameBlockType Para{}           Para{}           = True
+isSameBlockType LineBlock{}      LineBlock{}      = True
+isSameBlockType CodeBlock{}      CodeBlock{}      = True
+isSameBlockType RawBlock{}       RawBlock{}       = True
+isSameBlockType BlockQuote{}     BlockQuote{}     = True
+isSameBlockType OrderedList{}    OrderedList{}    = True
+isSameBlockType BulletList{}     BulletList{}     = True
+isSameBlockType DefinitionList{} DefinitionList{} = True
+isSameBlockType (Header x _ _)   (Header y _ _)   = x == y
+isSameBlockType HorizontalRule   HorizontalRule   = True
+isSameBlockType Table{}          Table{}          = True
+isSameBlockType Div{}            Div{}            = True
+isSameBlockType _                _                = False
+
+
+latex :: Item String -> Compiler (Item TmpFile)
+latex item = do
+    TmpFile texPath <- newTmpFile "latex.tex"
+    let tmpDir  = takeDirectory texPath
+        pdfPath = replaceExtension texPath "pdf"
+
+    _ <- unsafeCompiler $ do
+        writeFile texPath $ itemBody item
+        system $ unwords
+            [ latexEngine
+            , "--halt-on-error"
+            , "-output-directory"
+            , tmpDir
+            , texPath
+--            , ">/dev/null"
+--            , "2>&1"
+            ]
+
+    makeItem $ TmpFile pdfPath
+
+
+latexEngine :: String
+latexEngine
+    | useXeLaTeX = "xelatex"
+    | otherwise  = "pdflatex"
+
+
+texCompiler :: (Pandoc -> Pandoc) -> Compiler (Item String)
+texCompiler f = fmap unpack <$> compilerFromWriter "latexCompiler" (\opt -> writeLaTeX opt . f)
