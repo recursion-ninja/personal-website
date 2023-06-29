@@ -25,6 +25,16 @@ html
 
 #content pre > code
 {
+	max-width: auto;
+	overflow: visible;
+	word-wrap: normal;
+	padding: 0;
+	margin: 0;
+	white-space: pre;
+}
+
+#content pre
+{
 	/*
 	Variable Descriptors ( --code-snip-ample ):
 	  - Max width of page content
@@ -33,8 +43,7 @@ html
 	  - Boarder around code block
 	  - Boarder around page block
 	*/
-	--code-snip-ample: calc( ( ( var(--page-full-width) ) + ( var(--boarder-breadth) * 2 ) )
-	- ( ( var(--page-edge-space) * 2 ) + ( var(--boarder-breadth) * 2 ) + ( var(--boarder-breadth) * 2 ) ));
+	--code-snip-ample: calc( ( ( var(--page-full-width) ) + ( var(--boarder-breadth) * 2 ) ) - ( ( var(--page-edge-space) * 2 ) + ( var(--boarder-breadth) * 2 ) + ( var(--boarder-breadth) * 2 ) ));
 	/*
 	Variable Description ( --code-snip-sides ):
 	Here we want the margin of a code block to be either:
@@ -63,7 +72,15 @@ html
 	of the beautiful flex rendering functionalities.
 	*/
 	--code-snip-width: min( var(--code-snip-ample), var(--code-snip-trunk) );
-	border: var(--boarder-caliber);
+	background: var(--code-area-color);
+	border-color: var(--page-text-color);
+	border-bottom-size: var(--boarder-breadth);
+	border-top-size: var(--boarder-breadth);
+	border-left-size: var(--boarder-breadth);
+	border-right-size: var(--boarder-breadth);
+	border-style: solid;
+	contain: inline-size;
+	container-type: inline-size;
 	display: block;
 	margin-left: var(--code-snip-sides);
 	margin-right: var(--code-snip-sides);

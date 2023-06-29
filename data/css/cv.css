@@ -253,9 +253,9 @@ img
 }
 
 
-#work-experience ~ :is(h3 + ul) > li {
+#work-experience ~ :is(h3 + ul) > li
+{
 	font-size: 80%;
 	padding-top: var(--boarder-breadth);
 	padding-bottom: var(--boarder-breadth);
 }
-

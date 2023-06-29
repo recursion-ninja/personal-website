@@ -11,7 +11,9 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Corrected broken table LaTeX generation
 
-  * Corrected code block HTML rendering
+  * Corrected code block rendering in HTML
+
+  * Corrected figure rendinging in HTML
 
   * Enhanced Pandoc reader with `grid_tables` extension
 
@@ -64,7 +66,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
 ## 2.2.11 -- 12023-01-20
 
-  * Added asterism section seperators in HTML weblog posts
+  * Added asterism section separators in HTML weblog posts
 
   * Added editorial coronis terminator in HTML weblog posts
 

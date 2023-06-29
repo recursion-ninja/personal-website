@@ -128,7 +128,7 @@ compilerFromWriter' = flip flip (pandocTransform id) . compilerFromWriter
 {- |
 Default reader options for personal website.
 
-Enables extentions:
+Enables extensions:
   * 'Ext_auto_identifiers'
   * 'Ext_backtick_code_blocks'
   * 'Ext_grid_tables'

@@ -211,7 +211,7 @@ The practical result of this algorithm coupled with lazy, single-threaded, order
 ### Picturing parse processes
 
 Below are renderings of permutation parse trees of partial computations for `example` on two inputs.
-They illistrate the search graph of the permutation paring algorithm and facilitate tracing steps through the search space.
+They illustrate the search graph of the permutation paring algorithm and facilitate tracing steps through the search space.
 
 First, consider the `acceptable` input string, desiring the output to be `success`:
 
@@ -248,8 +248,8 @@ Let's visualize what such a computation tree would look like for `example`.
 
 ### Modified computational tree of `example`
 
-Below is a parital rendering of a computational tree which yeilds the requested semantics for `permMany` and `permSome`.
-Likely the first noticable feature of the computation tree is that it is infinite.
+Below is a parital rendering of a computational tree which yields the requested semantics for `permMany` and `permSome`.
+Likely the first noticeable feature of the computation tree is that it is infinite.
 Any permutation parser containing `permMany` or `permSome` will necissarily produce a computation tree containing an infinite recursive progression of  branching subtrees.
 
 ![General computational tree of the `example` parser](data/img/perm-parser-03.png)
