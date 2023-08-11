@@ -1,6 +1,6 @@
-module Main
-    ( main
-    ) where
+module Main (
+    main,
+) where
 
 import AssetIncludes
 import Data.Foldable
@@ -17,7 +17,7 @@ import PageBuilder.CV
 import PageBuilder.Errors
 
 
-main :: IO ()
+main ∷ IO ()
 main = hakyll $ do
     compileAllAssets
     compileAllPages
@@ -27,16 +27,18 @@ main = hakyll $ do
 {- |
   Include all assets required by website pages.
 -}
-compileAllAssets :: Rules ()
+compileAllAssets ∷ Rules ()
 compileAllAssets = sequenceA_ [includeCSS, includeImages, includeFavicons, includeTemplates]
 
 
 {- |
   Build all website pages.
---}
-compileAllPages :: Rules ()
-compileAllPages = sequenceA_
-    [buildAbout, buildBlogList, buildBlogPosts, buildCV, buildError400, buildError404, buildError500]
+-
+-}
+compileAllPages ∷ Rules ()
+compileAllPages =
+    sequenceA_
+        [buildAbout, buildBlogList, buildBlogPosts, buildCV, buildError400, buildError404, buildError500]
 
 
 {- |
@@ -44,12 +46,13 @@ compileAllPages = sequenceA_
 
   __NOTE:__ This must occur /after/ assets and webpages have been compiled!
 -}
-compileAllIndices :: Rules ()
-compileAllIndices = sequenceA_
-    [ constructAtomFeed
-    , constructIndexHTML
-    , constructHypertextAccess
-    , constructRssFeed
-    , constructRobotsTXT
-    , constructSiteMap
-    ]
+compileAllIndices ∷ Rules ()
+compileAllIndices =
+    sequenceA_
+        [ constructAtomFeed
+        , constructIndexHTML
+        , constructHypertextAccess
+        , constructRssFeed
+        , constructRobotsTXT
+        , constructSiteMap
+        ]

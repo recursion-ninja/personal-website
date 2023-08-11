@@ -1,8 +1,8 @@
-{-# Language OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings #-}
 
-module Indexer.SiteMap
-    ( constructSiteMap
-    ) where
+module Indexer.SiteMap (
+    constructSiteMap,
+) where
 
 import Compiler.Constants
 import Data.String
@@ -15,13 +15,13 @@ import Hakyll.Web.Template.Context (listField)
 import System.FilePath.Posix ((</>))
 
 
-constructSiteMap :: Rules ()
+constructSiteMap ∷ Rules ()
 constructSiteMap =
     let siteMapTemplate = fromString $ pathToTemplates </> "sitemap.xml"
     in  create ["sitemap.xml"] $ do
             route idRoute
             compile $ do
-                allMapPoints <- loadAllSnapshots (hasVersion "html") "content"
+                allMapPoints ← loadAllSnapshots (hasVersion "html") "content"
                 let siteMapContext =
                         contextUsing [listField "SiteEntries" (contextUsing []) $ pure allMapPoints]
                 makeItem "" >>= loadAndApplyTemplate siteMapTemplate siteMapContext

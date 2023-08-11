@@ -1,23 +1,29 @@
-{-# Language LambdaCase #-}
-{-# Language ScopedTypeVariables #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
-module Compiler.Generic
-    ( -- * Format Compiler
-      FormatCompiler
-      -- ** Constructor
-    , formatCompilerFromSpecification
-      -- ** Base Compiler Builders
-    , compilerFromWriter
-    , compilerFromWriter'
-      -- * Transformations
-    , PandocTransform()
-      -- ** Constructor
-    , pandocTransform
-      -- ** Accessor
-    , getPandocTransform
-      -- * Reader Options
-    , defaultWebsiteReaderOptions
-    ) where
+module Compiler.Generic (
+    -- * Format Compiler
+    FormatCompiler,
+
+    -- ** Constructor
+    formatCompilerFromSpecification,
+
+    -- ** Base Compiler Builders
+    compilerFromWriter,
+    compilerFromWriter',
+
+    -- * Transformations
+    PandocTransform (),
+
+    -- ** Constructor
+    pandocTransform,
+
+    -- ** Accessor
+    getPandocTransform,
+
+    -- * Reader Options
+    defaultWebsiteReaderOptions,
+) where
 
 import Compiler.Constants
 import Compiler.Transformation.Table (equalizeTableColumns)
@@ -40,19 +46,19 @@ import Text.Pandoc.Options
 {- |
 Type synonym for compiling alternative blog post formats.
 -}
-type FormatCompiler = Context String -> Pattern -> (String -> Routes) -> [Identifier] -> Rules ()
+type FormatCompiler = Context String → Pattern → (String → Routes) → [Identifier] → Rules ()
 
 
 {- |
 Strongly typed transformation of 'Pandoc' document resource.
 -}
-newtype PandocTransform = TransF (Pandoc -> Pandoc)
+newtype PandocTransform = TransF (Pandoc → Pandoc)
 
 
 {- |
 Construct a 'Pandoc' document transformation.
 -}
-pandocTransform :: (Pandoc -> Pandoc) -> PandocTransform
+pandocTransform ∷ (Pandoc → Pandoc) → PandocTransform
 pandocTransform = TransF
 
 
@@ -61,22 +67,21 @@ Extract the 'Pandoc' document transformation.
 
 Automatically applied default transformations in addition to the specified transformation.
 -}
-getPandocTransform :: PandocTransform -> (Pandoc -> Pandoc)
+getPandocTransform ∷ PandocTransform → (Pandoc → Pandoc)
 getPandocTransform (TransF f) = f . equalizeTableColumns
 
 
 {- |
 Construct a 'FormatCompiler' from the given specification.
 -}
-formatCompilerFromSpecification :: String -> Compiler (Item String) -> FormatCompiler
+formatCompilerFromSpecification ∷ String → Compiler (Item String) → FormatCompiler
 formatCompilerFromSpecification extension compiler inputContext inputPath inputRoute inputTemplates =
-    let applyTemplates :: Item String -> Compiler (Item String)
+    let applyTemplates ∷ Item String → Compiler (Item String)
         applyTemplates = flip (foldlM templateFold) inputTemplates
 
         -- Important, this needs to be a LEFT fold to apply templates in the correct order.
-        templateFold :: Item String -> Identifier -> Compiler (Item String)
+        templateFold ∷ Item String → Identifier → Compiler (Item String)
         templateFold s t = loadAndApplyTemplate t inputContext s
-
     in  match inputPath . version extension $ do
             route $ inputRoute extension
             compile $ compiler >>= applyTemplates >>= finalizePage
@@ -88,31 +93,29 @@ Construct a 'Compiler' from a "writer description" and a 'Pandoc' document trans
 The resulting compiler reads the resource body(ies), applies the document transformtion,
 then runs the writer description to produce output.
 -}
-compilerFromWriter :: forall a. String -> (WriterOptions -> Pandoc -> PandocPure a) -> PandocTransform -> Compiler (Item a)
+compilerFromWriter ∷ ∀ a. String → (WriterOptions → Pandoc → PandocPure a) → PandocTransform → Compiler (Item a)
 compilerFromWriter label writer pTrans =
-    let applyWriter :: Pandoc -> Either PandocError a
+    let applyWriter ∷ Pandoc → Either PandocError a
         applyWriter = runPure . writer defaultHakyllWriterOptions
 
-        handleError :: Either PandocError a -> Compiler a
+        handleError ∷ Either PandocError a → Compiler a
         handleError = \case
-            Right val -> pure val
-            Left  err -> error $ label <> ": " <> show err
+            Right val → pure val
+            Left err → error $ label <> ": " <> show err
 
-        makeCompiler :: Pandoc -> Compiler a
+        makeCompiler ∷ Pandoc → Compiler a
         makeCompiler = handleError . applyWriter
-
     in  procurePandocResource pTrans >>= withItemBody makeCompiler
 
 
-procurePandocResource :: PandocTransform -> Compiler (Item Pandoc)
+procurePandocResource ∷ PandocTransform → Compiler (Item Pandoc)
 procurePandocResource pTrans =
-    let alterPandoc :: Compiler (Item Pandoc) -> Compiler (Item Pandoc)
+    let alterPandoc ∷ Compiler (Item Pandoc) → Compiler (Item Pandoc)
         alterPandoc = fmap (fmap transformation)
 
         -- Always equalize table columns, then apply other tansformations
-        transformation :: Pandoc -> Pandoc
+        transformation ∷ Pandoc → Pandoc
         transformation = getPandocTransform pTrans
-
     in  getResourceBody >>= alterPandoc . readPandocWith defaultWebsiteReaderOptions
 
 
@@ -121,7 +124,7 @@ Construct a 'Compiler' from a "writer description" /without/ any 'Pandoc' docume
 
 See 'compilerFromWriter' for more information.
 -}
-compilerFromWriter' :: String -> (WriterOptions -> Pandoc -> PandocPure a) -> Compiler (Item a)
+compilerFromWriter' ∷ String → (WriterOptions → Pandoc → PandocPure a) → Compiler (Item a)
 compilerFromWriter' = flip flip (pandocTransform id) . compilerFromWriter
 
 
@@ -135,9 +138,9 @@ Enables extensions:
   * 'Ext_header_attributes'
   * 'Ext_tex_math_dollars'
 -}
-defaultWebsiteReaderOptions :: ReaderOptions
+defaultWebsiteReaderOptions ∷ ReaderOptions
 defaultWebsiteReaderOptions =
-    let defaultOpts :: ReaderOptions
+    let defaultOpts ∷ ReaderOptions
         defaultOpts = defaultHakyllReaderOptions
         defaultExts = readerExtensions defaultOpts
         updatedExts = foldr enableExtension defaultExts ensureEnabledExts
@@ -148,4 +151,4 @@ defaultWebsiteReaderOptions =
             , Ext_header_attributes
             , Ext_tex_math_dollars
             ]
-    in  defaultOpts { readerExtensions = updatedExts }
+    in  defaultOpts{readerExtensions = updatedExts}

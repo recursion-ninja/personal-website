@@ -5,6 +5,10 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 [GitHub-Ghangelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
 
 
+## Unreleased
+
+  * Added `fourmolu` styling to code-base
+
 ## 2.2.16 -- 12023-06-29
 
   * Added table styling for weblog posts

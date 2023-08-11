@@ -1,14 +1,14 @@
-{-# Language LambdaCase #-}
-{-# Language OverloadedStrings #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE OverloadedStrings #-}
 
-module PageBuilder.CV
-    ( buildCV
-    ) where
+module PageBuilder.CV (
+    buildCV,
+) where
 
-import Compiler.Transformation.HeaderExclusion (excludeHeadersBy)
 import Compiler.Constants
 import Compiler.HTML
 import Compiler.PDF
+import Compiler.Transformation.HeaderExclusion (excludeHeadersBy)
 import Control.Applicative
 import Data.Foldable
 import Data.String (fromString)
@@ -18,88 +18,90 @@ import Hakyll.Core.Identifier.Pattern (Pattern)
 import Hakyll.Core.Routes (Routes)
 import Hakyll.Core.Rules (Rules)
 import Hakyll.Web.Template.Context (Context, constField)
-import Prelude hiding (drop, words)
 import System.FilePath.Posix ((</>))
-import Text.Pandoc.Definition (Block(..), Inline(..), Pandoc)
+import Text.Pandoc.Definition (Block (..), Inline (..), Pandoc)
 import Text.Pandoc.Walk (walk)
+import Prelude hiding (drop, words)
 
 
-buildCV :: Rules ()
+buildCV ∷ Rules ()
 buildCV = do
-
     -- Full CV PDF
-    compileFormatPDF cvContext cvPageInput pageRouteStatic [ cvPdfTemplate ]
+    compileFormatPDF cvContext cvPageInput pageRouteStatic [cvPdfTemplate]
 
     -- Concise Résumé PDF
-    compileFormatPDFWith cv2Resume "résumé" resumeContext cvPageInput resumeRoute [ cvPdfTemplate ]
+    compileFormatPDFWith cv2Resume "résumé" resumeContext cvPageInput resumeRoute [cvPdfTemplate]
 
     compileFormatTransformedHTML
         transformForHTML
         cvContext
         cvPageInput
         pageRouteStatic
-        [ cvPageTemplate, templateDefault ]
+        [cvPageTemplate, templateDefault]
 
 
-cvContext :: Context String
-cvContext = contextUsing
-    [ constField "AddCSS" "cv"
-    , constField "NavRef" "cv"
-    , constField "Title"  "Curriculum Vitae"
-    , cvConnectionImages
-    , flagField "HasDownloadFormats"
-    , flagField "HasPDF"
-    , flagField "IsCurriculumVitae"
-    ]
+cvContext ∷ Context String
+cvContext =
+    contextUsing
+        [ constField "AddCSS" "cv"
+        , constField "NavRef" "cv"
+        , constField "Title" "Curriculum Vitae"
+        , cvConnectionImages
+        , flagField "HasDownloadFormats"
+        , flagField "HasPDF"
+        , flagField "IsCurriculumVitae"
+        ]
 
 
-cvPageInput :: Pattern
+cvPageInput ∷ Pattern
 cvPageInput = fromString $ pathToPages </> "cv.md"
 
 
-cvPageTemplate :: Identifier
+cvPageTemplate ∷ Identifier
 cvPageTemplate = fromString $ pathToTemplates </> "cv.html"
 
 
-cvPdfTemplate :: Identifier
+cvPdfTemplate ∷ Identifier
 cvPdfTemplate = fromString $ pathToTemplates </> "cv.latex"
 
 
-cv2Resume :: Pandoc -> Pandoc
+cv2Resume ∷ Pandoc → Pandoc
 cv2Resume =
-    let theseMatchingSections :: [(Int, Text)]
-        theseMatchingSections = fmap (fold . words) <$>
-            [ (1, "Publications & Presentations")
-            , (1, "Manuscripts in Preparation")
-            , (1, "Distinctions")
-            , (2, "Hunter College New York, NY")
-            , (2, "University of Wisconsin - Milwaukee Milwaukee, WI")
-            , (1, "Outpost Natural Foods Co-op Milwaukee, WI")
-            ]
+    let theseMatchingSections ∷ [(Int, Text)]
+        theseMatchingSections =
+            fmap (fold . words)
+                <$> [ (1, "Publications & Presentations")
+                    , (1, "Manuscripts in Preparation")
+                    , (1, "Distinctions")
+                    , (2, "Hunter College New York, NY")
+                    , (2, "University of Wisconsin - Milwaukee Milwaukee, WI")
+                    , (1, "Outpost Natural Foods Co-op Milwaukee, WI")
+                    ]
     in  excludeHeadersBy theseMatchingSections
 
 
-resumeContext :: Context String
-resumeContext = contextUsing [ constField "Title" "Résumé", cvConnectionImages ]
+resumeContext ∷ Context String
+resumeContext = contextUsing [constField "Title" "Résumé", cvConnectionImages]
 
 
-resumeRoute :: String -> Routes
+resumeRoute ∷ String → Routes
 resumeRoute = pageRouteAlias "resume.md"
 
 
-cvConnectionImages :: Context String
-cvConnectionImages = fold
-    [ constField "EmailImg"         "email.png"
-    , constField "GitHubImg"        "github.png"
-    , constField "LastUpdatedImg"   "hourglass.png"
-    , constField "PDFImg"           "pdf-logo.png"
-    , constField "StackOverflowImg" "stackoverflow.png"
-    , constField "TimeZoneImg"      "clock.png"
-    , constField "WebsiteImg"       "website.png"
-    ]
+cvConnectionImages ∷ Context String
+cvConnectionImages =
+    fold
+        [ constField "EmailImg" "email.png"
+        , constField "GitHubImg" "github.png"
+        , constField "LastUpdatedImg" "hourglass.png"
+        , constField "PDFImg" "pdf-logo.png"
+        , constField "StackOverflowImg" "stackoverflow.png"
+        , constField "TimeZoneImg" "clock.png"
+        , constField "WebsiteImg" "website.png"
+        ]
 
 
-transformForHTML :: Pandoc -> Pandoc
+transformForHTML ∷ Pandoc → Pandoc
 transformForHTML = removeDataDirectory . niceDateSeparator
 
 
@@ -107,12 +109,12 @@ transformForHTML = removeDataDirectory . niceDateSeparator
 Replaces ASCII dashes with Unicode em dash in all code blocks which occur in
 all headers.
 -}
-niceDateSeparator :: Pandoc -> Pandoc
+niceDateSeparator ∷ Pandoc → Pandoc
 niceDateSeparator =
     let f (Header n a is) = Header n a $ walk h is
-        f x               = x
+        f x = x
         h (Code a txt) = Code a $ replace " - " " — " txt
-        h x            = x
+        h x = x
     in  walk f
 
 
@@ -127,9 +129,9 @@ preserving the @data/@ prefix during LaTeX generation.
 
 /It __is__ a bit ugly, but it works!/
 -}
-removeDataDirectory :: Pandoc -> Pandoc
+removeDataDirectory ∷ Pandoc → Pandoc
 removeDataDirectory =
     let f = \case
-            Image a b (url, c) | "data/" `isPrefixOf` url -> Image a b (drop 5 url, c)
-            x                                             -> x
+            Image a b (url, c) | "data/" `isPrefixOf` url → Image a b (drop 5 url, c)
+            x → x
     in  walk f

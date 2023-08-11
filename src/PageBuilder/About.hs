@@ -1,6 +1,6 @@
-module PageBuilder.About
-    ( buildAbout
-    ) where
+module PageBuilder.About (
+    buildAbout,
+) where
 
 import Compiler.Constants
 import Compiler.HTML
@@ -11,13 +11,13 @@ import Hakyll.Web.Template.Context (Context, constField)
 import System.FilePath.Posix ((</>))
 
 
-buildAbout :: Rules ()
+buildAbout ∷ Rules ()
 buildAbout = compileFormatStaticHTML aboutContext aboutPageInput [templateDefault]
 
 
-aboutContext :: Context String
+aboutContext ∷ Context String
 aboutContext = contextUsing [constField "NavRef" "about", constField "Title" "About"]
 
 
-aboutPageInput :: Pattern
+aboutPageInput ∷ Pattern
 aboutPageInput = fromString $ pathToPages </> "about.md"
