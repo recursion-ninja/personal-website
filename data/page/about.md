@@ -13,7 +13,11 @@ The topic of my dissertation involves researching the interplay between strong t
 Specifically, I am interested in how [quantitative type theory][DOI-QTT] coupled with oracle-based learning can enable *ergonomic* program synthesis requiring [minimal specification][Wiki-Learn].
 Additionally, I would like to explore heuristically detecting [decidable][Wiki-Halting] sub-components of a program and perform special optimizations enabled by a combination of decidability, linear, and dependent type information.
 I am seeking out **colleagues** for collaboration.
-If your passions align with mine, please reach out!
+If your studies align with mine, please reach out!
+
+Pedagocical methodlogies, inclusive ciricula devlopment, and positive educational outcomes in computer science are of special intrest to me.
+The practice and refinement of these pursuits has led to a persistent passion for providing collegiate education.
+Creating encouraging and inclusive environments for women, persons with disabilities, and members of underrepresented minorities in STEM, through teaching efforts and collaborative research has both provided immense satisfaction for myself and my students as well as nurtured numerous professional relationships which I cherish to this day.
 
 You can find more information on my current and past projects, along with various contact methods, on my [curriculum vitae][WWW-To-CV].
 

@@ -48,20 +48,20 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
 # Technical Strengths
 
-+:---------------+:-----------------------------------------------------------------------------+
-| Languages      | C, C++, C#, Dhall, Haskell, Idris, Java, JavaScript, PHP, Python             |
-+----------------+------------------------------------------------------------------------------+
-| APIs/Protocols | CSS3, HTML5, REST                                                            |
-+----------------+------------------------------------------------------------------------------+
-| Databases      | MySQL, MSSQL, Sybase                                                         |
-+----------------+------------------------------------------------------------------------------+
-| Tools          | Cabal, Emacs, Git, LaTeX, Pandoc, Spin, VS Code                              |
-+----------------+------------------------------------------------------------------------------+
++:---------------+:-------------------------------------------------------------------------------+
+| Languages      | C, C++, C#, Dhall, Haskell, Idris 2, Java, JavaScript, PHP, Python             |
++----------------+--------------------------------------------------------------------------------+
+| APIs/Protocols | CSS3, HTML5, REST                                                              |
++----------------+--------------------------------------------------------------------------------+
+| Databases      | MariaDB, MySQL, MSSQL, Sybase                                                  |
++----------------+--------------------------------------------------------------------------------+
+| Tools          | Cabal, Emacs, Git, LaTeX, Pandoc, Spin, VS Code                                |
++----------------+--------------------------------------------------------------------------------+
 
 
 # Publications & Presentations
 
-  - Wheeler, W. C. and A. J. **Washburn**. 2023. Parsimony Optimization of Phylogenetic Networks. Cladistics.
+  - [![DOI][DOI-img]][DOI-5] Wheeler, W. C. and A. J. **Washburn**. 2023. Parsimony Optimization of Phylogenetic Networks. Cladistics.
 
   - [![DOI][DOI-img]][DOI-4] **Washburn**, A. J. 2022. Formal Verification Applications for the TreeKEM Continuous Group Key Agreement Protocol. Masters Thesis.
 
@@ -74,6 +74,8 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
   - [![DOI][DOI-img]][DOI-0] Wheeler, W. C. and A. J. **Washburn**. 2019. FASTC: A file format for multi-character sequence data. Cladistics.
 
 [DOI-img]: data/img/doi-logo.png
+
+[DOI-5]:   https://doi.org/10.1111/cla.12552
 [DOI-4]:   https://academicworks.cuny.edu/cgi/viewcontent.cgi?article=2014&context=hc_sas_etds
 [DOI-3]:   https://doi.org/10.1109/WSC52266.2021.9715384
 [DOI-2]:   https://doi.org/10.1186/s12859-020-03595-2
@@ -85,13 +87,34 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
   - **Washburn**, A. J. and Subash Shankar. 2023. Verifying the TreeKEM protocol with Spin and Continuous Group Key Agreement.
 
+  - Wheeler, W. C.; *Washburn* A. J.and Crowley, L. M. 2023. PhylogeneticGraph (PhyG) a New Phylogenetic Graph Search and Optimization Program. Cladistics.
+
 
 # **Work Experience**
 
+## The Graduate Center `New York, NY`
+### *Graduate Research Assistant* `Aug 2022 - Dec 2023`
+
+  - Composition oracle-based, type-driven, and example-guided program synthesis techniques
+  - Utilize formal methods techniques for cryptographic protocol verification
+  - Conduct, document and publish novel research extending state-of-the-art techniques
+  - Perform literature review to locate relevant existing state-of-the-art techniques
+
+## Hunter College `New York, NY`
+### *Adjunct Lecturer* `Aug 2023 - Dec 2023`
+
+  - Develop curricula conforming with accreditation criteria
+  - Present and demonstrate computer science topics to undergraduates
+  - Utilize multiple instructional strategies to engage & assist students with homework
+  - Author and grade papers, presentations, programs, quizzes, and exams
+
 ## American Museum of Natural History `New York, NY`
+### *Contractual Consultant* `July 2023 - Dec 2023`
 ### *Computer Programmer* `Sep 2015 - Jun 2020`
 
+  - Architect a modular and extensible open-source project architecture
   - Improve asymptotic complexity of core string alignment algorithm
+  - Deploy state-of-the-art runtime representations for measures with an exponential domain
   - Design DSL as a Free Monad computation & implement monadic evaluator
   - Integrate C and Haskell code via the FFI
   - Implement efficient tree scoring heuristics
@@ -103,9 +126,9 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 ### *Adjunct Lecturer* `Aug 2021 - Dec 2021`
 ### *Adjunct Lecturer* `Aug 2018 - Jun 2019`
 
-  - Present and demonstrate computer science topics to undergraduates in recitation sections
+  - Present and demonstrate computer science topics to undergraduates
   - Utilize multiple instructional strategies to engage & assist students with homework
-  - Grade assigned papers, quizzes, and exams
+  - Author and grade papers, presentations, programs, quizzes, and exams
 
 ## MSI Data, LLC `Mequon, WI`
 ### *Software Developer* `Jan 2015 - Aug 2015`
