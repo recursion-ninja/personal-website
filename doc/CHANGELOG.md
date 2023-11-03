@@ -7,13 +7,18 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
 ## Unreleased
 
+## 2.2.18 -- 12023-11-03
+
+  * Updated CV & Resume content
+
+
 ## 2.2.17 -- 12023-09-06
 
   * Added `fourmolu` styling to code-base
 
   * Updated About webpage
 
-  * Updated CV & Resume context
+  * Updated CV & Resume content
 
 
 ## 2.2.16 -- 12023-06-29
