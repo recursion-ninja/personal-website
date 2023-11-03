@@ -17,9 +17,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 # Education
 
 ## The Graduate Center - CUNY `New York, NY`
-### Ph.D. Computer Science `2027`
-
-  - Doctoral Student
+### Ph.D. Computer Science (Level II) `Aug 2022 — Dec 2023`
 
 ## Hunter College - CUNY `New York, NY`
 ### M.A. Computer Science `Aug 2022`
@@ -49,7 +47,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 # Technical Strengths
 
 +:---------------+:-------------------------------------------------------------------------------+
-| Languages      | C, C++, C#, Dhall, Haskell, Idris 2, Java, JavaScript, PHP, Python             |
+| Languages      | C, C++, C#, Dhall, Haskell, Idris 2, Java, JavaScript, ML, PHP, Python         |
 +----------------+--------------------------------------------------------------------------------+
 | APIs/Protocols | CSS3, HTML5, REST                                                              |
 +----------------+--------------------------------------------------------------------------------+
@@ -60,6 +58,8 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
 
 # Publications & Presentations
+
+  - [![DOI][DOI-img]][DOI-6] Wheeler, W. C., A. J. **Washburn**, and Louise M. Crowley. 2023. PhylogeneticGraph (`PhyG`) a new phylogenetic graph search and optimization program. Cladistics.
 
   - [![DOI][DOI-img]][DOI-5] Wheeler, W. C. and A. J. **Washburn**. 2023. Parsimony Optimization of Phylogenetic Networks. Cladistics.
 
@@ -75,6 +75,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
 [DOI-img]: data/img/doi-logo.png
 
+[DOI-6]:   https://doi.org/10.1111/cla.12560
 [DOI-5]:   https://doi.org/10.1111/cla.12552
 [DOI-4]:   https://academicworks.cuny.edu/cgi/viewcontent.cgi?article=2014&context=hc_sas_etds
 [DOI-3]:   https://doi.org/10.1109/WSC52266.2021.9715384
@@ -87,8 +88,6 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
   - **Washburn**, A. J. and Subash Shankar. 2023. Verifying the TreeKEM protocol with Spin and Continuous Group Key Agreement.
 
-  - Wheeler, W. C.; *Washburn* A. J.and Crowley, L. M. 2023. PhylogeneticGraph (PhyG) a New Phylogenetic Graph Search and Optimization Program. Cladistics.
-
 
 # **Work Experience**
 
@@ -97,15 +96,14 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
   - Composition oracle-based, type-driven, and example-guided program synthesis techniques
   - Utilize formal methods techniques for cryptographic protocol verification
-  - Conduct, document and publish novel research extending state-of-the-art techniques
   - Perform literature review to locate relevant existing state-of-the-art techniques
+  - Conduct, document, and publish novel research extending prior work
 
 ## Hunter College `New York, NY`
-### *Adjunct Lecturer* `Aug 2023 - Dec 2023`
+### *Adjunct Lecturer* `(Four Semesters) Aug 2018 - Dec 2023`
 
-  - Develop curricula conforming with accreditation criteria
-  - Present and demonstrate computer science topics to undergraduates
-  - Utilize multiple instructional strategies to engage & assist students with homework
+  - Develop and present curricula conforming with accreditation criteria
+  - Utilize multiple instructional strategies to demonstarate computer science topics
   - Author and grade papers, presentations, programs, quizzes, and exams
 
 ## American Museum of Natural History `New York, NY`
@@ -114,21 +112,11 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
   - Architect a modular and extensible open-source project architecture
   - Improve asymptotic complexity of core string alignment algorithm
-  - Deploy state-of-the-art runtime representations for measures with an exponential domain
   - Design DSL as a Free Monad computation & implement monadic evaluator
   - Integrate C and Haskell code via the FFI
-  - Implement efficient tree scoring heuristics
   - Prototype novel graph algorithms
   - Develop efficient, well-typed file parsers for a variety of legacy formats
   - Define robust data normalization procedures for a disparate inputs
-
-## Hunter College `New York, NY`
-### *Adjunct Lecturer* `Aug 2021 - Dec 2021`
-### *Adjunct Lecturer* `Aug 2018 - Jun 2019`
-
-  - Present and demonstrate computer science topics to undergraduates
-  - Utilize multiple instructional strategies to engage & assist students with homework
-  - Author and grade papers, presentations, programs, quizzes, and exams
 
 ## MSI Data, LLC `Mequon, WI`
 ### *Software Developer* `Jan 2015 - Aug 2015`

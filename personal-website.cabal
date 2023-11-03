@@ -118,6 +118,10 @@ Executable personal-website
   hs-source-dirs:
     src
 
+  if os(darwin)
+    ld-options:
+      -Wl,-no_fixup_chains
+
   autogen-modules:
     Paths_personal_website
 
