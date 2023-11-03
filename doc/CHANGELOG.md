@@ -7,6 +7,13 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
 ## Unreleased
 
+  * Updated to support GHC-9.8.1
+
+  * Updated to support GHC-9.4.8
+
+  * Updated to support GHC-9.2.8
+
+
 ## 2.2.18 -- 12023-11-03
 
   * Updated CV & Resume content
@@ -41,9 +48,9 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Updated CV & Resume context
 
-  * Updated to GHC-9.4.5
+  * Updated to support GHC-9.4.5
 
-  * Updated to GHC-9.2.7
+  * Updated to support GHC-9.2.7
 
   * Updated by dropping support for GHC-8.10.7
 
@@ -77,7 +84,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Posted weblog: "Parsing Permutations"
 
-  * Updated to GHC-9.4.4
+  * Updated to support GHC-9.4.4
 
 
 ## 2.2.11 -- 12023-01-20
@@ -92,7 +99,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Posted weblog: "Conspectus 12022 Q4"
 
-  * Updated to GHC-9.2.5
+  * Updated to support GHC-9.2.5
 
   * Updated WSC-2021 link to use proper DOI reference
 
@@ -185,7 +192,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Updated `.cabal` file package description
 
-  * Updated to GHC-9.2.2
+  * Updated to support GHC-9.2.2
 
 
 ## 2.2.1 -- 12022-03-18
@@ -233,7 +240,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Corrected DOI link in CV
 
-  * Updated to GHC-9.0.1
+  * Updated to support GHC-9.0.1
 
 
 ## 2.1.4 -- 12021-10-29
