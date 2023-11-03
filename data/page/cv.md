@@ -103,7 +103,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 ### *Adjunct Lecturer* `(Four Semesters) Aug 2018 - Dec 2023`
 
   - Develop and present curricula conforming with accreditation criteria
-  - Utilize multiple instructional strategies to demonstarate computer science topics
+  - Utilize multiple instructional strategies to demonstrate computer science topics
   - Author and grade papers, presentations, programs, quizzes, and exams
 
 ## American Museum of Natural History `New York, NY`
