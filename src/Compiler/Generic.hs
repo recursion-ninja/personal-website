@@ -90,7 +90,7 @@ formatCompilerFromSpecification extension compiler inputContext inputPath inputR
 {- |
 Construct a 'Compiler' from a "writer description" and a 'Pandoc' document transformation.
 
-The resulting compiler reads the resource body(ies), applies the document transformtion,
+The resulting compiler reads the resource body(ies), applies the document transformation,
 then runs the writer description to produce output.
 -}
 compilerFromWriter ∷ ∀ a. String → (WriterOptions → Pandoc → PandocPure a) → PandocTransform → Compiler (Item a)
@@ -113,7 +113,7 @@ procurePandocResource pTrans =
     let alterPandoc ∷ Compiler (Item Pandoc) → Compiler (Item Pandoc)
         alterPandoc = fmap (fmap transformation)
 
-        -- Always equalize table columns, then apply other tansformations
+        -- Always equalize table columns, then apply other transformations
         transformation ∷ Pandoc → Pandoc
         transformation = getPandocTransform pTrans
     in  getResourceBody >>= alterPandoc . readPandocWith defaultWebsiteReaderOptions

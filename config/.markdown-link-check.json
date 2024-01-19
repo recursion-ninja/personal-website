@@ -1,5 +1,5 @@
 {
-    "aliveStatusCodes": [ 200, 203 ],
+    "aliveStatusCodes": [ 200, 203, 302, 403 ],
     "ignorePatterns": [
         { "pattern": "^data/img/.+" },
         { "pattern": "^/.+\\.html$" },

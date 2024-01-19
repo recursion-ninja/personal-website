@@ -1,0 +1,7 @@
+bbb
+cabc
+cac
+cacb
+ccba
+ccbacbcb
+ccc

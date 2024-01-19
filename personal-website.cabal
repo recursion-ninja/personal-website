@@ -56,17 +56,17 @@ Executable personal-website
     SiteBuilder.hs
 
   build-depends:
-    base >= 4.14 && < 5,
-    binary >= 0.8.7.0,
-    bytestring >= 0.10.12.1,
-    cryptonite >= 0.25,
-    filepath >= 1.4.2.1,
-    hakyll >= 4.13.4.1,
-    pandoc >= 3.1,
-    pandoc-types >= 1.21,
-    process >= 1.6.7.0,
-    text >= 1.2.3.2,
-    time >= 0.9.2
+    base >= 4.16 && < 5,
+    binary >= 0.8.9.0,
+    bytestring >= 0.11.4.0,
+    cryptonite >= 0.30,
+    filepath >= 1.4.2.2,
+    hakyll >= 4.16.0.0,
+    pandoc >= 3.0,
+    pandoc-types >= 1.23,
+    process >= 1.6.16.0,
+    text >= 1.2.5.0,
+    time >= 1.11.1.1,
 
   default-extensions:
     DerivingStrategies
@@ -82,10 +82,10 @@ Executable personal-website
     -fdiagnostics-color=always
     -fhide-source-paths
 
-    -- Threading can cause cache invalidation issues when building site
---    -threaded
-
     -- Optimization flags
+    --
+    -- Note: Do not use the '-threaded' GHC option!
+    -- Threading can cause cache invalidation issues when building site
     -fexcess-precision
     -fexpose-all-unfoldings
     -flate-specialise

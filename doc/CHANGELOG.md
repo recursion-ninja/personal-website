@@ -1,11 +1,17 @@
 # Revision history
 
-The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on GitHub][GitHub-Ghangelog].
+The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on GitHub][GitHub-Changelog].
 
-[GitHub-Ghangelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
+[GitHub-Changelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
 
 
 ## Unreleased
+
+  * Corrected many spelling errors
+
+  * Transition from deprecated GitHub workflow 'haskell/action/setup' to 'haskell-actions/setup'
+
+  * Updated CV & Resume content
 
   * Updated to support GHC-9.8.1
 
@@ -36,7 +42,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Corrected code block rendering in HTML
 
-  * Corrected figure rendinging in HTML
+  * Corrected figure rendering in HTML
 
   * Enhanced Pandoc reader with `grid_tables` extension
 
@@ -71,7 +77,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
 ## 2.2.13 -- 12023-03-17
 
-  * Added responsive rendering of `figure` elements, rsiing to fit small viewports
+  * Added responsive rendering of `figure` elements, rising to fit small viewports
 
   * Corrected many spelling errors
 

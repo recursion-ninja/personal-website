@@ -33,12 +33,12 @@ compileFormatTransformedHTML =
     let htmlCompiler ∷ (Pandoc → Pandoc) → Compiler (Item String)
         htmlCompiler = pandocCompilerWithTransform optsR optsW
 
-        htmlTranstion ∷ (Pandoc → Pandoc) → (Pandoc → Pandoc)
-        htmlTranstion = getPandocTransform . pandocTransform
+        htmlTransition ∷ (Pandoc → Pandoc) → (Pandoc → Pandoc)
+        htmlTransition = getPandocTransform . pandocTransform
 
         optsR ∷ ReaderOptions
         optsR = defaultWebsiteReaderOptions
 
         optsW ∷ WriterOptions
         optsW = defaultHakyllWriterOptions
-    in  formatCompilerFromSpecification "html" . htmlCompiler . htmlTranstion
+    in  formatCompilerFromSpecification "html" . htmlCompiler . htmlTransition

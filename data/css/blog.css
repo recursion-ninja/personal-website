@@ -43,7 +43,10 @@ html
 	  - Boarder around code block
 	  - Boarder around page block
 	*/
-	--code-snip-ample: calc( ( ( var(--page-full-width) ) + ( var(--boarder-breadth) * 2 ) ) - ( ( var(--page-edge-space) * 2 ) + ( var(--boarder-breadth) * 2 ) + ( var(--boarder-breadth) * 2 ) ));
+	--code-snip-ample: calc(
+		( ( var(--page-full-width) ) + ( var(--boarder-breadth) * 2 ) ) -
+		( ( var(--page-edge-space) * 2 ) + ( var(--boarder-breadth) * 2 ) + ( var(--boarder-breadth) * 2 ) )
+		);
 	/*
 	Variable Description ( --code-snip-sides ):
 	Here we want the margin of a code block to be either:
@@ -301,7 +304,7 @@ html
 #post-text-matter thead
 {
 	border-bottom-style: solid;
-	border-bottom-width: ver(--boarder-breadth);
+	border-bottom-width: var(--boarder-breadth);
 }
 
 #post-text-matter thead > tr:last-child > th

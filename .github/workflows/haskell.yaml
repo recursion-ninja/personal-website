@@ -1,5 +1,5 @@
 ################################################################################
-### GitHub Actions curation providing quality assurance for Haskell projects 
+### GitHub Actions curation providing quality assurance for Haskell projects
 ###
 name: 'Haskell Quality Assurance CI'
 
@@ -19,6 +19,7 @@ on:
   push:
 #    branches: [master]
 
+permissions: read-all
 
 ################################################################################
 ### Actions: Curation
@@ -34,9 +35,9 @@ jobs:
       PROJECT_FILE: --project-file=config/cabal.project.CI
 
     name: GHC-${{ matrix.ghc }}
-    
+
     runs-on:  ${{ matrix.os  }}
-    
+
     strategy:
 
       fail-fast: false
@@ -48,16 +49,16 @@ jobs:
       #     - macOS bills at x10 the paid Linux CI minute rate
       #
       matrix:
-        ghc:   [ '8.10', '9.0', '9.2' ]
+        ghc:   [ '9.2', '9.4', '9.6', '9.8' ]
         cabal: [ 'latest' ]
         os:    [ ubuntu-latest ]
 
     steps:
       - name: 'Setup - Clone Project'
         uses: actions/checkout@v3
-      
+
       - name: 'Setup - Haskell'
-        uses: haskell/actions/setup@v2
+        uses: haskell-actions/setup@v2
         id:   haskell-info
         with:
           ghc-version:   ${{ matrix.ghc   }}
@@ -110,10 +111,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 'Setup - Haskell'
-        uses: haskell/actions/setup@v2
+        uses: haskell-actions/setup@v2
         id:   haskell-info
         with:
-          ghc-version:   8.10
+          ghc-version:   '9.2.1'
           cabal-version: 3.6
 
       - name: 'Setup - Cabal'
@@ -156,21 +157,31 @@ jobs:
     needs: build-min-bounds
 
     runs-on: ubuntu-latest
-    
+
+    permissions:
+      # Needed to upload results to GitHub code scanning.
+      security-events: write
+
     steps:
       - name: 'Setup - Clone Project'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 'Setup - HLint'
         uses: haskell/actions/hlint-setup@v2
         with:
-          version: '3.4'
+          version: '3.8'
 
       - name: 'Run HLint'
         uses: haskell/actions/hlint-run@v2
         with:
-          path: '[ "src/" ]' 
+          path: '[ "src/" ]'
           fail-on: warning
+
+      - name: 'Scan HLint'
+        uses: haskell-actions/hlint-scan@v1
+        with:
+          hints: "config/.hlint.yaml"
+          path: "src/"
 
 
 ################################################################################
@@ -192,11 +203,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 'Setup - Haskell'
-        uses: haskell/actions/setup@v2
+        uses: haskell-actions/setup@v2
         id:   haskell-info
         with:
-          ghc-version:   8.10.1
-          cabal-version: 3.6
+          ghc-version:   '9.6.3'
+          cabal-version: 'latest'
 
       - name: 'Setup - Cabal'
         run: |
@@ -211,7 +222,7 @@ jobs:
 
       - name: 'Setup - StAn'
         run: |
-          wget -q -O stan https://github.com/kowainik/stan/releases/download/v0.0.1.0/stan-0.0.1.0-Linux-ghc-8.10.1
+          wget -q -O stan https://github.com/kowainik/stan/releases/download/v0.1.0.1/stan-0.1.0.1-Linux-ghc-9.6.3
           chmod +x stan
           ./stan --version
 
@@ -259,10 +270,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 'Setup - Haskell'
-        uses: haskell/actions/setup@v2
+        uses: haskell-actions/setup@v2
         with:
-          ghc-version:   9.2
-          cabal-version: 3.6
+          ghc-version:   '9.2'
+          cabal-version: 'latest'
 
       - name: 'Setup - Cabal'
         run: |
@@ -393,10 +404,7 @@ jobs:
     outputs:
       followup: ${{ steps.spelling.outputs.followup }}
 
-    permissions:
-      actions:       read
-      contents:      read
-      pull-requests: read
+    permissions: read-all
 
     runs-on: ubuntu-latest
 
@@ -412,15 +420,75 @@ jobs:
           post_comment: 0
           extra_dictionary_limit: 32
           extra_dictionaries:
-            cspell:css/css.txt
+            cspell:ada/dict/ada.txt
+            cspell:aws/aws.txt
+            cspell:bash/dict/bash-words.txt
+            cspell:clojure/src/clojure.txt
+            cspell:companies/src/companies.txt
+            cspell:cpp/src/compiler-clang-attributes.txt
+            cspell:cpp/src/compiler-gcc.txt
+            cspell:cpp/src/compiler-msvc.txt
+            cspell:cpp/src/ecosystem.txt
+            cspell:cpp/src/lang-jargon.txt
+            cspell:cpp/src/lang-keywords.txt
+            cspell:cpp/src/people.txt
+            cspell:cpp/src/stdlib-c.txt
+            cspell:cpp/src/stdlib-cerrno.txt
+            cspell:cpp/src/stdlib-cmath.txt
+            cspell:cpp/src/stdlib-cpp.txt
+            cspell:cpp/src/template-strings.txt
+            cspell:cryptocurrencies/cryptocurrencies.txt
+            cspell:csharp/csharp.txt
+            cspell:css/dict/css.txt
+            cspell:dart/src/dart.txt
+            cspell:django/dict/django.txt
+            cspell:django/requirements.txt
+            cspell:docker/src/docker-words.txt
+            cspell:dotnet/dict/dotnet.txt
+            cspell:elixir/dict/elixir.txt
             cspell:filetypes/filetypes.txt
-            cspell:fullstack/fullstack.txt
-            cspell:html/html.txt
-            cspell:haskell/haskell.txt
-            cspell:latex/latex.txt
+            cspell:fonts/fonts.txt
+            cspell:fullstack/dict/fullstack.txt
+            cspell:gaming-terms/dict/gaming-terms.txt
+            cspell:golang/dict/go.txt
+            cspell:haskell/dict/haskell.txt
             cspell:html-symbol-entities/entities.txt
-            cspell:scientific_terms_US/custom_scientific_US.dic.txt
-            cspell:software-terms/src/software-terms.txt
+            cspell:html/dict/html.txt
+            cspell:html/src/svg.txt
+            cspell:java/src/java-terms.txt
+            cspell:java/src/java.txt
+            cspell:k8s/dict/k8s.txt
+            cspell:latex/dict/latex.txt
+            cspell:latex/samples/sample-words.txt
+            cspell:lisp/lisp.txt
+            cspell:lorem-ipsum/dictionary.txt
+            cspell:lua/dict/lua.txt
+            cspell:mnemonics/src/mnemonics.txt
+            cspell:monkeyc/src/monkeyc_keywords.txt
+            cspell:node/dict/node.txt
+            cspell:npm/dict/npm.txt
+            cspell:php/dict/php.txt
+            cspell:powershell/dict/powershell.txt
+            cspell:public-licenses/src/additional-licenses.txt
+            cspell:public-licenses/src/generated/public-licenses.txt
+            cspell:python/src/additional_words.txt
+            cspell:python/src/common/extra.txt
+            cspell:python/src/python/python-lib.txt
+            cspell:python/src/python/python.txt
+            cspell:r/src/r.txt
+            cspell:redis/dict/redis.txt
+            cspell:ruby/dict/ruby.txt
+            cspell:rust/dict/rust.txt
+            cspell:scala/dict/scala.txt
+            cspell:shell/dict/shell-all-words.txt
+            cspell:software-terms/dict/networkingTerms.txt
+            cspell:software-terms/dict/softwareTerms.txt
+            cspell:software-terms/dict/webServices.txt
+            cspell:sql/src/sql.txt
+            cspell:sql/src/tsql.txt
+            cspell:svelte/dict/svelte.txt
+            cspell:swift/src/swift.txt
+            cspell:typescript/dict/typescript.txt
 
 
 ################################################################################

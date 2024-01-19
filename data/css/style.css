@@ -1,6 +1,6 @@
 :root
 {
-	--animation-width: calc(var(--pge-edge-space) - var(--boarder-breadth));
+	--animation-width: calc(var(--page-edge-space) - var(--boarder-breadth));
 	--boarder-breadth: 2px;
 	--boarder-caliber: var(--boarder-breadth) var(--page-text-color) solid;
 	/* Variable Descriptors ( --bookends-height ):
@@ -512,38 +512,6 @@ img.icon
 #blog-list-title
 {
 	margin-bottom: var(--page-edge-space);
-}
-
-div#content > dl#blog-list
-{
-	display: flex;
-	flex-direction: column;
-}
-
-div#content > dl#blog-list > span
-{
-	display: flex;
-	flex-direction: row;
-	flex: 1;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-div#content > dl#blog-list > span > dt
-{
-	padding-right: 32px;
-}
-
-div#content > dl#blog-list > span > dd
-{
-	flex-grow: 1;
-	margin: 0;
-	overflow: hidden;
-	padding-left: calc(var(--page-edge-space));
-	text-align: right;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 }
 
 .logo-box

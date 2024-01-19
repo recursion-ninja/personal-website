@@ -198,14 +198,14 @@ paths n = product [1..n]
 
 For simplicity, let us assume all component parsers are pair-wise mutually exclusive.
 Elegantly, the tree structure of the algorithm memoizes partial computations, preventing a full look ahead and full backtracking on permutation parser evaluations which initially succeed on one or more component combinators then subsequently fail on a later combinator.
-Furthermore, lazy evaluation means that the nonterministic algorithm does not explore the whole tree.
+Furthermore, lazy evaluation means that the nondeterministic algorithm does not explore the whole tree.
 Instead it performs a depth first search with the described early abort/short-circuiting of a subtree if the associated combinator fails to parse.
 Additionally, because in practice the combinator attempts are evaluated single threaded in the order of composition, a clever author can order the component combinators in order of success probability.
-The practical result of this algorithm coupled with lazy, single-threaded, order-depenent evaluation is the following: 
+The practical result of this algorithm coupled with lazy, single-threaded, order-dependent evaluation is the following: 
 
 > In the best case, the algorithm will only proceed down one path of the computational tree, with $0$ redundant parse attempts of component combinators.
 > Conversely, in the worst case, the algorithm will attempt to proceed down *all* $N!$ paths of the computation tree, and at each leaf node of each path (except the last path) have the associated component combinator fail to parse, resulting in $|E| - N$ redundant parse attempts of component combinators (wasted work).
-> Hence we have the parsing algorithm bounde below by $\Theta(N)$ and above by $\mathit{O}(N!)$.
+> Hence we have the parsing algorithm bounded below by $\Theta(N)$ and above by $\mathit{O}(N!)$.
 
 
 ### Picturing parse processes
@@ -248,9 +248,9 @@ Let's visualize what such a computation tree would look like for `example`.
 
 ### Modified computational tree of `example`
 
-Below is a parital rendering of a computational tree which yields the requested semantics for `permMany` and `permSome`.
+Below is a partial rendering of a computational tree which yields the requested semantics for `permMany` and `permSome`.
 Likely the first noticeable feature of the computation tree is that it is infinite.
-Any permutation parser containing `permMany` or `permSome` will necissarily produce a computation tree containing an infinite recursive progression of  branching subtrees.
+Any permutation parser containing `permMany` or `permSome` will necessarily produce a computation tree containing an infinite recursive progression of  branching subtrees.
 
 ![General computational tree of the `example` parser](data/img/perm-parser-03.png)
 

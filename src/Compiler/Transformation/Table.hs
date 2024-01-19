@@ -20,8 +20,8 @@ equalizeTableColumns ∷ Pandoc → Pandoc
 equalizeTableColumns =
     let alterTable ∷ Block → Block
         alterTable = \case
-            Table attr caption colsPec tHead tBody tFoot →
-                let uniformColSpec = equalizeColumnSpecifications colsPec
+            Table attr caption colSpec tHead tBody tFoot →
+                let uniformColSpec = equalizeColumnSpecifications colSpec
                 in  Table attr caption uniformColSpec tHead tBody tFoot
             x → x
     in  walk alterTable

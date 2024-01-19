@@ -8,19 +8,29 @@
 (((ht|f)tp(s?))\://)?(www.|[a-zA-Z].)?[a-zA-Z0-9\-\.]+\.\w+(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\;\?\'\\\+&amp;%\$#\=~_\-]+))*
 
 # HTML color codes
-\#[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]
+\#[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]
+
+# Formal artificial intelligence abreviation
+A\.I\.
+
+# Conditional pluralization suffix
+\(ies\)
 
 # Weird false positives
-Alike
-bibfile
-bottom
-configurable
-estimate
-import(ant(ly)?)?
-left
-module
-Pandoc
-right
-rule
-template
 version
+template
+rule
+right
+module
+left
+import(ant(ly)?)?
+estimate
+configurable
+bottom
+bibfile
+Pandoc
+Alike
+
+Responsible
+support
+
