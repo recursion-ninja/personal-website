@@ -28,6 +28,12 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
 # Distinctions
 
+## Advanced Open Water Diver
+### PADI Certification № 23020L2456 `Feb 14, 2023`
+
+## Open Water Diver
+### PADI Certification № 2208AD4319 `Aug  2, 2022`
+
 ## Graduate Center Fellowship
 ### The Graduate School of the City University of New York `Feb 21, 2022`
 
@@ -49,11 +55,11 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 +:---------------+:-------------------------------------------------------------------------------+
 | Languages      | C, C++, C#, Dhall, Haskell, Idris 2, Java, JavaScript, ML, PHP, Python         |
 +----------------+--------------------------------------------------------------------------------+
-| APIs/Protocols | CSS3, HTML5, REST                                                              |
+| APIs/Protocols | CSS3, DIMACS, HTML5, REST                                                      |
 +----------------+--------------------------------------------------------------------------------+
 | Databases      | MariaDB, MySQL, MSSQL, Sybase                                                  |
 +----------------+--------------------------------------------------------------------------------+
-| Tools          | Cabal, Emacs, Git, LaTeX, Pandoc, Spin, VS Code                                |
+| Tools          | Cabal, Emacs, Git, LaTeX, Pandoc, PicoSAT, Spin, VS Code, Z3                   |
 +----------------+--------------------------------------------------------------------------------+
 
 
