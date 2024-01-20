@@ -1,11 +1,33 @@
 # Revision history
 
-The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on GitHub][GitHub-Ghangelog].
+The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on GitHub][GitHub-Changelog].
 
-[GitHub-Ghangelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
+[GitHub-Changelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
 
 
 ## Unreleased
+
+  * *None*
+
+
+## 2.2.19 -- 12024-01-20
+
+  * Corrected many spelling errors
+
+  * Transition from deprecated GitHub workflow 'haskell/action/setup' to 'haskell-actions/setup'
+
+  * Updated CV & Resume content
+
+  * Updated GitHub workflow configuration
+
+  * Updated spelling checker `cspell` configuration and extra dictionaries
+
+  * Updated to support GHC-9.8.1
+
+  * Updated to support GHC-9.4.8
+
+  * Updated to support GHC-9.2.8
+
 
 ## 2.2.18 -- 12023-11-03
 
@@ -29,7 +51,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Corrected code block rendering in HTML
 
-  * Corrected figure rendinging in HTML
+  * Corrected figure rendering in HTML
 
   * Enhanced Pandoc reader with `grid_tables` extension
 
@@ -41,9 +63,9 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Updated CV & Resume context
 
-  * Updated to GHC-9.4.5
+  * Updated to support GHC-9.4.5
 
-  * Updated to GHC-9.2.7
+  * Updated to support GHC-9.2.7
 
   * Updated by dropping support for GHC-8.10.7
 
@@ -64,7 +86,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
 ## 2.2.13 -- 12023-03-17
 
-  * Added responsive rendering of `figure` elements, rsiing to fit small viewports
+  * Added responsive rendering of `figure` elements, rising to fit small viewports
 
   * Corrected many spelling errors
 
@@ -77,7 +99,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Posted weblog: "Parsing Permutations"
 
-  * Updated to GHC-9.4.4
+  * Updated to support GHC-9.4.4
 
 
 ## 2.2.11 -- 12023-01-20
@@ -92,7 +114,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Posted weblog: "Conspectus 12022 Q4"
 
-  * Updated to GHC-9.2.5
+  * Updated to support GHC-9.2.5
 
   * Updated WSC-2021 link to use proper DOI reference
 
@@ -185,7 +207,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Updated `.cabal` file package description
 
-  * Updated to GHC-9.2.2
+  * Updated to support GHC-9.2.2
 
 
 ## 2.2.1 -- 12022-03-18
@@ -233,7 +255,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
   * Corrected DOI link in CV
 
-  * Updated to GHC-9.0.1
+  * Updated to support GHC-9.0.1
 
 
 ## 2.1.4 -- 12021-10-29

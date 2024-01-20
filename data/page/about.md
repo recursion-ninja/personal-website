@@ -15,7 +15,7 @@ Additionally, I would like to explore heuristically detecting [decidable][Wiki-H
 I am seeking out **colleagues** for collaboration.
 If your studies align with mine, please reach out!
 
-Pedagocical methodlogies, inclusive ciricula development, and positive educational outcomes in computer science are of special interest to me.
+Pedagogical methodologies, inclusive curricula development, and positive educational outcomes in computer science are of special interest to me.
 The practice and refinement of these pursuits has led to a persistent passion for providing collegiate education.
 Creating encouraging and inclusive environments for women, persons with disabilities, and members of underrepresented minorities in STEM, through teaching efforts and collaborative research has both provided immense satisfaction for myself and my students as well as nurtured numerous professional relationships which I cherish to this day.
 

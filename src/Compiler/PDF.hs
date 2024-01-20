@@ -46,7 +46,7 @@ compileFormatPDFWith
     -- ^ Alteration "Versioning Label"
     → FormatCompiler
 compileFormatPDFWith f v inContext inPath inRoute inTemplates =
-    let -- Always equalize table columns, then apply other tansformations
+    let -- Always equalize table columns, then apply other transformations
         transformation ∷ Pandoc → Pandoc
         transformation = f . equalizeTableColumns
 

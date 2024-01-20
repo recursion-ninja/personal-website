@@ -16,3 +16,10 @@ $ cabal exec  personal-website server
 ```
 
 The compiled website will be placed in the `_site` directory.
+
+
+### Running the linters
+
+```
+$ mega-linter-runner
+```
