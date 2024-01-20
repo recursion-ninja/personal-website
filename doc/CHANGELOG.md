@@ -7,11 +7,20 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
 ## Unreleased
 
+  * *None*
+
+
+## 2.2.19 -- 12024-01-20
+
   * Corrected many spelling errors
 
   * Transition from deprecated GitHub workflow 'haskell/action/setup' to 'haskell-actions/setup'
 
   * Updated CV & Resume content
+
+  * Updated GitHub workflow configuration
+
+  * Updated spelling checker `cspell` configuration and extra dictionaries
 
   * Updated to support GHC-9.8.1
 
