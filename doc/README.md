@@ -15,6 +15,11 @@ $ cabal exec  personal-website build
 $ cabal exec  personal-website server
 ```
 
+*One-liner:*
+```
+for a in clean build server; do cabal run . -- $a; done
+```
+
 The compiled website will be placed in the `_site` directory.
 
 
