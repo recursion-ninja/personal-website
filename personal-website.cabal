@@ -1,91 +1,62 @@
-Cabal-Version: 3.4
-Name:          personal-website
-Version:       2.2.19
-Stability:     Stable
-Build-Type:    Simple
+cabal-version:      3.4
+name:               personal-website
+version:            2.2.19
+stability:          Stable
+build-type:         Simple
+author:             Alex Washburn <github@recursion.ninja>
+copyright:          (c) 2015-2022 Alex Washburn
+license:            CC-BY-SA-4.0
+license-file:       doc/LICENSE
+maintainer:         Alex Washburn <github@recursion.ninja>
+homepage:           https://recursion.ninja
+bug-reports:        https://github.com/recursion-ninja/personal-website
+synopsis:           Website for Alex Washburn's recursion.ninja domain
+description:
+  The source code for Alex Washburn's web presence site <https://recursion.ninja>.
+  Static site is constructed using Hakyll <http://jaspervdj.be/hakyll>.
+  Designed for simple blog post authoring and publishing.
 
-Author:        Alex Washburn <github@recursion.ninja>
-Copyright:     (c) 2015-2022 Alex Washburn
-License:       CC-BY-SA-4.0
-License-File:  doc/LICENSE
+category:
+  Hakyll
+  Markdown
+  Pandoc
+  Web
 
-Maintainer:    Alex Washburn <github@recursion.ninja>
-Homepage:      https://recursion.ninja
-Bug-Reports:   https://github.com/recursion-ninja/personal-website
+tested-with:
+  ghc ==9.0.2
+  ghc ==9.2.8
+  ghc ==9.4.6
+  ghc ==9.8.1
 
-Synopsis:      Website for Alex Washburn's recursion.ninja domain
-Description:   The source code for Alex Washburn's web presence site <https://recursion.ninja>.
-               Static site is constructed using Hakyll <http://jaspervdj.be/hakyll>.
-               Designed for simple blog post authoring and publishing.
-Category:
-    Hakyll
-    Markdown
-    Pandoc
-    Web
+data-files:
+  blog/*.md
+  data/css/*.css
+  data/fav/*.png
+  data/fav/browserconfig.xml
+  data/fav/favicon.ico
+  data/fav/manifest.json
+  data/img/*.png
+  data/img/*.svg
+  data/page/*.html
+  data/template/*.adoc
+  data/template/*.html
+  data/template/*.latex
+  data/template/*.md
+  data/template/*.xml
 
-Tested-With:
-    GHC == 9.8.1
-    GHC == 9.4.6
-    GHC == 9.2.8
-    GHC == 9.0.2
+extra-doc-files:
+  doc/CHANGELOG.md
+  doc/README.md
 
-Data-Files:
-    blog/*.md
-    data/css/*.css
-    data/fav/browserconfig.xml
-    data/fav/favicon.ico
-    data/fav/manifest.json
-    data/fav/*.png
-    data/img/*.png
-    data/img/*.svg
-    data/page/*.html
-    data/template/*.adoc
-    data/template/*.html
-    data/template/*.latex
-    data/template/*.md
-    data/template/*.xml
-
-Extra-Doc-Files:
-    doc/CHANGELOG.md
-    doc/README.md
-
-
-Executable personal-website
-
-  main-is:
-    SiteBuilder.hs
-
-  build-depends:
-    base >= 4.16 && < 5,
-    binary >= 0.8.9.0,
-    bytestring >= 0.11.4.0,
-    cryptonite >= 0.30,
-    filepath >= 1.4.2.2,
-    hakyll >= 4.16.0.0,
-    pandoc >= 3.0,
-    pandoc-types >= 1.23,
-    process >= 1.6.16.0,
-    text >= 1.2.5.0,
-    time >= 1.11.1.1,
-
-  default-extensions:
-    DerivingStrategies
-    LambdaCase
-    NoGeneralizedNewtypeDeriving
-    UnicodeSyntax
-
-  default-language:
-    GHC2021
-
+common GHC-Flags-Usability
   ghc-options:
-    -- Usability flags
     -fdiagnostics-color=always
     -fhide-source-paths
 
-    -- Optimization flags
-    --
-    -- Note: Do not use the '-threaded' GHC option!
-    -- Threading can cause cache invalidation issues when building site
+-- Note: Do not use the '-threaded' GHC option!
+-- Threading can cause cache invalidation issues when building site
+common GHC-Flags-Optimization
+  ghc-options:
     -fexcess-precision
     -fexpose-all-unfoldings
     -flate-specialise
@@ -96,10 +67,12 @@ Executable personal-website
     -fspecialize-aggressively
     -fstatic-argument-transformation
 
-    -- Sanity check warnings
-    --   1. Include all warnings by default
+-- Sanity check warnings
+--   1. Include all warnings by default
+--   2. Exclude the undesirable warnings
+common GHC-Flags-Warnings
+  ghc-options:
     -Weverything
-    --   2. Exclude the undesirable warnings
     -Wno-all-missed-specialisations
     -Wno-implicit-prelude
     -Wno-missing-import-lists
@@ -108,20 +81,51 @@ Executable personal-website
     -Wno-type-defaults
     -Wno-unsafe
 
-  if impl(ghc >=9.2)
+  if impl(ghc >= 9.2)
     ghc-options:
       -Wno-missing-kind-signatures
 
-  if impl(ghc >=9.4)
+  if impl(ghc >= 9.4)
     ghc-options:
       -Wredundant-strictness-flags
+
+executable personal-website
+  import:
+    GHC-Flags-Optimization,
+    GHC-Flags-Usability,
+    GHC-Flags-Warnings,
+
+  main-is:
+    SiteBuilder.hs
+
+  build-depends:
+    base >=4.16 && <5,
+    binary >=0.8.9.0,
+    bytestring >=0.11.4.0,
+    cryptonite >=0.30,
+    filepath >=1.4.2.2,
+    hakyll >=4.16.0.0,
+    pandoc >=3.0,
+    pandoc-types >=1.23,
+    process >=1.6.16.0,
+    text >=1.2.5.0,
+    time >=1.11.1.1,
+
+  default-extensions:
+    UnicodeSyntax
+    LambdaCase
+    DerivingStrategies
+    NoGeneralizedNewtypeDeriving
+
+  default-language:
+    GHC2021
 
   hs-source-dirs:
     src
 
   if os(darwin)
     ld-options:
-      -Wl,-no_fixup_chains
+      "-Wl,-no_fixup_chains"
 
   autogen-modules:
     Paths_personal_website
@@ -140,8 +144,8 @@ Executable personal-website
     Compiler.Transformation.HeaderExclusion
     Compiler.Transformation.Table
     Indexer.Feed
-    Indexer.Page
     Indexer.HypertextAccess
+    Indexer.Page
     Indexer.Robots
     Indexer.SiteMap
     PageBuilder.About
