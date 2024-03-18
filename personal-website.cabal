@@ -57,12 +57,13 @@ common GHC-Flags-Usability
 -- Threading can cause cache invalidation issues when building site
 common GHC-Flags-Optimization
   ghc-options:
+    -O2
     -fexcess-precision
     -fexpose-all-unfoldings
     -flate-specialise
-    -fmax-simplifier-iterations=16
+--    -fmax-simplifier-iterations=16
     -foptimal-applicative-do
-    -fspec-constr-count=8
+--    -fspec-constr-count=8
     -fspec-constr-keen
     -fspecialize-aggressively
     -fstatic-argument-transformation
@@ -76,6 +77,7 @@ common GHC-Flags-Warnings
     -Wno-all-missed-specialisations
     -Wno-implicit-prelude
     -Wno-missing-import-lists
+    -Wno-missing-kind-signatures
     -Wno-missing-safe-haskell-mode
     -Wno-monomorphism-restriction
     -Wno-type-defaults
