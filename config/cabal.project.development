@@ -59,7 +59,7 @@ minimize-conflict-set:    True
 -- Applies to *all* packages, not just dependencies...
 package *
     benchmarks:        False
-    documentation:     True
+    documentation:     False
     tests:             False
     library-profiling: True
     library-profiling-detail: all-functions
@@ -67,7 +67,7 @@ package *
 
 package pandoc
     benchmarks:        False
-    documentation:     True
+    documentation:     False
     tests:             False
     library-profiling: True
     library-profiling-detail: all-functions
@@ -76,9 +76,9 @@ package pandoc
 
 -- Applies to *only* the specified package!
 package personal-website
-    benchmarks:        True
+    benchmarks:        False
     documentation:     True
-    tests:             True
+    tests:             False
     library-profiling: True
 
 packages: .

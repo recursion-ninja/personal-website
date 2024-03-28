@@ -17,7 +17,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 # Education
 
 ## The Graduate Center - CUNY `New York, NY`
-### Ph.D. Computer Science (Level II) `Aug 2022 — Dec 2023`
+### Ph.D. Candidate Computer Science `Aug 2022 — Present`
 
 ## Hunter College - CUNY `New York, NY`
 ### M.A. Computer Science `Aug 2022`
@@ -97,32 +97,32 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
 # **Work Experience**
 
-## The Graduate Center `New York, NY`
+## City University New York `New York, NY`
 ### *Graduate Research Assistant* `Aug 2022 - Dec 2023`
 
-  - Composition oracle-based, type-driven, and example-guided program synthesis techniques
+  - Compose oracle-based, type-driven, and example-guided program synthesis techniques
   - Utilize formal methods techniques for cryptographic protocol verification
   - Perform literature review to locate relevant existing state-of-the-art techniques
   - Conduct, document, and publish novel research extending prior work
 
-## Hunter College `New York, NY`
-### *Adjunct Lecturer* `(Four Semesters) Aug 2018 - Dec 2023`
+## American Museum of Natural History `New York, NY`
+### *Software Consultant* `July 2023 - Dec 2023`
+### *Lead Software Engineer* `Sep 2015 - Jun 2020`
+
+  - Architect a modular and extensible open-source bio-informatics framework
+  - Improve asymptotic complexity of core string alignment algorithm
+  - Design DSL as a Free Monad computation & implement monadic evaluator
+  - Integrate optimized legacy C code-base into modern Haskell via well-typed FFI
+  - Prototype novel graph algorithms
+  - Develop efficient, well-typed file parsers for a variety of legacy formats
+  - Define robust data normalization and unification procedures for a disparate inputs
+
+## City University New York `New York, NY`
+### *Adjunct Lecturer* `Aug 2018 - Dec 2023`
 
   - Develop and present curricula conforming with accreditation criteria
   - Utilize multiple instructional strategies to demonstrate computer science topics
   - Author and grade papers, presentations, programs, quizzes, and exams
-
-## American Museum of Natural History `New York, NY`
-### *Contractual Consultant* `July 2023 - Dec 2023`
-### *Computer Programmer* `Sep 2015 - Jun 2020`
-
-  - Architect a modular and extensible open-source project architecture
-  - Improve asymptotic complexity of core string alignment algorithm
-  - Design DSL as a Free Monad computation & implement monadic evaluator
-  - Integrate C and Haskell code via the FFI
-  - Prototype novel graph algorithms
-  - Develop efficient, well-typed file parsers for a variety of legacy formats
-  - Define robust data normalization procedures for a disparate inputs
 
 ## MSI Data, LLC `Mequon, WI`
 ### *Software Developer* `Jan 2015 - Aug 2015`
