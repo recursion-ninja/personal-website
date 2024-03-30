@@ -100,7 +100,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 ## City University of New York (CUNY) `New York, NY`
 ### *Graduate Research Assistant* `Aug 2022 - Present`
 
-  - Apply software design and project management experiance to conduct, document, and publish novel research
+  - Apply software design and project management experience to conduct, document, and publish novel research
   - Perform literature review to locate and accessibly present relevant state-of-the-art techniques to stake-holders
   - Make interactive program synthesis UX by composing oracle-based, type-driven, and example-guided techniques
   - Utilize formal methods techniques for cryptographic protocol verification used by billions of people worldwide
@@ -113,8 +113,8 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
   - Lead and coordinate a team with varying levels of technical overlap from conceptual research to end product
   - Improve asymptotic complexity of core string alignment algorithm by a factor of $n$
   - Prototype novel and performance tune graph algorithms for operating on big data sets of several TiBs
-  - Design a decarative DSL as a Free Monad computation & implemented an optimized monadic evaluator
-  - Integrate legacy C codebase into modern Haskell via well-typed FFI acheiving critical low-latency throughput
+  - Design a declarative DSL as a Free Monad computation & implemented an optimized monadic evaluator
+  - Integrate legacy C codebase into modern Haskell via well-typed FFI achieving critical low-latency throughput
   - Develop efficient, well-typed file parsers for a variety of informally defined, bespoke formats
   - Define robust data normalization and unification procedures for a disparate input data sources
 
@@ -123,7 +123,7 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
   - Plan and present curricula which encourages active learning, problem solving, and collaboration
   - Adaptively utilize multiple instructional strategies to comprehensively demonstrate computer science topics
-  - Author and grade papers, presentations, programs, quizzes, and exams designed to provde meaningful feedback
+  - Author and grade papers, presentations, programs, quizzes, and exams designed to provide meaningful feedback
 
 ## MSI Data, LLC `Mequon, WI`
 ### *Software Developer* `Jan 2015 - Aug 2015`

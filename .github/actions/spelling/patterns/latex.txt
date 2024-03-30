@@ -694,6 +694,7 @@ alpha
 \\LTpre
 \\LTpost
 \\LTleft
+\\LTcapwidth
 \\Join
 \\Im
 \\Gamma
