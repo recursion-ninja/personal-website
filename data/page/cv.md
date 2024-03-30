@@ -53,13 +53,13 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 # Technical Strengths
 
 +:---------------+:-------------------------------------------------------------------------------+
-| Languages      | C, C++, C#, Dhall, Haskell, Idris 2, Java, JavaScript, ML, PHP, Python         |
+| Languages      | C, C++, C#, Dhall, Haskell, Idris 2, Java, JavaScript, ML, PHP, Python, SQL    |
 +----------------+--------------------------------------------------------------------------------+
-| APIs/Protocols | CSS3, DIMACS, HTML5, REST                                                      |
+| APIs/Protocols | CSS3, DIMACS, HTML5, REST, XML                                                 |
 +----------------+--------------------------------------------------------------------------------+
 | Databases      | MariaDB, MySQL, MSSQL, Sybase                                                  |
 +----------------+--------------------------------------------------------------------------------+
-| Tools          | Cabal, Emacs, Git, LaTeX, Pandoc, PicoSAT, Spin, VS Code, Z3                   |
+| Tools          | Cabal, Docker, Emacs, Git, LaTeX, Pandoc, PicoSAT, Spin, VS Code, Z3           |
 +----------------+--------------------------------------------------------------------------------+
 
 
@@ -97,32 +97,33 @@ TimeZoneLabel:     EST/EDT (UTC-5/UTC-4)
 
 # **Work Experience**
 
-## City University New York `New York, NY`
-### *Graduate Research Assistant* `Aug 2022 - Dec 2023`
+## City University of New York (CUNY) `New York, NY`
+### *Graduate Research Assistant* `Aug 2022 - Present`
 
-  - Compose oracle-based, type-driven, and example-guided program synthesis techniques
-  - Utilize formal methods techniques for cryptographic protocol verification
-  - Perform literature review to locate relevant existing state-of-the-art techniques
-  - Conduct, document, and publish novel research extending prior work
+  - Apply software design and project management experiance to conduct, document, and publish novel research
+  - Perform literature review to locate and accessibly present relevant state-of-the-art techniques to stake-holders
+  - Make interactive program synthesis UX by composing oracle-based, type-driven, and example-guided techniques
+  - Utilize formal methods techniques for cryptographic protocol verification used by billions of people worldwide
 
 ## American Museum of Natural History `New York, NY`
 ### *Software Consultant* `July 2023 - Dec 2023`
 ### *Lead Software Engineer* `Sep 2015 - Jun 2020`
 
-  - Architect a modular and extensible open-source bio-informatics framework
-  - Improve asymptotic complexity of core string alignment algorithm
-  - Design DSL as a Free Monad computation & implement monadic evaluator
-  - Integrate optimized legacy C code-base into modern Haskell via well-typed FFI
-  - Prototype novel graph algorithms
-  - Develop efficient, well-typed file parsers for a variety of legacy formats
-  - Define robust data normalization and unification procedures for a disparate inputs
+  - Architect a modular, extensible, and well documented open-source bio-informatics framework
+  - Lead and coordinate a team with varying levels of technical overlap from conceptual research to end product
+  - Improve asymptotic complexity of core string alignment algorithm by a factor of $n$
+  - Prototype novel and performance tune graph algorithms for operating on big data sets of several TiBs
+  - Design a decarative DSL as a Free Monad computation & implemented an optimized monadic evaluator
+  - Integrate legacy C codebase into modern Haskell via well-typed FFI acheiving critical low-latency throughput
+  - Develop efficient, well-typed file parsers for a variety of informally defined, bespoke formats
+  - Define robust data normalization and unification procedures for a disparate input data sources
 
-## City University New York `New York, NY`
+## City University of New York (CUNY) `New York, NY`
 ### *Adjunct Lecturer* `Aug 2018 - Dec 2023`
 
-  - Develop and present curricula conforming with accreditation criteria
-  - Utilize multiple instructional strategies to demonstrate computer science topics
-  - Author and grade papers, presentations, programs, quizzes, and exams
+  - Plan and present curricula which encourages active learning, problem solving, and collaboration
+  - Adaptively utilize multiple instructional strategies to comprehensively demonstrate computer science topics
+  - Author and grade papers, presentations, programs, quizzes, and exams designed to provde meaningful feedback
 
 ## MSI Data, LLC `Mequon, WI`
 ### *Software Developer* `Jan 2015 - Aug 2015`

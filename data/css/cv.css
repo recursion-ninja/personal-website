@@ -70,7 +70,7 @@ ul
 	list-style: none;
 	margin-top: var(--page-thin-space);
 	margin-bottom: var(--page-thin-space);
-	margin-left: calc(var(--page-edge-space) * 2);
+	margin-left: var(--page-edge-space);
 	margin-right: var(--page-edge-space);
 	padding-left: 0;
 	padding-right: 0;
@@ -255,7 +255,7 @@ img
 
 #work-experience ~ :is(h3 + ul) > li
 {
-	font-size: 80%;
+	font-size: 70%;
 	padding-top: var(--boarder-breadth);
 	padding-bottom: var(--boarder-breadth);
 }
