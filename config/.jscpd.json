@@ -2,6 +2,7 @@
   "threshold": 1.0,
   "reporters": ["html", "markdown"],
   "ignore": [
+    "README.md"    
     "**/node_modules/**",
     "**/.git/**",
     "**/.rbenv/**",
