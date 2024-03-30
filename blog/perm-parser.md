@@ -28,7 +28,7 @@ My present comprehension of and commentary on permutation paring did not manifes
 The inciting incident emerged as an evidently [innocent issue][gh-feature].
 A feature request was made for an extension of the [`parser-combinators`][pc-v0.2.0] package's [`Control.Applicative.Permutations`][pc-module] module to include the following additional parser combinator definitions:
 
-```
+```haskell
 manyPerm :: Functor m => m a -> Permutation m [a]
 manyPerm parser = go []
    where
@@ -42,7 +42,7 @@ somePerm parser = P Nothing (go . pure <$> parser)
 From the same feature request, operational ambiguity was removed by elaborating on the hypothetical usage the new parser combinators.
 The permutation parser `spec` was considered to help better understand the requested parsing semantics:
 
-```
+```haskell
 spec = (,,)
     <$> char 'a'
     <*> optional (char 'b')
@@ -78,7 +78,7 @@ Let us consider another parser combinator `example` and unpack how the permutati
 
 **Permutation Parser:**
 
-```
+```haskell
 example = (,,) 
     <$> char 'a' 
     <*> manyPerm (char 'b') 
@@ -89,14 +89,14 @@ Furthermore, let us consider two input strings and outcomes:
 
 **Input String:**
 
-```
+```haskell
 acceptable = "ccba"
 nonhalting = "ccbacbcb"
 ```
 
 **Desired Outputs:**
 
-```
+```haskell
 success = ('a', "b", "cc")
 failure = ('a', "bbb", "ccc")
 ```
@@ -175,7 +175,7 @@ For permutation parser with $N$ combinators, the graph $G = (V,E)$ results in a 
 The number of edges $|E|$ equals the number of permutations of *non-null* subsets of $N$ distinct objects.
 Fortunately, this is a well defined expression documented by [**OEIS A007526**](https://oeis.org/A007526).
 
-```
+```haskell
 edges :: Natural -> Natural
 edges 0 = 0
 edges n = n * ( edges ( n - 1 ) + 1 )
@@ -184,14 +184,14 @@ edges n = n * ( edges ( n - 1 ) + 1 )
 All graphs $G = (V,E)$ which are a *tree*, have the $|V| = |E| - 1$.
 This too is a well defined expression, documented by [**OEIS A000522**](https://oeis.org/A000522).
 
-```
+```haskell
 nodes :: Natural -> Natural
 nodes = succ . edges
 ```
 
 Additionally, all graphs $G = (V,E)$ which are a tree, have the a number of paths from the root node to a leaf node equal to the number of leaf nodes.
 
-```
+```haskell
 paths :: Natural -> Natural
 paths n = product [1..n]
 ```
@@ -217,7 +217,7 @@ First, consider the `acceptable` input string, desiring the output to be `succes
 
 ![Resulting computational tree of `parse example acceptable`](data/img/perm-parser-01.png)
 
-```
+```haskell
 >>> parse example acceptable
 Right ('a', "b", "cc")
 
@@ -232,7 +232,7 @@ Next, consider the `nonhalting` input string, desiring the output to be `failure
 
 ![Resulting computational tree of `parse example nonhalting`](data/img/perm-parser-02.png)
 
-```
+```haskell
 >>> parse example nonhalting
 Right ('a', "b", "cc")
 
