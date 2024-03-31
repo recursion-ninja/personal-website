@@ -1,6 +1,6 @@
 cabal-version:      3.4
 name:               personal-website
-version:            2.2.19
+version:            2.2.20
 stability:          Stable
 build-type:         Simple
 author:             Alex Washburn <github@recursion.ninja>

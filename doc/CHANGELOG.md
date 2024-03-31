@@ -4,10 +4,16 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
 [GitHub-Changelog]: https://github.com/recursion-ninja/personal-website/blob/master/doc/CHANGELOG.md
 
-
 ## Unreleased
 
   * *None*
+
+
+## 2.2.20 -- 12024-01-20
+
+  * Corrected code syntax highlighing in PDF outputs
+
+  * Updated CV & Resume content
 
 
 ## 2.2.19 -- 12024-01-20
