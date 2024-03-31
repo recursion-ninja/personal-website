@@ -11,7 +11,7 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
 
 ## 2.2.20 -- 12024-01-20
 
-  * Corrected code syntax highlighing in PDF outputs
+  * Corrected code syntax highlighting in PDF outputs
 
   * Updated CV & Resume content
 

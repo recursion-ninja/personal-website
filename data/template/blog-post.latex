@@ -18,11 +18,6 @@
 \setkeys{Gin}{width=10px}
 
 % Required for source code highlighting
-%\usepackage{framed}
-%\usepackage{textcomp}
-%\usepackage{xcolor}
-
-%\newenvironment{Shaded}{\begin{shaded}}{\end{shaded}}
 \usepackage{xcolor}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
