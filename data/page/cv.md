@@ -2,7 +2,6 @@
 Title:    Curriculum Vitae
 JobTitle: Computational Engineer
 Alias:    Recursion Ninja
-KeyWords: haskell
 
 Email:             contact@recursion.ninja
 AltEmail:          employment@recursion.ninja

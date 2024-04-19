@@ -9,7 +9,12 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
   * *None*
 
 
-## 2.2.20 -- 12024-01-20
+## 2.3.0 -- 12024-04-19
+
+  * Refactored CV & Resume generation
+
+
+## 2.2.20 -- 12024-03-31
 
   * Corrected code syntax highlighting in PDF outputs
 

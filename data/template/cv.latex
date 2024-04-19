@@ -1,5 +1,10 @@
 \documentclass[$if(fontsize)$$fontsize$$else$11pt$endif$,letterpaper]{article}
 
+\usepackage{accsupp}
+\pdfcompresslevel=0
+\pdfoptionpdfminorversion=6
+\DeclareRobustCommand\AddKeyWord[1]{%
+\BeginAccSupp{space=true,method=hex,unicode,ActualText={#1}}\textcolor{white}{\vphantom{m}}\EndAccSupp{}}
 
 \usepackage{array}
 \usepackage{booktabs}
@@ -19,6 +24,9 @@
 \usepackage{siunitx}
 \usepackage[sc]{titlesec}
 \usepackage{underscore}
+\usepackage{xcolor}
+
+
 
 \setkeys{Gin}{width=10px}
 
@@ -35,9 +43,9 @@
   urlcolor=$if(urlcolor)$$urlcolor$$else$black$endif$,
   linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,
   pdfauthor = {\name},
-  pdfkeywords = {$KeyWords$},
-  pdftitle = {\name: Curriculum Vitae},
-  pdfsubject = {Curriculum Vitae},
+  $if(keywords)$pdfkeywords = {$for(keywords)$$keyword$$sep$, $endfor$},$endif$
+  $if(Title)$pdftitle = {\name: $Title$},$endif$
+  $if(Title)$pdfsubject = {$Title$},$endif$
   pdfpagemode = UseNone
 }
 
@@ -101,14 +109,13 @@
 \vspace*{-1.4cm}
 {\Huge\bfseries\uppercase{ $Author$}}\\\\[-0.5em]
 {\LARGE\textsc{$JobTitle$}}
-
 \end{minipage} % Don't use empty lines after \end and the next \begin{minipage}.
 \begin{minipage}[t]{0.345\textwidth}
 \begin{tabular}{ @{}l l }
   \includegraphics{$FilepathImages$/$EmailImg$}         & $if(IsCurriculumVitae)$\href{mailto:$Email$}{$Email$}$else$$if(AltEmail)$\href{mailto:$AltEmail$}{$AltEmail$}$else$\href{mailto:$Email$}{$Email$}$endif$$endif$ \\
-  \includegraphics{$FilepathImages$/$WebsiteImg$}       & \href{$BaseURL$}{recursion.ninja} \\
-  \includegraphics{$FilepathImages$/$GitHubImg$}        & \href{https://github.com/$GitHub$}{github.com/$GitHub$} \\
-  \includegraphics{$FilepathImages$/$StackOverflowImg$} & \href{https://stackoverflow.com/users/$StackOverflowID$/$StackOverflowUser$}{stackoverflow.com/$StackOverflowUser$} \\
+  \includegraphics{$FilepathImages$/$WebsiteImg$}       & \BeginAccSupp{ActualText=$BaseURL$}\href{$BaseURL$}{recursion.ninja}\EndAccSupp{} \\
+  \includegraphics{$FilepathImages$/$GitHubImg$}        & \BeginAccSupp{ActualText=https://github.com/$GitHub$}\href{https://github.com/$GitHub$}{github.com/$GitHub$}\EndAccSupp{} \\
+  \includegraphics{$FilepathImages$/$StackOverflowImg$} & \BeginAccSupp{ActualText=https://stackoverflow.com/users/$StackOverflowID$/$StackOverflowUser$}\href{https://stackoverflow.com/users/$StackOverflowID$/$StackOverflowUser$}{stackoverflow.com/$StackOverflowUser$}\EndAccSupp{} \\
   \includegraphics{$FilepathImages$/$TimeZoneImg$}      & \href{https://time.is/compare/now_in_$TimeZoneCity$}{$TimeZoneLabel$} \\
   \includegraphics{$FilepathImages$/$LastUpdatedImg$}   & Last Updated $LastModified$ \\
 \end{tabular}
@@ -116,6 +123,6 @@
 
 \vspace*{-0.75cm}
 
-$body$
+$body$\vspace*{-0.75cm}$if(BuzzwordBlock)$\AddKeyWord{$BuzzwordBlock$}$endif$
 
 \end{document}
