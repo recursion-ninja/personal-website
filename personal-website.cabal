@@ -1,16 +1,16 @@
-cabal-version:      3.4
-name:               personal-website
-version:            2.3.1
-stability:          Stable
-build-type:         Simple
-author:             Alex Washburn <github@recursion.ninja>
-copyright:          (c) 2015-2022 Alex Washburn
-license:            CC-BY-SA-4.0
-license-file:       doc/LICENSE
-maintainer:         Alex Washburn <github@recursion.ninja>
-homepage:           https://recursion.ninja
-bug-reports:        https://github.com/recursion-ninja/personal-website
-synopsis:           Website for Alex Washburn's recursion.ninja domain
+cabal-version: 3.4
+name: personal-website
+version: 2.3.1
+stability: Stable
+build-type: Simple
+author: Alex Washburn <github@recursion.ninja>
+copyright: (c) 2015-2022 Alex Washburn
+license: CC-BY-SA-4.0
+license-file: doc/LICENSE
+maintainer: Alex Washburn <github@recursion.ninja>
+homepage: https://recursion.ninja
+bug-reports: https://github.com/recursion-ninja/personal-website
+synopsis: Website for Alex Washburn's recursion.ninja domain
 description:
   The source code for Alex Washburn's web presence site <https://recursion.ninja>.
   Static site is constructed using Hakyll <http://jaspervdj.be/hakyll>.
@@ -62,9 +62,6 @@ common GHC-Flags-Optimization
     -fexcess-precision
     -fexpose-all-unfoldings
     -flate-specialise
---    -fmax-simplifier-iterations=16
---    -foptimal-applicative-do
---    -fspec-constr-count=8
     -fspec-constr-keen
     -fspecialize-aggressively
     -fstatic-argument-transformation
@@ -84,11 +81,11 @@ common GHC-Flags-Warnings
     -Wno-type-defaults
     -Wno-unsafe
 
-  if impl(ghc >= 9.2)
+  if impl(ghc >=9.2)
     ghc-options:
       -Wno-missing-kind-signatures
 
-  if impl(ghc >= 9.4)
+  if impl(ghc >=9.4)
     ghc-options:
       -Wredundant-strictness-flags
 
@@ -115,10 +112,10 @@ executable personal-website
     time >=1.11.1.1,
 
   default-extensions:
-    UnicodeSyntax
-    LambdaCase
     DerivingStrategies
+    LambdaCase
     NoGeneralizedNewtypeDeriving
+    UnicodeSyntax
 
   default-language:
     GHC2021
@@ -126,10 +123,9 @@ executable personal-website
   hs-source-dirs:
     src
 
-  if os(darwin)
+  if os(osx)
     ld-options:
       "-Wl,-no_fixup_chains"
-
   autogen-modules:
     Paths_personal_website
 
