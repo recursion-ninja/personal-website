@@ -5,7 +5,7 @@
 ---------------------------------------------------------------------------------
 
 executable-static: False
-with-compiler: ghc-9.8.2
+with-compiler: ghc-9.10.1
 
 
 ---------------------------------------------------------------------------------
@@ -63,7 +63,6 @@ package *
     tests:             False
     library-profiling: True
     library-profiling-detail: all-functions
-    optimization: 2
 
 package pandoc
     benchmarks:        False
@@ -98,57 +97,8 @@ packages: .
 ---------------------------------------------------------------------------------
 
 allow-newer:
-    -- Core library
-    base,
-    ghc,
-    ghc-bignum,
-    ghc-compact,
-    ghc-prim,
-    integer-gmp,
-    template-haskell,
-    -- Internal compiler library
-    ghc-boot,
-    ghc-boot-th,
-    ghc-heap,
-    libiserv,
-    -- Dependency of `ghc` library
-    array,
-    binary,
-    bytestring,
-    containers,
-    deepseq,
-    directory,
-    exceptions,
-    filepath,
-    happy,
-    pretty,
-    process,
-    time,
-    transformers,
-    unix,
-    Win32,
-    -- Core tool library
-    ghci,
-    hpc,
-    Cabal,
-    -- Dependency of `Cabal` library
-    mtl,
-    parsec,
-    text,
-    -- Security update
-    aeson,
-    -- Lagging project dependency
-    memory,
-    -- Improved library
-    pandoc,
-
-constraints:
-    base installed,
-    ghc installed,
-    ghc-bignum installed,
-    ghc-prim installed,
-    integer-gmp installed,
-    template-haskell installed,
+    th-lift:template-haskell,
+    th-lift:th-abstraction,
 
 constraints:
     optparse-applicative -process,
@@ -164,12 +114,3 @@ preferences:
     pandoc >= 3.1.12,
     text >= 2.0.1,
     unordered-containers >= 0.2.18,
-
-repository head.hackage.ghc.haskell.org
-   url: https://ghc.gitlab.haskell.org/head.hackage/
-   secure: True
-   key-threshold: 3
-   root-keys:
-       7541f32a4ccca4f97aea3b22f5e593ba2c0267546016b992dfadcd2fe944e55d
-       26021a13b401500c8eb2761ca95c61f2d625bfef951b939a8124ed12ecf07329
-       f76d08be13e9a61a377a85e2fb63f4c5435d40f8feb3e12eb05905edb8cdea89

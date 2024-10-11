@@ -9,6 +9,11 @@ The changelog utilized [Semantic Versioning (v2.0.0)][1] and is available [on Gi
   * *None*
 
 
+## 2.3.1 -- 12024-10-11
+
+  * Updated to support GHC-9.10.1
+
+
 ## 2.3.0 -- 12024-04-19
 
   * Refactored CV & Resume generation

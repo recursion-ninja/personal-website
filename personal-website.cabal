@@ -1,6 +1,6 @@
 cabal-version:      3.4
 name:               personal-website
-version:            2.3.0
+version:            2.3.1
 stability:          Stable
 build-type:         Simple
 author:             Alex Washburn <github@recursion.ninja>
@@ -27,6 +27,7 @@ tested-with:
   ghc ==9.2.8
   ghc ==9.4.6
   ghc ==9.8.1
+  ghc ==9.10.1
 
 data-files:
   blog/*.md
@@ -62,7 +63,7 @@ common GHC-Flags-Optimization
     -fexpose-all-unfoldings
     -flate-specialise
 --    -fmax-simplifier-iterations=16
-    -foptimal-applicative-do
+--    -foptimal-applicative-do
 --    -fspec-constr-count=8
     -fspec-constr-keen
     -fspecialize-aggressively
